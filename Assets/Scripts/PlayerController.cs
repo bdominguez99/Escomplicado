@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float velocidad = 5f;
-    Vector2 targetPosition;
-    Rigidbody2D rb;
-    Vector2 direction;
     private Animator animator;
+    Rigidbody2D rigidBody;
+    Vector2 targetPosition;
+    Vector2 direction;
+    public float velocidad = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -29,10 +30,10 @@ public class scr : MonoBehaviour
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
             direction.Normalize();
             Vector2 velocity = direction * velocidad;
-            rb.velocity = velocity;
+            rigidBody.velocity = velocity;
             animator.SetBool("isMoving", true);
         } else{
-            rb.velocity = Vector2.zero;
+            rigidBody.velocity = Vector2.zero;
             animator.SetBool("isMoving", false);
         } 
     }
