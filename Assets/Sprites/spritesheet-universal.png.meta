@@ -230,6 +230,12 @@ TextureImporter:
   - first:
       213: 5361818374393245473
     second: spritesheet-universal_75
+  - first:
+      213: 8217837159331854518
+    second: spritesheet-universal_76
+  - first:
+      213: 5048647037219407986
+    second: spritesheet-universal_77
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1922,6 +1928,48 @@ TextureImporter:
       bones: []
       spriteID: 12f2fd34761096a40800000000000000
       internalID: 5361818374393245473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-universal_76
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1296
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b8faff3b5f9b0270800000000000000
+      internalID: 8217837159331854518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-universal_77
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1296
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2788ac14bb5601640800000000000000
+      internalID: 5048647037219407986
       vertices: []
       indices: 
       edges: []
