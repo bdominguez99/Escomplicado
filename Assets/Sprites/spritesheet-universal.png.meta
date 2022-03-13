@@ -203,6 +203,24 @@ TextureImporter:
   - first:
       213: -1992717457085910654
     second: spritesheet-universal_66
+  - first:
+      213: 2256544012122088446
+    second: spritesheet-universal_67
+  - first:
+      213: -7861864753609551048
+    second: spritesheet-universal_68
+  - first:
+      213: 1360561085724243961
+    second: spritesheet-universal_69
+  - first:
+      213: -2415257473489332294
+    second: spritesheet-universal_70
+  - first:
+      213: -6455849783410093763
+    second: spritesheet-universal_71
+  - first:
+      213: -4179303484520739095
+    second: spritesheet-universal_72
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
