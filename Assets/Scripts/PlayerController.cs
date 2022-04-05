@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     Vector2 targetPosition;
     Vector2 direction;
-    public float velocidad = 5f;
+    public float velocity = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
             direction.Normalize();
-            Vector2 velocity = direction * velocidad;
-            rigidBody.velocity = velocity;
+            Vector2 velocityVector = direction * velocity;
+            rigidBody.velocity = velocityVector;
             animator.SetBool("isMoving", true);
         } else{
             rigidBody.velocity = Vector2.zero;
