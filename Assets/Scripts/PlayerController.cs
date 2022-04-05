@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     private Animator animator;
     Rigidbody2D rigidBody;
-    Vector2 targetPosition;
     Vector2 direction;
     public float velocity = 5f;
 
@@ -20,13 +19,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GestionarMovimiento();
-        GestionarOrientacion();
+        HandleMovement();
+        HandleOrientation();
     }
 
-    void GestionarMovimiento(){
+    void HandleMovement(){
         if(Input.GetMouseButton(0)){
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
             direction.Normalize();
             Vector2 velocityVector = direction * velocity;
@@ -38,7 +37,7 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-    void GestionarOrientacion(){
+    void HandleOrientation(){
         transform.localScale = new Vector2(direction.x > 0?1:-1, transform.localScale.y);
     }
 }
