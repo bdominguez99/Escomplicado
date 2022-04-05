@@ -5,25 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Animator animator;
+    
     Rigidbody2D rigidBody;
     Vector2 direction;
     public float velocity = 5f;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         HandleMovement();
         HandleOrientation();
     }
 
-    void HandleMovement(){
+    private void HandleMovement(){
         if(Input.GetMouseButton(0)){
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-    void HandleOrientation(){
+    private void HandleOrientation(){
         transform.localScale = new Vector2(direction.x > 0?1:-1, transform.localScale.y);
     }
 }
