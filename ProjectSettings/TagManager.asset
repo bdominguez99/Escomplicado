@@ -44,11 +44,11 @@ TagManager:
   - name: Foreground
     uniqueID: 4126462743
     locked: 0
-  - name: Personaje
-    uniqueID: 2520151619
-    locked: 0
   - name: Intermedio
     uniqueID: 2003733381
+    locked: 0
+  - name: Personaje
+    uniqueID: 2520151619
     locked: 0
   - name: Flotantes
     uniqueID: 3099148095
