@@ -47,6 +47,9 @@ TagManager:
   - name: Intermedio
     uniqueID: 2003733381
     locked: 0
+  - name: Sobreobstaculos
+    uniqueID: 1155458069
+    locked: 0
   - name: Personaje
     uniqueID: 2520151619
     locked: 0
