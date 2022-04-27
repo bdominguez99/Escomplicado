@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movimiento")]
     private Animator animator;
-    
-    Rigidbody2D rigidBody;
-    Vector2 direction;
-    public float velocity = 5f;
+    private Rigidbody2D rigidBody;
+    private Vector2 direction;
+    [SerializeField] private float velocity = 5f;
+    private bool canMove = true;
+
+    [Header("Interacción")]
+    public GameObject ultimaColision;
 
     // Start is called before the first frame update
     public void Start()
@@ -25,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void HandleMovement(){
-        if(Input.GetMouseButton(0)){
+        if(canMove && Input.GetMouseButton(0)){
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
             direction.Normalize();
@@ -40,5 +44,26 @@ public class PlayerController : MonoBehaviour
 
     private void HandleOrientation(){
         transform.localScale = new Vector2(direction.x > 0?1:-1, transform.localScale.y);
+    }
+
+    public void setCanMove(bool canMove)
+    {
+        this.canMove = canMove;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interactive"))
+        {
+            ultimaColision = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interactive"))
+        {
+            ultimaColision = null;
+        }
     }
 }
