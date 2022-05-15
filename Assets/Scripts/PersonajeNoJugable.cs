@@ -5,11 +5,11 @@ using UnityEngine;
 public class PersonajeNoJugable : MonoBehaviour
 {
     [SerializeField] public int numeroPersonaje;
+    public Dialogo dialogo;
 
     public void accion ()
     {
-        // Seleccionar dialogo
-        Debug.Log("Mostrar dialogo");
+        FindObjectOfType<ManejadorDeDialogos>().IniciarDialogo(dialogo);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
