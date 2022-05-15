@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Vector2 direction;
     [SerializeField] private float velocity = 5f;
-    private bool canMove = true;
+    [SerializeField] private bool canMove = true;
 
     [Header("Interacción")]
     public GameObject ultimaColision;
