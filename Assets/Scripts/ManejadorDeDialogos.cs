@@ -7,7 +7,7 @@ public class ManejadorDeDialogos : MonoBehaviour
 {
     public Text textoDeDialogo;
     public Animator animator;
-    [SerializeField] public float velocidadDeEscritura = 5;
+    [SerializeField] private float velocidadDeEscritura = 5;
     private Queue<string> lineas;
 
     void Start()
@@ -56,5 +56,6 @@ public class ManejadorDeDialogos : MonoBehaviour
     public void FinalizarDialogo()
     {
         animator.SetBool("Activo", false);
+        FindObjectOfType<PlayerController>().setCanMove(true);
     }
 }

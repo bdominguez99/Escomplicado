@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PersonajeNoJugable : MonoBehaviour
 {
-    [SerializeField] public int numeroPersonaje;
+    [SerializeField] private int numeroPersonaje;
     public Dialogo dialogo;
 
     public void accion ()
     {
         FindObjectOfType<ManejadorDeDialogos>().IniciarDialogo(dialogo);
+        FindObjectOfType<PlayerController>().setCanMove(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -13,6 +13,7 @@ public class Interfaz : MonoBehaviour
     private Image pantallaNegra;
     [Header("Player")]
     private PlayerController player;
+    private GameObject nextDoor;
 
     private void Start()
     {
@@ -53,6 +54,11 @@ public class Interfaz : MonoBehaviour
         }
     }
 
+    public void setNextDoor(GameObject door)
+    {
+        nextDoor = door;
+    }
+
     public IEnumerator transition(bool cambiarPiso)
     {
         if (pantallaNegraGO != null)
@@ -70,7 +76,7 @@ public class Interfaz : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
 
             if (cambiarPiso) FindObjectOfType<Mapa>().cambiarPiso();
-            else Debug.Log("Aquí debería cambiar de salón, pero aún no está implementado jaja");
+            else FindObjectOfType<PlayerController>().gameObject.transform.position = nextDoor.transform.position;
 
             yield return new WaitForSecondsRealtime(0.1f);
             progress = 1;
