@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Boton : MonoBehaviour
 {
@@ -33,31 +32,58 @@ public class Boton : MonoBehaviour
         Application.Quit();
     }
 
-    public void inciarNueaPartida()
+    public void verificarPartidaNueva(int idPartida)
     {
-        SceneManager.LoadScene("Main");
+        SeleccionPartida seleccionPartida = FindObjectOfType<SeleccionPartida>();
+        if (seleccionPartida.isNewGame(idPartida))
+        {
+            FindObjectOfType<InfoEntreEscenas>().idPartida = idPartida;
+            interfaz.mostrarInterfaz(Interfaz.Interfaces.NuevaPartida);
+        }
+        else
+        {
+            StartCoroutine(FindObjectOfType<Interfaz>().loadScene("Main"));
+        }
+    }
+
+    public void iniciarNuevaPartida()
+    {
+        FindObjectOfType<NuevaPartida>().tryStartNewGame();
     }
 
     public void puasarJuego()
     {
         interfaz.mostrarInterfaz(Interfaz.Interfaces.Pausa);
-        if (player != null) player.SetActive(false);
+        FindObjectOfType<CoordinadorDeJuego>().setPlayingState(false);
+        if (player != null)
+        {
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            playerController.setCanMove(false);
+            playerController.enabled = false;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
 
     public void reanudarPartida()
     {
-        if (player != null) player.SetActive(true);
+        if (player != null)
+        {
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            playerController.enabled = true;
+            playerController.setCanMove(true);
+        }
         interfaz.mostrarInterfaz(Interfaz.Interfaces.Mapa);
+        FindObjectOfType<CoordinadorDeJuego>().setPlayingState(true);
     }
 
     public void guardarPartida()
     {
-        Debug.Log("Aqui se debería guardar la partida pero todavía no está implementado jaja.");
+        FindObjectOfType<ManejadorGuardado>().guardarPartida(FindObjectOfType<InfoEntreEscenas>().idPartida);
     }
 
     public void cargarMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(FindObjectOfType<Interfaz>().loadScene("MainMenu"));
     }
 
     public void interactuar()

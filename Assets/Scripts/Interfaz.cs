@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Interfaz : MonoBehaviour
 {
-    public enum Interfaces { Inicio, SleccionPartida, VerPuntuaciones, Pausa, Mapa, Intractuar };
+    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar };
 
     [Header("Pantallas")]
     [SerializeField] private GameObject[] layers;
-    [SerializeField] private GameObject pantallaNegraGO;
+    [SerializeField] private GameObject pantallaNegraGO, loadingScreen;
     private Image pantallaNegra;
     [Header("Player")]
     private PlayerController player;
@@ -26,13 +27,16 @@ public class Interfaz : MonoBehaviour
         switch (interfaz)
         {
             case Interfaces.Inicio:
-                mostrarLayers(new bool[] {true, false, false});
+                mostrarLayers(new bool[] {true, false, false, false});
                 break;
             case Interfaces.SleccionPartida:
-                mostrarLayers(new bool[] {false, true, false});
+                mostrarLayers(new bool[] { false, true, false, false });
+                break;
+            case Interfaces.NuevaPartida:
+                mostrarLayers(new bool[] { false, false, false, true });
                 break;
             case Interfaces.VerPuntuaciones:
-                mostrarLayers(new bool[] { false, false, true });
+                mostrarLayers(new bool[] { false, false, true, false });
                 break;
             case Interfaces.Pausa:
                 mostrarLayers(new bool[] { true, false, false });
@@ -90,5 +94,12 @@ public class Interfaz : MonoBehaviour
             pantallaNegraGO.SetActive(false);
             player.setCanMove(true);
         }
+    }
+
+    public IEnumerator loadScene(string scene)
+    {
+        loadingScreen.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadSceneAsync(scene);
     }
 }
