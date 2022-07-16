@@ -76,6 +76,15 @@ public class Boton : MonoBehaviour
         FindObjectOfType<CoordinadorDeJuego>().setPlayingState(true);
     }
 
+    public void eliminarPartida(int idPartida)
+    {
+        var manager = new GuardadoGenerico<ArchivoGuardado>();
+        var archivo = manager.Load(ManejadorGuardado.fileName);
+        archivo.partidas[idPartida] = null;
+        manager.Save(archivo, ManejadorGuardado.fileName);
+        FindObjectOfType<SeleccionPartida>().instantiateGamesTexts();
+    }
+
     public void guardarPartida()
     {
         FindObjectOfType<ManejadorGuardado>().guardarPartida(FindObjectOfType<InfoEntreEscenas>().idPartida);
