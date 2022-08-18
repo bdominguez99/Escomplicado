@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactive
+  - Piso
+  - PuertasPiso0
+  - PuertasPiso1
+  - PuertasPiso2
+  - Puerta
+  - Puertas
   layers:
   - Default
   - TransparentFX

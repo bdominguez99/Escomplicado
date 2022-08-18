@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,4 +12,5 @@ public class Partida
     public float tiempoJuego;
     public int puntuacionFinal;
     public string fechaTermino;
+    public EntradaSalon[] entradasSalones;
 }

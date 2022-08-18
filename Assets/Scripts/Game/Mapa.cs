@@ -1,11 +1,15 @@
+using Assets.Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mapa : MonoBehaviour
 {
-    [SerializeField] private GameObject[] pisos;
+    [SerializeField] public GameObject[] pisos;
+    public GameObject puerta;    
     private int pisoActual, pisoSiguiente;
+
+    public int PisoActual {get => pisoActual;}
 
     public void cambiarPiso()
     {
@@ -25,4 +29,5 @@ public class Mapa : MonoBehaviour
         pisoSiguiente = pisoActual - 1;
         StartCoroutine(FindObjectOfType<Interfaz>().transition(true));
     }
+
 }

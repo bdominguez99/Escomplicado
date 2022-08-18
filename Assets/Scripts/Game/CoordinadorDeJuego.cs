@@ -50,4 +50,26 @@ public class CoordinadorDeJuego : MonoBehaviour
         if (infoEntreEscenas != null)
             FindObjectOfType<ManejadorGuardado>().cargarPartida(infoEntreEscenas.idPartida);
     }
+
+    public static void acivarTodosLosPisos()
+    {
+        GameObject[] pisos = FindObjectOfType<Mapa>().pisos;
+        for (int i = 0; i <= 2; i++)
+        {
+            pisos[i].SetActive(true);
+        }
+    }
+
+    public static void desacivarPisosNoUsados()
+    {
+        int pisoActual = FindObjectOfType<Mapa>().PisoActual;
+        GameObject[] pisos = FindObjectOfType<Mapa>().pisos;
+        for (int i = 0; i <= 2; i++)
+        {
+            if (i != pisoActual)
+            {
+                pisos[i].SetActive(false);
+            }
+        }
+    }
 }

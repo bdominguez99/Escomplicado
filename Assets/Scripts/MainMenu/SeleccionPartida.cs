@@ -17,7 +17,7 @@ public class SeleccionPartida : MonoBehaviour
     public bool isNewGame(int idPartida)
     {
         archivoGuardado = new GuardadoGenerico<ArchivoGuardado>().Load(ManejadorGuardado.fileName);
-        return archivoGuardado.partidas == null || archivoGuardado.partidas[idPartida] == null;
+        return archivoGuardado == null || archivoGuardado.partidas == null || archivoGuardado.partidas[idPartida] == null;
     }
 
     public void instantiateGamesTexts()
