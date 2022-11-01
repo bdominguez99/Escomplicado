@@ -10,17 +10,17 @@ public class StoryTeller : MonoBehaviour
     private class StoryPage
     {
         public Sprite sprite;
-        [TextArea] public string paragraph;
+        [TextArea(6, 15)] public string paragraph;
     }
 
-    [SerializeField] private float lettersDelay = 0.05f, fadeTime = 1f;
+    [SerializeField] private float lettersDelay = 0.05f, fadeTime = 1f, steptime = 0.5f;
     [SerializeField] private Text storyText;
     [SerializeField] private Image topImage, storyImage;
-    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject loadingScreen, top;
     [SerializeField] private StoryPage[] pages;
 
     private int pageIndex = 0;
-    private bool canSkipPage, canSkipText;
+    private bool canSkipPage, canSkipText, isFading;
 
     private void Start()
     {
@@ -31,31 +31,60 @@ public class StoryTeller : MonoBehaviour
     {
         if (canSkipPage && Input.GetMouseButtonDown(0) && pageIndex < pages.Length - 1)
         {
-            nextPage();
+            StartCoroutine(nextPage());
         }
         else if (canSkipPage && Input.GetMouseButtonDown(0) && pageIndex == pages.Length - 1)
         {
             StartCoroutine(outroAnimation());
         }
-        else if(!canSkipPage && Input.GetMouseButtonDown(0))
+        else if(!canSkipPage && !isFading && Input.GetMouseButtonDown(0))
         {
             canSkipText = true;
         }
     }
 
-    private void nextPage()
+    public void skip()
+    {
+        StopAllCoroutines();
+        canSkipPage = false;
+        isFading = true;
+        StartCoroutine(outroAnimation());
+    }
+
+    private IEnumerator nextPage()
     {
         pageIndex++;
+        canSkipPage = false;
         if (pages[pageIndex].sprite != null)
         {
+            isFading = true;
+            top.SetActive(true);
+            float progress = 0f, relativeTime = steptime / 2;
+            while (progress < relativeTime)
+            {
+                topImage.color = new Color(1, 1, 1, progress / relativeTime);
+                progress += Time.deltaTime;
+                yield return null;
+            }
+            progress = relativeTime;
+            topImage.color = new Color(1, 1, 1, 1);
             storyImage.sprite = pages[pageIndex].sprite;
+            yield return new WaitForSeconds(0.05f);
+            while (progress > 0)
+            {
+                topImage.color = new Color(1, 1, 1, progress / relativeTime);
+                progress -= Time.deltaTime;
+                yield return null;
+            }
+            topImage.color = new Color(1, 1, 1, 0);
+            top.SetActive(false);
+            isFading = false;
         }
         StartCoroutine(setText());
     }
 
     private IEnumerator setText()
     {
-        canSkipPage = false;
         string paragraph = pages[pageIndex].paragraph;
         storyText.text = "";
         foreach (var letter in paragraph)
@@ -83,12 +112,14 @@ public class StoryTeller : MonoBehaviour
         }
         topImage.color = new Color(1, 1, 1, 0);
         yield return new WaitForSeconds(0.2f);
+        top.SetActive(false);
         StartCoroutine(setText());
     }
 
     private IEnumerator outroAnimation()
     {
         float progress = 0f;
+        top.SetActive(true);
         while (progress < fadeTime)
         {
             topImage.color = new Color(1, 1, 1, progress / fadeTime);

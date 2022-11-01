@@ -17,6 +17,8 @@ public class ManejadorGuardado : MonoBehaviour
         CoordinadorDeJuego coordinador = FindObjectOfType<CoordinadorDeJuego>();
         partida.tiempoJuego = coordinador.getTiempoJuego();
         partida.nombre = coordinador.getNombreJugador();
+        partida.scores = coordinador.getScores();
+        partida.pisoActual = FindObjectOfType<Mapa>().getActiveFloor();
         archivoGuardado = guardado.Load(fileName);
         if(archivoGuardado == default)
         {
@@ -36,6 +38,8 @@ public class ManejadorGuardado : MonoBehaviour
             if (partida != default)
             {
                 coordinador.setTiempoJuego(partida.tiempoJuego);
+                coordinador.setScores(partida.scores);
+                FindObjectOfType<Mapa>().setActiveFloor(partida.pisoActual);
                 if (partida.nombre != null)
                     coordinador.setNombreJugador(partida.nombre);
                 else
@@ -46,6 +50,12 @@ public class ManejadorGuardado : MonoBehaviour
             {
                 coordinador.setTiempoJuego(0);
                 coordinador.setNombreJugador(FindObjectOfType<InfoEntreEscenas>().nombreJugador);
+                float[] scores = new float[6];
+                for (int i = 0; i < scores.Length; i++)
+                {
+                    scores[i] = -1f;
+                }
+                coordinador.setScores(scores);
             }
         }
     }

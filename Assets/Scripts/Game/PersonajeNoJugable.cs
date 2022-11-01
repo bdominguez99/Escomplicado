@@ -5,12 +5,40 @@ using UnityEngine;
 public class PersonajeNoJugable : MonoBehaviour
 {
     [SerializeField] private int numeroPersonaje;
-    public Dialogo dialogo;
+    [SerializeField] private Dialogo dialogoBase, dialogoReintento, dialogoGanado;
+
+    private ManejadorDeDialogos manejadorDeDialogos;
+    private ManejadorMinijuegos manejadorMinijuegos;
+    private CoordinadorDeJuego coordinadorDeJuego;
+    private PlayerController player;
+
+    private void Start()
+    {
+        manejadorDeDialogos = FindObjectOfType<ManejadorDeDialogos>();
+        manejadorMinijuegos = FindObjectOfType<ManejadorMinijuegos>();
+        coordinadorDeJuego = FindObjectOfType<CoordinadorDeJuego>();
+        player = FindObjectOfType<PlayerController>();
+    }
 
     public void accion ()
     {
-        FindObjectOfType<ManejadorDeDialogos>().IniciarDialogo(dialogo);
-        FindObjectOfType<PlayerController>().setCanMove(false);
+        if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 0f)
+        {
+            if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 6f)
+            {
+                manejadorDeDialogos.IniciarDialogo(dialogoGanado);
+            }
+            else
+            {
+                manejadorDeDialogos.IniciarDialogo(dialogoReintento, true);
+            }
+        }
+        else
+        {
+            manejadorDeDialogos.IniciarDialogo(dialogoBase, true);
+        }
+        player.setCanMove(false);
+        manejadorMinijuegos.setNextMinigame(numeroPersonaje);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

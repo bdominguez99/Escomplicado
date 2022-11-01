@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Interfaz : MonoBehaviour
 {
-    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar };
+    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar, Confirmacion, ConfirmacionEliminarPartida };
 
     [Header("Pantallas")]
     [SerializeField] private GameObject[] layers;
@@ -27,27 +27,39 @@ public class Interfaz : MonoBehaviour
         switch (interfaz)
         {
             case Interfaces.Inicio:
-                mostrarLayers(new bool[] {true, false, false, false});
+                mostrarLayers(new bool[] { true, false, false, false, false });
                 break;
             case Interfaces.SleccionPartida:
-                mostrarLayers(new bool[] { false, true, false, false });
+                mostrarLayers(new bool[] { false, true, false, false, false });
                 break;
             case Interfaces.NuevaPartida:
-                mostrarLayers(new bool[] { false, false, false, true });
+                mostrarLayers(new bool[] { false, false, false, true, false });
                 break;
             case Interfaces.VerPuntuaciones:
-                mostrarLayers(new bool[] { false, false, true, false });
+                mostrarLayers(new bool[] { false, false, true, false, false });
+                break;
+            case Interfaces.ConfirmacionEliminarPartida:
+                mostrarLayers(new bool[] { false, true, false, false, true });
                 break;
             case Interfaces.Pausa:
-                mostrarLayers(new bool[] { true, false, false });
+                mostrarLayers(new bool[] { true, false, false, false });
                 break;
             case Interfaces.Mapa:
-                mostrarLayers(new bool[] { false, true, false });
+                mostrarLayers(new bool[] { false, true, false, false });
                 break;
             case Interfaces.Intractuar:
-                mostrarLayers(new bool[] { layers[0].activeSelf, layers[1].activeSelf, true });
+                mostrarLayers(new bool[] { layers[0].activeSelf, layers[1].activeSelf, true, false });
+                break;
+            case Interfaces.Confirmacion:
+                mostrarLayers(new bool[] { false, false, false, true });
                 break;
         }
+    }
+
+    public void apagarConfirmacion()
+    {
+        mostrarLayers(new bool[] { false, true, false, false });
+        player.setCanMove(true);
     }
 
     private void mostrarLayers(bool[] activeLayers)
@@ -61,6 +73,11 @@ public class Interfaz : MonoBehaviour
     public void setNextDoor(GameObject door)
     {
         nextDoor = door;
+    }
+
+    public void enableLoadingScreen()
+    {
+        loadingScreen.SetActive(true);
     }
 
     public IEnumerator transition(bool cambiarPiso)

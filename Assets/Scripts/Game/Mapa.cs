@@ -25,4 +25,19 @@ public class Mapa : MonoBehaviour
         pisoSiguiente = pisoActual - 1;
         StartCoroutine(FindObjectOfType<Interfaz>().transition(true));
     }
+
+    public int getActiveFloor()
+    {
+        return pisoActual;
+    }
+
+    public void setActiveFloor(int activeFloor)
+    {
+        foreach (var piso in pisos)
+        {
+            piso.SetActive(false);
+        }
+        pisos[activeFloor].SetActive(true);
+        pisoActual = activeFloor;
+    }
 }

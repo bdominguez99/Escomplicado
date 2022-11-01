@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogo 
 {
-
-    
+    [TextArea]
     public string[] lineas;
 }

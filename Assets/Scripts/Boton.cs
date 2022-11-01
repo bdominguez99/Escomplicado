@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Boton : MonoBehaviour
 {
-    private Interfaz interfaz;
+    public static int partidaAEliminar;
     [SerializeField] private GameObject player;
+    private Interfaz interfaz;
 
     private void Start()
     {
@@ -20,6 +21,12 @@ public class Boton : MonoBehaviour
     public void seleccionarPartida()
     {
         interfaz.mostrarInterfaz(Interfaz.Interfaces.SleccionPartida);
+    }
+
+    public void prepararEliminarPartida(int idPartida)
+    {
+        partidaAEliminar = idPartida;
+        interfaz.mostrarInterfaz(Interfaz.Interfaces.ConfirmacionEliminarPartida);
     }
 
     public void verPuntuaciones()
@@ -76,13 +83,14 @@ public class Boton : MonoBehaviour
         FindObjectOfType<CoordinadorDeJuego>().setPlayingState(true);
     }
 
-    public void eliminarPartida(int idPartida)
+    public void eliminarPartida()
     {
         var manager = new GuardadoGenerico<ArchivoGuardado>();
         var archivo = manager.Load(ManejadorGuardado.fileName);
-        archivo.partidas[idPartida] = null;
+        archivo.partidas[partidaAEliminar] = null;
         manager.Save(archivo, ManejadorGuardado.fileName);
         FindObjectOfType<SeleccionPartida>().instantiateGamesTexts();
+        interfaz.mostrarInterfaz(Interfaz.Interfaces.SleccionPartida);
     }
 
     public void guardarPartida()
