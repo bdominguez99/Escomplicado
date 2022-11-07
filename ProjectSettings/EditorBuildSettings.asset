@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Minigames/Minigame1/SpaceInvaders.unity
     guid: 223e07b160adef1429154fb094223779
+  - enabled: 1
+    path: Assets/Minigames/Minigame2/Scenes/TripasDeGato.unity
+    guid: 38348c78951acd04991dfe99d02ea47e
   m_configObjects: {}

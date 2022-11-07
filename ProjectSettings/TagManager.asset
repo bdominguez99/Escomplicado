@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactive
+  - Bullet
+  - Shoot
+  - PopUpDefiniciones
+  - ContenedorTexto
+  - ListaConceptos
+  - ListaDefiniciones
+  - TextoPuntuacionFinal
   layers:
   - Default
   - TransparentFX
