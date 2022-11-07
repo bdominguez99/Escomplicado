@@ -45,6 +45,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public Color getColor(Enemy.EnemyColor color)
+    {
+        return enemy.GetComponent<Enemy>().getColor(color);
+    }
+
     private int[] randArrange()
     {
         int[] colors = { 0, 0, 1, 1, 2, 2, 3, 3 };

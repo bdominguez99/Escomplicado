@@ -21,7 +21,7 @@ public class NuevaPartida : MonoBehaviour
         {
             InfoEntreEscenas info = FindObjectOfType<InfoEntreEscenas>();
             info.nombreJugador = nombre;
-            StartCoroutine(FindObjectOfType<Interfaz>().loadScene("NewGame"));
+            FindObjectOfType<Interfaz>().loadScene("NewGame");
         }
     }
 }

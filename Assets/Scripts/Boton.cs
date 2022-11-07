@@ -49,7 +49,7 @@ public class Boton : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FindObjectOfType<Interfaz>().loadScene("Main"));
+            FindObjectOfType<Interfaz>().loadScene("Main");
         }
     }
 
@@ -100,7 +100,7 @@ public class Boton : MonoBehaviour
 
     public void cargarMenu()
     {
-        StartCoroutine(FindObjectOfType<Interfaz>().loadScene("MainMenu"));
+        FindObjectOfType<Interfaz>().loadScene("MainMenu");
     }
 
     public void interactuar()

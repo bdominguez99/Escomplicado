@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Minijuego : MonoBehaviour
 {
+    public static Minijuego minijuego;
     [SerializeField] [Range(0, 5)] private int minigameId;
     private float score;
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        if(minijuego == null)
+        {
+            minijuego = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
