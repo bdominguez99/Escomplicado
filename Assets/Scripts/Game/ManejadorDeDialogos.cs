@@ -8,26 +8,28 @@ public class ManejadorDeDialogos : MonoBehaviour
     public Text textoDeDialogo;
     [SerializeField] private GameObject dialogoGameObject;
     [SerializeField] private float velocidadDeEscritura = 5;
+
     private Queue<string> lineas;
     private string siguienteLinea;
     private bool escribiendo, esDialogoMinijuego;
+    private Interfaz interfaz;
 
     void Start()
     {
         lineas = new Queue<string>();
+        interfaz = FindObjectOfType<Interfaz>();
     }
 
     public void IniciarDialogo (Dialogo dialogo, bool esDialogoMinijuego = false)
     {
         this.esDialogoMinijuego = esDialogoMinijuego;
         dialogoGameObject.SetActive(true);
+        interfaz.mostrarInterfaz(Interfaz.Interfaces.Default);
         lineas.Clear();
-
         foreach (string linea in dialogo.lineas)
         {
             lineas.Enqueue(linea);
         }
-
         MostrarLineaSiguiente();
     }
 
@@ -69,11 +71,13 @@ public class ManejadorDeDialogos : MonoBehaviour
         dialogoGameObject.SetActive(false);
         if (esDialogoMinijuego)
         {
-            FindObjectOfType<Interfaz>().mostrarInterfaz(Interfaz.Interfaces.Confirmacion);
+            interfaz.mostrarInterfaz(Interfaz.Interfaces.Confirmacion);
             esDialogoMinijuego = false;
         }
         else
         {
+            interfaz.mostrarInterfaz(Interfaz.Interfaces.Mapa);
+            interfaz.mostrarInterfaz(Interfaz.Interfaces.Intractuar);
             FindObjectOfType<PlayerController>().setCanMove(true);
         }
     }

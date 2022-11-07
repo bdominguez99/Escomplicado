@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Interfaz : MonoBehaviour
 {
-    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar, Confirmacion, ConfirmacionEliminarPartida };
+    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar, Confirmacion, ConfirmacionEliminarPartida, Default };
 
     [Header("Pantallas")]
     [SerializeField] private GameObject[] layers;
@@ -53,12 +53,15 @@ public class Interfaz : MonoBehaviour
             case Interfaces.Confirmacion:
                 mostrarLayers(new bool[] { false, false, false, true });
                 break;
+            case Interfaces.Default:
+                mostrarLayers(new bool[] { false, false, false, false });
+                break;
         }
     }
 
     public void apagarConfirmacion()
     {
-        mostrarLayers(new bool[] { false, true, false, false });
+        mostrarLayers(new bool[] { false, true, true, false });
         player.setCanMove(true);
     }
 
@@ -113,10 +116,9 @@ public class Interfaz : MonoBehaviour
         }
     }
 
-    public IEnumerator loadScene(string scene)
+    public void loadScene(string scene)
     {
         loadingScreen.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadSceneAsync(scene);
     }
 }

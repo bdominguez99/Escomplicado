@@ -97,6 +97,14 @@ public class GameController : MonoBehaviour
         SceneManager.LoadSceneAsync("Main");
     }
 
+    public void destroyBullets()
+    {
+        foreach (Transform bullet in bulletParent.transform)
+        {
+            Destroy(bullet.gameObject);
+        }
+    }
+
     private void resetLevel()
     {
         resetAnswers();
@@ -108,7 +116,7 @@ public class GameController : MonoBehaviour
     {
         for (int i = 0; i < answerImages.Length; i++)
         {
-            answerImages[i].color = Enemy.getColor((Enemy.EnemyColor)i);
+            answerImages[i].color = enemyController.getColor((Enemy.EnemyColor)i);
             actualPoints[i] = 0;
             setAnsBarSize(i, 0);
         }
@@ -154,10 +162,7 @@ public class GameController : MonoBehaviour
             levelScreen.SetActive(true);
             scoreText.text = "Pregunta: " + actualQuestion + "/" + targetQuestions
                 + "\nPuntuacion: " + actualScore + "/" + targetQuestions;
-            foreach (Transform bullet in bulletParent.transform)
-            {
-                Destroy(bullet.gameObject);
-            }
+            destroyBullets();
             if (actualQuestion <= questions.Length)
             {
                 setQuestion();
@@ -175,6 +180,7 @@ public class GameController : MonoBehaviour
         else if(actualQuestion == targetQuestions)
         {
             gameOverScreen.SetActive(true);
+            destroyBullets();
             gameOverScoreText.text = "Puntuacion: " + actualScore + "/" + targetQuestions
                 + "\n" + ((float)actualScore/targetQuestions >= 0.6 ? "Pasaste la prueba!" : "Has reprobado!");
         }

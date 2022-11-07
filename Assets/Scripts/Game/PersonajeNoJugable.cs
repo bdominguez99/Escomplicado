@@ -22,7 +22,8 @@ public class PersonajeNoJugable : MonoBehaviour
 
     public void accion ()
     {
-        if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 0f)
+        float[] scores = coordinadorDeJuego.getScores();
+        if (scores != null && scores[numeroPersonaje] >= 0f)
         {
             if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 6f)
             {

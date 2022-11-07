@@ -5,32 +5,37 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public enum EnemyColor { Y, M, G, C };
-    
+
     [SerializeField] private EnemyColor color;
-    [SerializeField] private SpriteRenderer render;
+    [SerializeField] private Color[] colors;
+    [SerializeField] private SpriteRenderer renderBase;
     [SerializeField] private int maxLife;
     [SerializeField] private float shootCooldownTime = 0.5f;
     [SerializeField][Range(0, 1)] private float oscilationSpeed = 1f, oscilationSize = 0.5f;
 
+    private SpriteRenderer renderTop;
     private Player player;
     private GameObject bullet, bulletParent;
     private Collider2D selfCollider;
+    private Color initColor;
     private int actualRow, life;
     private float absPositionX, oscilator;
-    private bool canShoot, canTakeDamage = true;
+    private bool canShoot, canTakeDamage = true, isActive = true;
 
     private void Start()
     {
+        renderTop = GetComponent<SpriteRenderer>();
         absPositionX = transform.position.x;
         player = FindObjectOfType<Player>();
         selfCollider = GetComponent<BoxCollider2D>();
         life = maxLife;
         canShoot = true;
+        initColor = renderTop.color;
     }
 
     private void Update()
     {
-        if(actualRow == 3 && canShoot && Mathf.Abs(transform.position.x - player.transform.position.x) < 0.3f)
+        if(actualRow == 3 && isActive && canShoot && Mathf.Abs(transform.position.x - player.transform.position.x) < 0.3f)
         {
             canShoot = false;
             StartCoroutine(shootCooldown());
@@ -46,24 +51,12 @@ public class Enemy : MonoBehaviour
     public void setColor(EnemyColor color)
     {
         this.color = color;
-        render.color = getColor(color);
+        renderBase.color = getColor(color);
     }
 
-    public static Color getColor(EnemyColor color)
+    public Color getColor(EnemyColor color)
     {
-        switch (color)
-        {
-            case EnemyColor.Y:
-                return Color.yellow;
-            case EnemyColor.M:
-                return Color.magenta;
-            case EnemyColor.G:
-                return Color.green;
-            case EnemyColor.C:
-                return Color.cyan;
-            default:
-                return Color.white;
-        }
+        return colors[(int)color];
     }
 
     public void setBulletTemplateAndParent(GameObject bullet, GameObject bulletParent)
@@ -94,9 +87,11 @@ public class Enemy : MonoBehaviour
 
     public void setActive(bool active)
     {
+        isActive = active;
         if (active) life = maxLife;
         selfCollider.enabled = active;
-        render.color = active ? getColor(color) : new Color(1, 1, 1, 0);
+        renderBase.color = active ? getColor(color) : new Color(1, 1, 1, 0);
+        renderTop.color = active ? initColor : new Color(1, 1, 1, 0);
     }
 
     public void setRow(int newRow)

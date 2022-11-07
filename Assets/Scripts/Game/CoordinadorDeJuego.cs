@@ -52,11 +52,24 @@ public class CoordinadorDeJuego : MonoBehaviour
 
     public string getNombreJugador()
     {
-        return nombreJugador;
+        if(nombreJugador != null && !nombreJugador.Equals(""))
+        {
+            return nombreJugador;
+        }
+        return infoEntreEscenas.nombreJugador;
     }
 
     public float[] getScores()
     {
+        if (scores == null)
+        {
+            scores = new float[6];
+            for(int i = 0; i < 6; i++)
+            {
+                scores[i] = -1f;
+            }
+            return scores;
+        }
         return scores;
     }
 

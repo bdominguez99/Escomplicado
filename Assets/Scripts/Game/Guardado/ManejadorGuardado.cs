@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ManejadorGuardado : MonoBehaviour
 {
-    private GuardadoGenerico<ArchivoGuardado> guardado = new GuardadoGenerico<ArchivoGuardado>();
+    private GuardadoGenerico<ArchivoGuardado> guardado;
     private ArchivoGuardado archivoGuardado;
     public static readonly string fileName = "SaveFile.dat";
+
+    private void Start()
+    {
+        guardado = new GuardadoGenerico<ArchivoGuardado>();
+    }
 
     public void guardarPartida(int idPartida)
     {

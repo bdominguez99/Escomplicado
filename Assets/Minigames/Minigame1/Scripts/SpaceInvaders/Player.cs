@@ -5,18 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int initialLifePoints = 3;
-    [SerializeField] private float maxRange = 4f, timeBeforeShoot = 0.1f;
+    [SerializeField] private float maxRange = 4f, timeBeforeShoot = 0.1f, dieImpulseForce = 1f;
     [SerializeField] private GameObject lifeBar, bullet, bulletParent;
+    [SerializeField] private Animator shieldAnimator;
 
     private LifeBar lifeBarScript;
-    private float targetx, initialPosX;
-    private bool canShoot, isShooting, canTakeDamage = true;
+    private Rigidbody2D rbd;
+    private Vector2 initialPos;
+    private float targetx;
+    private bool canShoot, isShooting, canTakeDamage = true, isDying;
     private int actualLifePoints;
 
     private void Start()
     {
+        rbd = GetComponent<Rigidbody2D>();
         lifeBarScript = lifeBar.GetComponent<LifeBar>();
-        initialPosX = transform.position.x;
+        initialPos = transform.position;
         actualLifePoints = initialLifePoints;
     }
 
@@ -26,9 +30,9 @@ public class Player : MonoBehaviour
         {
             targetx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             if (targetx > -maxRange && targetx < maxRange)
-                transform.position = new Vector2(initialPosX + targetx, transform.position.y);
+                transform.position = new Vector2(initialPos.x + targetx, transform.position.y);
         }
-        if ((isShooting || Input.GetKey(KeyCode.Space)) && !canShoot)
+        if ((isShooting || Input.GetKey(KeyCode.Space)) && !canShoot && !isDying)
         {
             canShoot = true;
             StartCoroutine(shoot());
@@ -48,9 +52,13 @@ public class Player : MonoBehaviour
     public void takeDamage(int dmg)
     {
         actualLifePoints -= dmg;
+        shieldAnimator.SetTrigger("Hurt");
         if (actualLifePoints <= 0)
         {
-            die();
+            isDying = true;
+            GetComponent<Animator>().SetTrigger("Die");
+            rbd.gravityScale = 1;
+            rbd.AddForce(Vector2.up * dieImpulseForce, ForceMode2D.Impulse);
         }
         else
         {
@@ -60,9 +68,11 @@ public class Player : MonoBehaviour
 
     public void resetState()
     {
-        transform.position = new Vector2(initialPosX, transform.position.y);
+        rbd.gravityScale = 0;
+        transform.position = new Vector2(initialPos.x, initialPos.y);
         actualLifePoints = initialLifePoints;
         lifeBarScript.updateLifeSize(initialLifePoints);
+        isDying = false;
     }
 
     public void setInvulnerable(bool invulnerable) {
@@ -71,6 +81,7 @@ public class Player : MonoBehaviour
 
     private void die()
     {
+        rbd.velocity = Vector2.zero;
         lifeBarScript.updateLifeSize(initialLifePoints);
         FindObjectOfType<GameController>().goToNextLevel();
     }
