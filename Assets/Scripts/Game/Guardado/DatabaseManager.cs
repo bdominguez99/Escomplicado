@@ -31,6 +31,7 @@ public class DataManager
     private HttpClient m_httpClient;
     private static HttpClient GlobalHttpClient;
     private List<JsonQuestion> m_allQuestions;
+    private bool m_leerDeArchivo;
 
     public DataManager()
     {
@@ -47,7 +48,7 @@ public class DataManager
     /// Gets a list of all the questions in the database.
     /// </summary>
     /// <returns></returns>
-    private async Task<List<JsonQuestion>> GetAllQuestionsAsync()
+    public async Task<List<JsonQuestion>> GetAllQuestionsAsync()
     {
         var allQuestionsData = await GetAllQuestionsRawDataAsync();
         FileManager.WriteRawDataToFileAsync(DatabaseConstants.AllQuestionsLocalFile, allQuestionsData);
@@ -145,21 +146,31 @@ public class DataManager
     private async Task<string> GetAllQuestionsRawDataAsync()
     {
         string result = "";
+        var pudoLeerDelServidor = false;
 
-        try
+        if (!m_leerDeArchivo)
         {
-            var content = "";
-            var requestContent = new StringContent(content, Encoding.UTF8, "application/json");
-            var response = await m_httpClient.PostAsync(DatabaseConstants.AllQuestionsUrl, requestContent);
-            response.EnsureSuccessStatusCode();
-
-            result = await response.Content.ReadAsStringAsync();
-            Debug.Log("Succesfully read data from server");
+            try
+            {
+                var content = "";
+                var requestContent = new StringContent(content, Encoding.UTF8, "application/json");
+                var response = await m_httpClient.PostAsync(DatabaseConstants.AllQuestionsUrl, requestContent);
+                response.EnsureSuccessStatusCode();
+            
+                result = await response.Content.ReadAsStringAsync();
+                m_leerDeArchivo = true;
+                pudoLeerDelServidor = true;
+                Debug.Log("Succesfully read data from server");
+            }
+            catch
+            {
+                Debug.Log("Could not connect to the server.");
+                pudoLeerDelServidor = false;
+            }
         }
-        catch
+        
+        if (!pudoLeerDelServidor)
         {
-            Debug.Log("Could not connect to the server.");
-
             try
             {
                 result = await FileManager.ReadRawDataFromFileAsync(DatabaseConstants.AllQuestionsLocalFile);
@@ -167,7 +178,7 @@ public class DataManager
             }
             catch
             {
-                Debug.Log("Could not read from local file.");
+                Debug.LogWarning("WARNING: Could not read from local file nor the server.");
             }
         }
 
