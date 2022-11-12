@@ -22,8 +22,8 @@ public static class DatabaseConstants
     public static string AllQuestionsLocalFile { get; } = "questions-json.json";
 
     public const string RelationQuestionString = "relation_question";
-    public const string OrderedQuestionString = "multiple_option";
-    public const string MultipleOptionString = "ordered_answer";
+    public const string OrderedQuestionString = "ordered_answer";
+    public const string MultipleOptionString = "multiple_option";
 }
 
 public class DataManager
@@ -216,7 +216,7 @@ public class MultipleOptionQuestion
     }
 
     public string question;
-    public List<AnswerOptions> answerOptions;
+    public List<AnswerOptions> answers;
 }
 
 

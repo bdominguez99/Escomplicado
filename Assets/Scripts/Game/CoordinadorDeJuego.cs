@@ -14,6 +14,14 @@ public class CoordinadorDeJuego : MonoBehaviour
     void Start()
     {
         infoEntreEscenas = FindObjectOfType<InfoEntreEscenas>();
+        if(infoEntreEscenas == null)
+        {
+            GameObject aux = Instantiate(new GameObject("InfoEntreEscenas"), Vector3.zero, Quaternion.identity);
+            aux.AddComponent<InfoEntreEscenas>();
+            infoEntreEscenas = aux.GetComponent<InfoEntreEscenas>();
+            infoEntreEscenas.idPartida = 0;
+            infoEntreEscenas.nombreJugador = "Test";
+        }
         manejadorGuardado = FindObjectOfType<ManejadorGuardado>();
         setGameVariables();
         verifyMinigameScores();

@@ -48,7 +48,8 @@ public class StoryTeller : MonoBehaviour
         StopAllCoroutines();
         canSkipPage = false;
         isFading = true;
-        StartCoroutine(outroAnimation());
+        loadingScreen.SetActive(true);
+        SceneManager.LoadSceneAsync("Main");
     }
 
     private IEnumerator nextPage()
@@ -129,7 +130,6 @@ public class StoryTeller : MonoBehaviour
         topImage.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(0.2f);
         loadingScreen.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadSceneAsync("Main");
     }
 }

@@ -12,6 +12,8 @@ TagManager:
   - ListaConceptos
   - ListaDefiniciones
   - TextoPuntuacionFinal
+  - Pipe
+  - PipeAns
   layers:
   - Default
   - TransparentFX
