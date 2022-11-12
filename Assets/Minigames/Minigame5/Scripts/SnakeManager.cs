@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class SnakeManager : MonoBehaviour {
-    public GameObject gameOverScreen, scoreText;
+    public GameObject gameOverScreen, loadingScreen, scoreText;
 
     private string question = "pregunta de prueba";
     private string[] answers = {"1"};
@@ -65,14 +65,14 @@ public class SnakeManager : MonoBehaviour {
     }
 
     public void restartMinigame() {
-        // gameOverScreen.SetActive(false);
-        // loadingScreen.SetActive(true);
+        gameOverScreen.SetActive(false);
+        loadingScreen.SetActive(true);
         SceneManager.LoadSceneAsync("SnakeScene");
     }
 
     public void backToMain() {
-        // gameOverScreen.SetActive(false);
-        // loadingScreen.SetActive(true);
+        gameOverScreen.SetActive(false);
+        loadingScreen.SetActive(true);
         FindObjectOfType<Minijuego>().setScore(((float)count / 5)*10f);
         SceneManager.LoadSceneAsync("Main");
     }
