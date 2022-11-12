@@ -21,14 +21,14 @@ TagManager:
   - UI
   - SolidObjects
   - Interactuable
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Food
+  - Ballon
+  - Goal
+  - Barrier
+  - Obstacle
+  - Package
+  - Platform
   - 
   - 
   - 
