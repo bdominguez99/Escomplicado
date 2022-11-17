@@ -11,6 +11,7 @@ public class Snake : MonoBehaviour {
     private Animator anim;
     private Life life;
 
+    private bool flag = true;
     private float timer = 0.0f;
     private bool moving = true;
     private bool start = false;
@@ -19,8 +20,8 @@ public class Snake : MonoBehaviour {
     public Sprite failSprite;
     public Sprite winSprite;
     public string swipeDir; 
-    public int lifes = 0;
     public int carry = 0;
+    public int lifes = 0;
     public float vel;
 
     void Start() {
@@ -84,6 +85,12 @@ public class Snake : MonoBehaviour {
         } 
     }
 
+    IEnumerator invinsible() {
+        flag = false;
+        yield return new WaitForSeconds(0.25f);
+        flag = true;
+    }
+
     IEnumerator failAnimation() {
         start = false;
         moving = false;
@@ -140,15 +147,20 @@ public class Snake : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (start) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Food")) {
+                StartCoroutine(invinsible());
                 Instantiate(this.prefab);
                 var bag = other.gameObject.GetComponent<Bag>();
                 bag.RandomizePosition();
                 if (bag.value > carry) ReloadBags();
                 else {
-                    other.gameObject.SetActive(false);
                     carry += 1;
+                    other.gameObject.SetActive(false);
+                    if (carry == gm.answers.Count) {
+                        gm.SetScore();
+                        carry = 0;
+                    }
                 }
-            } else if (other.gameObject.layer == LayerMask.NameToLayer("Ballon")) {
+            } else if (other.gameObject.layer == LayerMask.NameToLayer("Ballon") && flag) {
                 ReturnBegin();
             }
         }

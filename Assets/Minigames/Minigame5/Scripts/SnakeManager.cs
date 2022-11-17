@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using TripasDeGato;
 
 public class SnakeManager : MonoBehaviour {
     public GameObject gameOverScreen, loadingScreen, scoreText;
-
-    private string question = "pregunta de prueba";
-    private string[] answers = {"1"};
-    private int count = 4;
+    private List<OrderedQuestion> questionsList;
+    public List<string> answers;
+    private string question;
 
     private List<string> aux = new List<string>();
     private List<string> actualAns;
@@ -20,7 +21,6 @@ public class SnakeManager : MonoBehaviour {
     private Snake player;
 
     public bool end = false;
-    public bool flag = true;
     public float swipeThreshold = 50f;
     public float timeThreshold = 0.3f;
 
@@ -34,20 +34,26 @@ public class SnakeManager : MonoBehaviour {
     private Vector2 fingerUp;
     private DateTime fingerUpTime;
     private float timer = 0;
+    private int count = 0;
 
-    void Start() {
+    private async Task setPreguntas() {
+        questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Redes de Computadoras");
+        ExtensionMethods.Shuffle(questionsList);
+        actualAns = new List<string>(questionsList[count].answers);
+        actualAns.Shuffle();
+    }
+
+    async void Start() {
         canvas = GameObject.Find("Canvas").transform;
         player = GameObject.Find("Player").GetComponent<Snake>();
         msg = canvas.Find("Message").GetComponent<Text>();
         time = canvas.Find("Time").GetComponent<Text>();
         msg.gameObject.SetActive(false);
-        RandomArray();
+        await setPreguntas();
+        SetTerrain();
     }
 
     void FixedUpdate() {
-        if (player.carry == answers.Length) SetScore();
-        if (flag) SetTerrain();
-        flag = false;
         if (player.lifes > 0) {
             timer += Time.deltaTime;
             var seconds = 300 - (int)(timer % 60);
@@ -141,40 +147,25 @@ public class SnakeManager : MonoBehaviour {
         msg.gameObject.SetActive(false);
     }
 
-    void RandomArray() {
-        var r = new System.Random();
-        List<string> ans = new List<string>(answers);
-        actualAns = new List<string>(ans.Count);
-        while (ans.Count > 0) {
-            var i = r.Next(ans.Count);
-            actualAns.Add(ans[i]);
-            ans.RemoveAt(i);
-        }
-    }
-
     public void SetScore() {
         count += 1;
-        RandomArray();
-        player.carry = 0;
         StartCoroutine(ShowMessage("Correcto!"));
         canvas.Find("Score").GetComponent<Text>().text = count+"/5";
-        if (count == 5) {
-            StartCoroutine(player.WinAnimation(true));
-        } else SetTerrain();
-    }
-
-    int GetIndexOf(string ans) {
-        for (int i = 0; i < answers.Length; i++) {
-            if (answers[i] == ans) return i;
+        if (count == 5) StartCoroutine(player.WinAnimation(true));
+        else {
+            actualAns = new List<string>(questionsList[count].answers);
+            actualAns.Shuffle();
         }
-        return 0;
+        SetTerrain();
     }
 
-    public void SetTerrain(bool boal = false) {
+    public void SetTerrain() {
+        answers = questionsList[count].answers;
+        question = questionsList[count].question;
         canvas.Find("Question").GetComponent<Text>().text = question;
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i < 7; i++) {
             var bag = transform.Find("Bag"+i);
-            if (i <= answers.Length-1) {
+            if (i < answers.Count) {
                 bag.gameObject.SetActive(true);
                 bag.GetComponent<Bag>().value = GetIndexOf(actualAns[i]);
                 canvas.Find("Answer"+i).GetComponent<Text>().text = actualAns[i];
@@ -183,6 +174,13 @@ public class SnakeManager : MonoBehaviour {
                 bag.gameObject.SetActive(false);
             }
         }
+    }
+
+    int GetIndexOf(string ans) {
+        for (int i = 0; i < answers.Count; i++) {
+            if (answers[i] == ans) return i;
+        }
+        return 0;
     }
 
     public bool CheckPosition(float posx, float posy) {

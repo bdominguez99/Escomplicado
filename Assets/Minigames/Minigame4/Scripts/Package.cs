@@ -11,7 +11,6 @@ public class Package : MonoBehaviour {
 
     void Start() {
         anim = GetComponent<Animator>();
-        this.gameObject.SetActive(false);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 

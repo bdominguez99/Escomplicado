@@ -9,6 +9,7 @@ public class Frogger : MonoBehaviour {
     private Vector3 spawnPosition;
     private Animator anim;
     private bool flag = true;
+    private bool stop = false;
 
     public string carry = "";
     public string swipeDir; 
@@ -27,7 +28,7 @@ public class Frogger : MonoBehaviour {
     }
 
     void Update() {
-        if (!flag) return;
+        if (!flag || stop) return;
         if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
             StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
         } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
@@ -86,12 +87,11 @@ public class Frogger : MonoBehaviour {
     }
 
     public void ReturnBegin(bool score = false) {
+        stop = true;
         if (score) {
-            Debug.Log(carry);
             var objects = FindObjectsOfType<Goal>();
-            if (objects.Length > 1) {
-                return;
-            } else {
+            if (objects.Length > 1) return;
+            else {
                 transform.SetParent(null);
                 activeOption.gameObject.SetActive(false);
                 activeOption.GetComponent<Package>().EnableAnimation();
@@ -114,23 +114,23 @@ public class Frogger : MonoBehaviour {
             StopAnimation();
             if(!score) {
                 spriteRenderer.sprite = deadSprite1;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 spriteRenderer.sprite = deadSprite2;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 spriteRenderer.sprite = deadSprite3;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 spriteRenderer.sprite = deadSprite4;
                 yield return new WaitForSeconds(0.15f);
                 spriteRenderer.sprite = deadSprite3;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 spriteRenderer.sprite = deadSprite2;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 spriteRenderer.sprite = deadSprite1;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 transform.position = spawnPosition;
             } else {
                 spriteRenderer.sprite = winSprite;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.75f);
                 if (gameManager.total == 5) {
                     gameManager.gameOver();
                     Destroy(this.gameObject);
@@ -143,6 +143,8 @@ public class Frogger : MonoBehaviour {
                 Destroy(this.gameObject);
             }
             else gameManager.result.text = "";
+            gameManager.timer = 0;
+            stop = false;
         }
     }
 

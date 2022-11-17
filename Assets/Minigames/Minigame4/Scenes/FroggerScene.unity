@@ -202,6 +202,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5808111507155671404, guid: f830cb7aabb02c34e99a0cf0ad3f1df0, type: 3}
   m_PrefabInstance: {fileID: 1860030406}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &34930151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34930153}
+  - component: {fileID: 34930152}
+  m_Layer: 0
+  m_Name: CargadorDB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &34930152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34930151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237927730dd3a2a4897d1b59aafbbc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &34930153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34930151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &56409187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3566878291283332682, guid: 361fd84d61519754a946163f0b36d117, type: 3}
@@ -1411,12 +1454,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 630021591}
   scoreText: {fileID: 2053515951}
+  loadingScreen: {fileID: 335886683}
   prefab: {fileID: 7073022267072931993, guid: f11e7ecce088927479520462c8cba45a, type: 3}
   result: {fileID: 0}
   score: {fileID: 0}
   time: {fileID: 0}
   setTimer: 0
   start: 0
+  timer: 0
   lifes: 4
   swipeThreshold: 50
   timeThreshold: 0.3
@@ -1586,10 +1631,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 5c2cb9e40813e3643a040dc56a8b4176, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 519420030}
+        m_TargetAssemblyTypeName: Global, Assembly-CSharp
+        m_MethodName: restartMinigame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4444,8 +4489,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 519420030}
+        m_TargetAssemblyTypeName: Global, Assembly-CSharp
         m_MethodName: backToMain
         m_Mode: 1
         m_Arguments:

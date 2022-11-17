@@ -5,24 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
+using System.Threading.Tasks;
+using TripasDeGato;
 
 public class Global : MonoBehaviour {
-    public GameObject gameOverScreen, scoreText;
-
-    private string question = "pregunta de prueba\ninciso 1\ninciso 2\ninciso 3\ninciso 4\ninciso 5\ninciso 6\ninciso 7\n";
-    private string[] answers = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete"};
+    public GameObject gameOverScreen, scoreText, loadingScreen;
+    private List<OrderedQuestion> questionsList;
+    private List<string> answers;
+    private string question;
 
     public Transform prefab;
     public Text result, score, time;
     public bool setTimer = false;
     public bool start = false;
+    public float timer = 0;
     public int lifes = 4;
 
     private int ans = 0;
     private int count = 0;
     private int seconds = 0;
-    private float timer = 0;
     private bool setCanvas = false;
 
     private Heart life;
@@ -45,10 +46,14 @@ public class Global : MonoBehaviour {
     private Vector2 fingerUp;
     private DateTime fingerUpTime;
 
-    void Start() {
+    private async Task setPreguntas() {
+        questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Probabilidad y Estadística");
+        ExtensionMethods.Shuffle(questionsList);
+    }
+
+    async void Start() {
         life = transform.Find("Life").GetComponent<Heart>();
         player = GameObject.Find("Player").GetComponent<Frogger>();
-
         canvas = GameObject.Find("Canvas");
         canvas.GetComponent<Canvas>().enabled = false;
         quest = canvas.transform.Find("Image").transform.Find("Text");
@@ -57,6 +62,7 @@ public class Global : MonoBehaviour {
         result = navbar.Find("Result").GetComponent<Text>();
         score = navbar.Find("Score").GetComponent<Text>();
         time = navbar.Find("Time").GetComponent<Text>();
+        await setPreguntas();
         SetUpMap();
     }
 
@@ -67,30 +73,27 @@ public class Global : MonoBehaviour {
     }
 
     public void restartMinigame() {
-        // gameOverScreen.SetActive(false);
-        // loadingScreen.SetActive(true);
+        gameOverScreen.SetActive(false);
+        loadingScreen.SetActive(true);
         SceneManager.LoadSceneAsync("FroggerScene");
     }
 
     public void backToMain() {
-        // gameOverScreen.SetActive(false);
-        // loadingScreen.SetActive(true);
+        gameOverScreen.SetActive(false);
+        loadingScreen.SetActive(true);
         FindObjectOfType<Minijuego>().setScore(((float)total / 5)*10f);
         SceneManager.LoadSceneAsync("Main");
     }
 
     void FixedUpdate() {
-        var str = "00";
         if (start) {
             timer += Time.deltaTime;
-            seconds = (int)(timer % 60);
-            str = (60 - seconds).ToString();
-            if (str == "0") {
+            seconds = 60 - (int)(timer % 60);
+            if (seconds <= 0) {
                 player.ReturnBegin();
-                timer = 0;
             }
         }  
-        time.text = str;
+        time.text = seconds.ToString();
     }
 
     private void Update () {
@@ -160,12 +163,18 @@ public class Global : MonoBehaviour {
     }
 
     private void SetUpMap() {
+        answers = questionsList[count].answers;
+        question = questionsList[count].question;
         quest.GetComponent<Text>().text = question;
-        ans = answers.Length;
-        for (int i = 0; i < answers.Length; i++) {
+        for (int i = 0; i < 7; i++) {
             var obj = transform.Find("Package"+(i+1));
-            obj.GetComponent<Package>().option = answers[i];
-            obj.gameObject.SetActive(true);
+            if (i < answers.Count){
+                obj.GetComponent<Package>().option = answers[i];
+                obj.gameObject.SetActive(true);
+            } else {
+                obj.GetComponent<Package>().option = "";
+                obj.gameObject.SetActive(false);
+            }
         }
         count++;
     }
@@ -179,7 +188,6 @@ public class Global : MonoBehaviour {
 
     public void SetResult(bool isCorrect) {
         ans -= 1;
-        timer = 0;
         var str = "incorrecto!";
         if (isCorrect) {
             total += 1;
