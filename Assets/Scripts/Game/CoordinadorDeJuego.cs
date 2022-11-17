@@ -96,7 +96,7 @@ public class CoordinadorDeJuego : MonoBehaviour
             int minijuegoId = minijuego.getMinigameId();
             scores[minijuegoId] = score;
             Destroy(minijuego.gameObject);
-            if(minijuegoId == 5)
+            if(minijuegoId == 0)
             {
                 for (int i = 0; i < scores.Length; i++) {
                     puntuacionFinal += scores[i];

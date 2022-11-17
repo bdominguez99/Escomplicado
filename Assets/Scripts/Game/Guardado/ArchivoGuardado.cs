@@ -11,6 +11,7 @@ public class ArchivoGuardado
     public ArchivoGuardado()
     {
         partidas = new Partida[3];
+        historialPuntuaciones = new List<string>();
     }
 
     public string toString()

@@ -32,7 +32,12 @@ public class ManejadorGuardado : MonoBehaviour
         }
         if (partida.puntuacionFinal > 0)
         {
-            archivoGuardado.historialPuntuaciones.Add(partida.nombre + "\t" + partida.puntuacionFinal + "\t" + partida.tiempoJuego / 60);
+            Debug.Log("Guardando historial");
+            if (archivoGuardado.historialPuntuaciones == null)
+            {
+                archivoGuardado.historialPuntuaciones = new List<string>();
+            }
+            archivoGuardado.historialPuntuaciones.Add(partida.nombre + " " + partida.puntuacionFinal + " " + partida.tiempoJuego / 60);
         }
         archivoGuardado.partidas[idPartida] = partida;
         guardado.Save(archivoGuardado, fileName);
@@ -68,5 +73,20 @@ public class ManejadorGuardado : MonoBehaviour
                 coordinador.setScores(scores);
             }
         }
+    }
+
+    public List<List<string>> obtenerPuntuaciones()
+    {
+        var puntuaciones = new List<List<string>>();
+        archivoGuardado = guardado.Load(fileName);
+        if (archivoGuardado != default)
+        {
+            
+            foreach (var puntuacion in archivoGuardado.historialPuntuaciones)
+            {
+                var aux = new List<string>(puntuacion.Split(' '));
+            }
+        }
+        return puntuaciones;
     }
 }

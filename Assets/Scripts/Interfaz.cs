@@ -8,6 +8,11 @@ public class Interfaz : MonoBehaviour
 {
     public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar, Confirmacion, ConfirmacionEliminarPartida, Default };
 
+    [Header("Inicio")]
+    [SerializeField] private GameObject confirmacionSalida;
+    [SerializeField] private GameObject listaPuntuaciones;
+    [SerializeField] private GameObject elementoPuntuacionPrefab;
+
     [Header("Pantallas")]
     [SerializeField] private GameObject[] layers;
     [SerializeField] private GameObject pantallaNegraGO, loadingScreen;
@@ -20,6 +25,36 @@ public class Interfaz : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         if (pantallaNegraGO != null) pantallaNegra = pantallaNegraGO.GetComponent<Image>();
+        cargarPuntuaciones();
+    }
+
+    private void cargarPuntuaciones()
+    {
+        var file = ManejadorGuardado.fileName;
+        GuardadoGenerico<ArchivoGuardado> guardado = new GuardadoGenerico<ArchivoGuardado>();
+        var archivoGuardado = guardado.Load(file);
+        var puntuaciones = new List<List<string>>();
+        if (archivoGuardado != default)
+        {
+            if (archivoGuardado.historialPuntuaciones == null)
+            {
+                Debug.Log("Null list");
+            }
+            else
+            {
+                foreach (var puntuacion in archivoGuardado.historialPuntuaciones)
+                {
+                    var aux = new List<string>(puntuacion.Split(' '));
+                    puntuaciones.Add(aux);
+                }
+            }
+        }
+
+        foreach (var entrada in puntuaciones)
+        {
+            var nuevaEntrada = Instantiate(elementoPuntuacionPrefab, listaPuntuaciones.transform);
+            nuevaEntrada.GetComponent<ElementoPuntuacion>().Init(entrada[0],entrada[1], entrada[2]);
+        }
     }
 
     public void mostrarInterfaz(Interfaces interfaz)
@@ -120,5 +155,15 @@ public class Interfaz : MonoBehaviour
     {
         loadingScreen.SetActive(true);
         SceneManager.LoadSceneAsync(scene);
+    }
+
+    public void mostrarConfirmacionSalida()
+    {
+        confirmacionSalida.SetActive(true);
+    }
+
+    public void esconderConfirmacionSalida()
+    {
+        confirmacionSalida.SetActive(false);
     }
 }
