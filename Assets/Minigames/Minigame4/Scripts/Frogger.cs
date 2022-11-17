@@ -9,7 +9,6 @@ public class Frogger : MonoBehaviour {
     private Vector3 spawnPosition;
     private Animator anim;
     private bool flag = true;
-    private bool stop = false;
 
     public string carry = "";
     public string swipeDir; 
@@ -28,7 +27,7 @@ public class Frogger : MonoBehaviour {
     }
 
     void Update() {
-        if (!flag || stop) return;
+        if (!flag) return;
         if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
             StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
         } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
@@ -87,7 +86,6 @@ public class Frogger : MonoBehaviour {
     }
 
     public void ReturnBegin(bool score = false) {
-        stop = true;
         if (score) {
             var objects = FindObjectsOfType<Goal>();
             if (objects.Length > 1) return;
@@ -144,7 +142,6 @@ public class Frogger : MonoBehaviour {
             }
             else gameManager.result.text = "";
             gameManager.timer = 0;
-            stop = false;
         }
     }
 
