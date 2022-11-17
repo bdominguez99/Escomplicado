@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Puerta : MonoBehaviour
 {
+    [SerializeField] private bool isDoorOutside;
     [SerializeField] private GameObject puertaDestino;
 
     public void accion()
     {
         Interfaz interfaz = FindObjectOfType<Interfaz>();
         interfaz.setNextDoor(puertaDestino);
-        StartCoroutine(interfaz.transition(false));
+        StartCoroutine(interfaz.transition(false, !isDoorOutside));
+        if(isDoorOutside) FindObjectOfType<IndicadorDireccion>().setArrowVisibility(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

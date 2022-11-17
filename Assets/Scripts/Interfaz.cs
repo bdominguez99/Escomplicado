@@ -12,13 +12,14 @@ public class Interfaz : MonoBehaviour
     [SerializeField] private GameObject[] layers;
     [SerializeField] private GameObject pantallaNegraGO, loadingScreen;
     private Image pantallaNegra;
-    [Header("Player")]
     private PlayerController player;
     private GameObject nextDoor;
+    private IndicadorDireccion indicador;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        indicador = FindObjectOfType<IndicadorDireccion>();
         if (pantallaNegraGO != null) pantallaNegra = pantallaNegraGO.GetComponent<Image>();
     }
 
@@ -83,7 +84,7 @@ public class Interfaz : MonoBehaviour
         loadingScreen.SetActive(true);
     }
 
-    public IEnumerator transition(bool cambiarPiso)
+    public IEnumerator transition(bool cambiarPiso, bool showArrow = false)
     {
         if (pantallaNegraGO != null)
         {
@@ -99,8 +100,12 @@ public class Interfaz : MonoBehaviour
             pantallaNegra.color = Color.black;
             yield return new WaitForSecondsRealtime(0.1f);
 
-            if (cambiarPiso) FindObjectOfType<Mapa>().cambiarPiso();
-            else FindObjectOfType<PlayerController>().gameObject.transform.position = nextDoor.transform.position;
+            if (cambiarPiso)
+            {
+                FindObjectOfType<Mapa>().cambiarPiso();
+                indicador.verifyFloorlayersVisivility();
+            }
+            else player.transform.position = nextDoor.transform.position;
 
             yield return new WaitForSecondsRealtime(0.1f);
             progress = 1;
@@ -113,6 +118,7 @@ public class Interfaz : MonoBehaviour
             pantallaNegra.color = new Color(0, 0, 0, 0);
             pantallaNegraGO.SetActive(false);
             player.setCanMove(true);
+            if(showArrow && indicador != null) indicador.setArrowVisibility(true);
         }
     }
 
