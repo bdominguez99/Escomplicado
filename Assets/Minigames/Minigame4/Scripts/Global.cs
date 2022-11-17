@@ -34,6 +34,7 @@ public class Global : MonoBehaviour {
 
     public float swipeThreshold = 50f;
     public float timeThreshold = 0.3f;
+    public int maxScore = 5;
     public int total = 0;
 
     public UnityEvent OnSwipeLeft;
@@ -68,7 +69,7 @@ public class Global : MonoBehaviour {
 
     public void gameOver() {
         start = false;
-        scoreText.GetComponent<Text>().text = "Puntuacion: " + total + "/" + 5;
+        scoreText.GetComponent<Text>().text = "Puntuacion: " + total + "/" + maxScore;
         gameOverScreen.SetActive(true);
     }
 
@@ -81,7 +82,7 @@ public class Global : MonoBehaviour {
     public void backToMain() {
         gameOverScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        FindObjectOfType<Minijuego>().setScore(((float)total / 5)*10f);
+        FindObjectOfType<Minijuego>().setScore(((float)total / maxScore)*10f);
         SceneManager.LoadSceneAsync("Main");
     }
 
@@ -195,7 +196,7 @@ public class Global : MonoBehaviour {
             StartCoroutine(player.ChangeAnimation(true));
         }
         if (ans == 0) SetUpMap();
-        score.text = total+"/5";
+        score.text = total+"/"+maxScore;
         result.text = str;
     }
 

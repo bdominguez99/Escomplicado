@@ -129,7 +129,7 @@ public class Frogger : MonoBehaviour {
             } else {
                 spriteRenderer.sprite = winSprite;
                 yield return new WaitForSeconds(0.75f);
-                if (gameManager.total == 5) {
+                if (gameManager.total == gameManager.maxScore) {
                     gameManager.gameOver();
                     Destroy(this.gameObject);
                 }
