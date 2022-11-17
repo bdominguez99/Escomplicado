@@ -8,6 +8,7 @@ public class CoordinadorDeJuego : MonoBehaviour
     private InfoEntreEscenas infoEntreEscenas;
     private string nombreJugador;
     private float tiempoJuego;
+    private float puntuacionFinal;
     private bool isPlaying = true;
     private float[] scores;
 
@@ -81,6 +82,11 @@ public class CoordinadorDeJuego : MonoBehaviour
         return scores;
     }
 
+    public float getPuntuacionFinal()
+    {
+        return puntuacionFinal;
+    }
+
     private void verifyMinigameScores()
     {
         Minijuego minijuego = FindObjectOfType<Minijuego>();
@@ -90,6 +96,13 @@ public class CoordinadorDeJuego : MonoBehaviour
             int minijuegoId = minijuego.getMinigameId();
             scores[minijuegoId] = score;
             Destroy(minijuego.gameObject);
+            if(minijuegoId == 5)
+            {
+                for (int i = 0; i < scores.Length; i++) {
+                    puntuacionFinal += scores[i];
+                }
+                puntuacionFinal *= 1000;
+            }
             if(infoEntreEscenas != null)
                 manejadorGuardado.guardarPartida(infoEntreEscenas.idPartida);
         }

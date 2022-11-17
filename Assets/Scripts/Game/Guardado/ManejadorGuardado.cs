@@ -23,11 +23,16 @@ public class ManejadorGuardado : MonoBehaviour
         partida.tiempoJuego = coordinador.getTiempoJuego();
         partida.nombre = coordinador.getNombreJugador();
         partida.scores = coordinador.getScores();
+        partida.puntuacionFinal = coordinador.getPuntuacionFinal();
         partida.pisoActual = FindObjectOfType<Mapa>().getActiveFloor();
         archivoGuardado = guardado.Load(fileName);
         if(archivoGuardado == default)
         {
             archivoGuardado = new ArchivoGuardado();
+        }
+        if (partida.puntuacionFinal > 0)
+        {
+            archivoGuardado.historialPuntuaciones.Add(partida.nombre + "\t" + partida.puntuacionFinal + "\t" + partida.tiempoJuego / 60);
         }
         archivoGuardado.partidas[idPartida] = partida;
         guardado.Save(archivoGuardado, fileName);

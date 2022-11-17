@@ -35,6 +35,7 @@ namespace TripasDeGato
         [SerializeField] private Vector2 m_finAreaJuego;
         [SerializeField] private Reloj m_reloj;
         [SerializeField] private int m_maximoPreguntasPorFase;
+        [SerializeField] private int m_maximoPreguntas;
 
 
         public static Dictionary<Vector2, Celda> Celdas { get; private set; }
@@ -76,7 +77,7 @@ namespace TripasDeGato
             List<RelationQuestion> preguntas = await m_dataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
 
             m_preguntasFases = new List<List<RelationQuestion>>();
-            m_totalPreguntas = preguntas.Count;
+            m_totalPreguntas = Mathf.Min(preguntas.Count, m_maximoPreguntas);
             var totalPreguntasAux = m_totalPreguntas;
             int totalFases = preguntas.Count / m_maximoPreguntasPorFase + (preguntas.Count % m_maximoPreguntasPorFase > 0 ? 1 : 0);
 

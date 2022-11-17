@@ -4831,6 +4831,7 @@ MonoBehaviour:
   m_finAreaJuego: {x: 15, y: 8}
   m_reloj: {fileID: 1213796386}
   m_maximoPreguntasPorFase: 7
+  m_maximoPreguntas: 1
 --- !u!1 &2139260523
 GameObject:
   m_ObjectHideFlags: 0

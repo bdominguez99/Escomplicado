@@ -6,6 +6,7 @@ using UnityEngine;
 public class ArchivoGuardado
 {
     public Partida[] partidas;
+    public List<string> historialPuntuaciones;
 
     public ArchivoGuardado()
     {

@@ -1570,7 +1570,7 @@ MonoBehaviour:
   bulletParent: {fileID: 799960910}
   loadingScreen: {fileID: 57095405}
   targetAnsPoints: 10
-  targetQuestions: 5
+  targetQuestions: 1
   showScoreTime: 2.5
   scoreText: {fileID: 689399245}
   playingScoreText: {fileID: 358965034}

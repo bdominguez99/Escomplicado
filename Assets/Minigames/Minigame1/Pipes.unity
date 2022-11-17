@@ -7013,7 +7013,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 831005139}
   pauseScreen: {fileID: 790873011}
   switchingTime: 0.3
-  targetQuestions: 5
+  targetQuestions: 1
   showScoreTime: 2.5
   scoreText: {fileID: 1929261701}
   playingScoreText: {fileID: 890809091}
