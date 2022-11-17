@@ -82,6 +82,19 @@ public class CoordinadorDeJuego : MonoBehaviour
         return scores;
     }
 
+    public int getActualMinigame()
+    {
+        float[] scores = getScores();
+        for(int i = 0; i < 6; i++)
+        {
+            if (scores[i] < 0.6f)
+            {
+                return i;
+            }
+        }
+        return 6;
+    }
+
     public float getPuntuacionFinal()
     {
         return puntuacionFinal;
@@ -96,6 +109,8 @@ public class CoordinadorDeJuego : MonoBehaviour
             int minijuegoId = minijuego.getMinigameId();
             scores[minijuegoId] = score;
             Destroy(minijuego.gameObject);
+            if (score > 0.6f)
+                FindObjectOfType<IndicadorDireccion>().setMinijuego(minijuegoId + 1);
             if(minijuegoId == 0)
             {
                 for (int i = 0; i < scores.Length; i++) {
@@ -105,6 +120,10 @@ public class CoordinadorDeJuego : MonoBehaviour
             }
             if(infoEntreEscenas != null)
                 manejadorGuardado.guardarPartida(infoEntreEscenas.idPartida);
+            if(minijuegoId == 0)
+            {
+                FindObjectOfType<Interfaz>().loadScene("CompleteGame");
+            }
         }
     }
 

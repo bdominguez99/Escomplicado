@@ -60,6 +60,16 @@ public class ManejadorGuardado : MonoBehaviour
                 else
                     coordinador.setNombreJugador(FindObjectOfType<InfoEntreEscenas>().nombreJugador);
                 FindObjectOfType<PlayerController>().transform.position = new Vector2(partida.posx, partida.posy);
+                int minijuegoActual = 6;
+                for(int i = 0; i < partida.scores.Length; i++)
+                {
+                    if(partida.scores[i] < 0.6f)
+                    {
+                        minijuegoActual = i;
+                        break;
+                    }
+                }
+                FindObjectOfType<IndicadorDireccion>().setMinijuego(minijuegoActual);
             }
             else
             {
@@ -71,6 +81,7 @@ public class ManejadorGuardado : MonoBehaviour
                     scores[i] = -1f;
                 }
                 coordinador.setScores(scores);
+                FindObjectOfType<IndicadorDireccion>().setMinijuego(0);
             }
         }
     }
