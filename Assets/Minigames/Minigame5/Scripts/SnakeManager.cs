@@ -35,6 +35,7 @@ public class SnakeManager : MonoBehaviour {
     private DateTime fingerUpTime;
     private float timer = 0;
     private int count = 0;
+    public int maxScore = 5;
 
     private async Task setPreguntas() {
         questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Redes de Computadoras");
@@ -66,7 +67,7 @@ public class SnakeManager : MonoBehaviour {
 
     public void gameOver(bool win = false) {
         if (!win) Destroy(player.gameObject);
-        scoreText.GetComponent<Text>().text = "Puntuacion: " + count + "/" + 5;
+        scoreText.GetComponent<Text>().text = "Puntuacion: " + count + "/" + maxScore;
         gameOverScreen.SetActive(true);
     }
 
@@ -79,7 +80,7 @@ public class SnakeManager : MonoBehaviour {
     public void backToMain() {
         gameOverScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        FindObjectOfType<Minijuego>().setScore(((float)count / 5)*10f);
+        FindObjectOfType<Minijuego>().setScore(((float)count / maxScore)*10f);
         SceneManager.LoadSceneAsync("Main");
     }
 
@@ -150,13 +151,13 @@ public class SnakeManager : MonoBehaviour {
     public void SetScore() {
         count += 1;
         StartCoroutine(ShowMessage("Correcto!"));
-        canvas.Find("Score").GetComponent<Text>().text = count+"/5";
-        if (count == 5) StartCoroutine(player.WinAnimation(true));
+        canvas.Find("Score").GetComponent<Text>().text = count+"/"+maxScore;
+        if (count == maxScore) StartCoroutine(player.WinAnimation(true));
         else {
             actualAns = new List<string>(questionsList[count].answers);
             actualAns.Shuffle();
+            SetTerrain();
         }
-        SetTerrain();
     }
 
     public void SetTerrain() {
