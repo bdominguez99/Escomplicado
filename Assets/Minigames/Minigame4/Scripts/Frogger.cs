@@ -8,8 +8,8 @@ public class Frogger : MonoBehaviour {
     private Collider2D activeOption;
     private Vector3 spawnPosition;
     private Animator anim;
-    private bool flag = true;
 
+    public bool flag = false;
     public string carry = "";
     public string swipeDir; 
     public Sprite winSprite;
@@ -27,22 +27,24 @@ public class Frogger : MonoBehaviour {
     }
 
     void Update() {
-        if (!flag) return;
-        if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
-            StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
-        } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
-            StartCoroutine(Jump(0, new Vector3(0, -1, 0)));
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow) || swipeDir == "left") {
-            StartCoroutine(Jump(-1, new Vector3(-1, 0, 0)));
-        } else if (Input.GetKeyDown(KeyCode.RightArrow) || swipeDir == "right") {
-            StartCoroutine(Jump(1, new Vector3(1, 0, 0)));
+        if (gameManager.messageScreen.activeSelf == false) {
+            if (!flag) return;
+            if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
+                StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
+            } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
+                StartCoroutine(Jump(0, new Vector3(0, -1, 0)));
+            } else if (Input.GetKeyDown(KeyCode.LeftArrow) || swipeDir == "left") {
+                StartCoroutine(Jump(-1, new Vector3(-1, 0, 0)));
+            } else if (Input.GetKeyDown(KeyCode.RightArrow) || swipeDir == "right") {
+                StartCoroutine(Jump(1, new Vector3(1, 0, 0)));
+            }
+            swipeDir = "";
         }
-        swipeDir = "";
     }
 
     void StopAnimation(bool val = true) {
-        flag = !val;
         anim.enabled = !val;
+        flag = !val;
     }
 
     IEnumerator Jump(int dir, Vector3 vec) {
@@ -63,11 +65,14 @@ public class Frogger : MonoBehaviour {
         var platform = Physics2D.OverlapBox(pos, z, 0f, LayerMask.GetMask("Platform"));
         var obstacle = Physics2D.OverlapBox(pos, z, 0f, LayerMask.GetMask("Obstacle"));
         
+        if(obstacle) return -1;
         if (!platform) {
             transform.SetParent(null);
             if(water) return -2;
-        } else transform.SetParent(platform.transform);
-        if(obstacle) return -1;
+        } else {
+            transform.SetParent(platform.transform);
+            return 1;
+        } 
         if(barrier) return 0;
         return 1;
     }
@@ -86,15 +91,24 @@ public class Frogger : MonoBehaviour {
     }
 
     public void ReturnBegin(bool score = false) {
+        transform.SetParent(null);
+        bool f = false;
         if (score) {
             var objects = FindObjectsOfType<Goal>();
             if (objects.Length > 1) return;
             else {
                 transform.SetParent(null);
-                activeOption.gameObject.SetActive(false);
-                activeOption.GetComponent<Package>().EnableAnimation();
                 var ans = activeOption.GetComponent<Package>().option;
-                if (carry == ans) gameManager.SetResult(true);
+                activeOption.GetComponent<Package>().EnableAnimation();
+                if (carry == ans) {
+                    gameManager.SetResult(true);
+                    activeOption.gameObject.SetActive(false);
+                    var packages = FindObjectsOfType<Package>();
+                    foreach (var pac in packages) {
+                        if (pac.gameObject.activeSelf == true) 
+                            f = pac.gameObject.activeSelf;
+                    }
+                }
                 else {
                     gameManager.SetResult(false);
                     gameManager.ReduceLife(flag);
@@ -104,10 +118,10 @@ public class Frogger : MonoBehaviour {
                 carry = "";
             }
         } else gameManager.ReduceLife(flag);
-        StartCoroutine(ChangeAnimation(score));
+        StartCoroutine(ChangeAnimation(score, f));
     }
 
-    public IEnumerator ChangeAnimation(bool score) {
+    public IEnumerator ChangeAnimation(bool score, bool f = true) {
         if (flag) {
             StopAnimation();
             if(!score) {
@@ -129,6 +143,7 @@ public class Frogger : MonoBehaviour {
             } else {
                 spriteRenderer.sprite = winSprite;
                 yield return new WaitForSeconds(0.75f);
+                if (!f) gameManager.SetUpMap();
                 if (gameManager.total == gameManager.maxScore) {
                     gameManager.gameOver();
                     Destroy(this.gameObject);
@@ -139,9 +154,9 @@ public class Frogger : MonoBehaviour {
             if (gameManager.lifes == 0) {
                 gameManager.gameOver();
                 Destroy(this.gameObject);
-            }
-            else gameManager.result.text = "";
-            gameManager.timer = 0;
+            } else gameManager.result.text = "";
+            
+            gameManager.counter = 0;
         }
     }
 
@@ -160,6 +175,12 @@ public class Frogger : MonoBehaviour {
             Destroy(other.gameObject);
             ReturnBegin(true);
         } else if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle")) {
+            ReturnBegin();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Default")) {
             ReturnBegin();
         }
     }
