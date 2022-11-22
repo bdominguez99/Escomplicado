@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using TripasDeGato;
 
 public class SnakeManager : MonoBehaviour {
-    public GameObject gameOverScreen, loadingScreen, scoreText;
+    public GameObject gameOverScreen, loadingScreen, scoreText, messageScreen, messageText;
     private List<OrderedQuestion> questionsList;
     public List<string> answers;
     private string question;
 
-    private List<string> aux = new List<string>();
     private List<string> actualAns;
+    private List<string> aux = new List<string>();
     private Transform canvas;
     private Text msg, time;
     private Snake player;
@@ -23,6 +23,7 @@ public class SnakeManager : MonoBehaviour {
     public bool end = false;
     public float swipeThreshold = 50f;
     public float timeThreshold = 0.3f;
+    public int maxScore = 5;
 
     public UnityEvent OnSwipeLeft;
     public UnityEvent OnSwipeRight;
@@ -33,14 +34,16 @@ public class SnakeManager : MonoBehaviour {
     private DateTime fingerDownTime;
     private Vector2 fingerUp;
     private DateTime fingerUpTime;
-    private float timer = 0;
+    private int timer = 0;
     private int count = 0;
-    public int maxScore = 5;
+    private int counter = 0;
+    private float seconds = 300;
 
     private async Task setPreguntas() {
         questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Redes de Computadoras");
         ExtensionMethods.Shuffle(questionsList);
         actualAns = new List<string>(questionsList[count].answers);
+        messageScreen.SetActive(true);
         actualAns.Shuffle();
     }
 
@@ -56,12 +59,21 @@ public class SnakeManager : MonoBehaviour {
 
     void FixedUpdate() {
         if (player.lifes > 0) {
-            timer += Time.deltaTime;
-            var seconds = 300 - (int)(timer % 60);
-            if (seconds >= 0) time.text = seconds.ToString();
-            else {
-                player.DieByTime();
-            } 
+            counter += 1;
+            if (messageScreen.activeSelf == true) {
+                if (counter > 300 + timer) {
+                    messageScreen.SetActive(false);
+                    player.moving = true;
+                    counter -= 300;
+                }
+            } else {
+                if (seconds*60 >= counter) {
+                    var res = seconds - (int)(counter/60);
+                    time.text = res.ToString();
+                    timer = counter;
+                }
+                else player.DieByTime();
+            }
         }
     }
 
@@ -150,20 +162,26 @@ public class SnakeManager : MonoBehaviour {
 
     public void SetScore() {
         count += 1;
-        StartCoroutine(ShowMessage("Correcto!"));
         canvas.Find("Score").GetComponent<Text>().text = count+"/"+maxScore;
-        if (count == maxScore) StartCoroutine(player.WinAnimation(true));
-        else {
+        if (count == maxScore) {
+            StartCoroutine(player.WinAnimation(true));
+        } else {
             actualAns = new List<string>(questionsList[count].answers);
+            StartCoroutine(player.WinAnimation());
             actualAns.Shuffle();
             SetTerrain();
         }
     }
 
-    public void SetTerrain() {
+    public void setNewQuestion() {
         answers = questionsList[count].answers;
         question = questionsList[count].question;
+        messageText.GetComponent<Text>().text = question;
         canvas.Find("Question").GetComponent<Text>().text = question;
+    }
+
+    public void SetTerrain() {
+        setNewQuestion();
         for (int i = 0; i < 7; i++) {
             var bag = transform.Find("Bag"+i);
             if (i < answers.Count) {

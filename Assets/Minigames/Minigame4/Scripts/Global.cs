@@ -9,21 +9,19 @@ using System.Threading.Tasks;
 using TripasDeGato;
 
 public class Global : MonoBehaviour {
-    public GameObject gameOverScreen, scoreText, loadingScreen;
+    public GameObject gameOverScreen, scoreText, loadingScreen, messageScreen, messageText;
     private List<OrderedQuestion> questionsList;
     private List<string> answers;
     private string question;
 
     public Transform prefab;
     public Text result, score, time;
-    public bool setTimer = false;
     public bool start = false;
-    public float timer = 0;
+    public int counter = 0;
     public int lifes = 4;
 
-    private int ans = 0;
     private int count = 0;
-    private int seconds = 0;
+    private int seconds = 60;
     private bool setCanvas = false;
 
     private Heart life;
@@ -58,7 +56,6 @@ public class Global : MonoBehaviour {
         canvas = GameObject.Find("Canvas");
         canvas.GetComponent<Canvas>().enabled = false;
         quest = canvas.transform.Find("Image").transform.Find("Text");
-
         navbar = GameObject.Find("Navbar").transform;
         result = navbar.Find("Result").GetComponent<Text>();
         score = navbar.Find("Score").GetComponent<Text>();
@@ -69,8 +66,8 @@ public class Global : MonoBehaviour {
 
     public void gameOver() {
         start = false;
-        scoreText.GetComponent<Text>().text = "Puntuacion: " + total + "/" + maxScore;
         gameOverScreen.SetActive(true);
+        scoreText.GetComponent<Text>().text = "Puntuacion: " + total + "/" + maxScore;
     }
 
     public void restartMinigame() {
@@ -88,13 +85,20 @@ public class Global : MonoBehaviour {
 
     void FixedUpdate() {
         if (start) {
-            timer += Time.deltaTime;
-            seconds = 60 - (int)(timer % 60);
-            if (seconds <= 0) {
-                player.ReturnBegin();
+            counter += 1;
+            if (messageScreen.activeSelf == true) {
+                if (counter > 300) {
+                    messageScreen.SetActive(false);
+                    counter = 0;
+                }
+            } else {
+                if (seconds*60 >= counter) {
+                    var res = seconds - (int)(counter/60);
+                    time.text = res.ToString();
+                }
+                else player.ReturnBegin();
             }
-        }  
-        time.text = seconds.ToString();
+        }
     }
 
     private void Update () {
@@ -163,15 +167,22 @@ public class Global : MonoBehaviour {
         }
     }
 
-    private void SetUpMap() {
+    public void setNewQuestion() {
         answers = questionsList[count].answers;
         question = questionsList[count].question;
+        messageText.GetComponent<Text>().text = question;
         quest.GetComponent<Text>().text = question;
+        messageScreen.SetActive(true);
+        counter = 0;
+    }
+
+    public void SetUpMap() {
+        setNewQuestion();
         for (int i = 0; i < 7; i++) {
             var obj = transform.Find("Package"+(i+1));
-            if (i < answers.Count){
-                obj.GetComponent<Package>().option = answers[i];
+            if (i < answers.Count) {
                 obj.gameObject.SetActive(true);
+                obj.GetComponent<Package>().option = answers[i];
             } else {
                 obj.GetComponent<Package>().option = "";
                 obj.gameObject.SetActive(false);
@@ -181,21 +192,15 @@ public class Global : MonoBehaviour {
     }
 
     public void ReduceLife(bool flag) {
-        if (flag) {
-            lifes -= 1;
-            life.SetSprite(lifes);
-        }
+        if (flag) life.SetSprite(--lifes);
     }
 
     public void SetResult(bool isCorrect) {
-        ans -= 1;
         var str = "incorrecto!";
         if (isCorrect) {
             total += 1;
             str = "correcto!";
-            StartCoroutine(player.ChangeAnimation(true));
         }
-        if (ans == 0) SetUpMap();
         score.text = total+"/"+maxScore;
         result.text = str;
     }

@@ -54,8 +54,11 @@ public class Interfaz : MonoBehaviour
 
         foreach (var entrada in puntuaciones)
         {
-            var nuevaEntrada = Instantiate(elementoPuntuacionPrefab, listaPuntuaciones.transform);
-            nuevaEntrada.GetComponent<ElementoPuntuacion>().Init(entrada[0],entrada[1], entrada[2]);
+            if (elementoPuntuacionPrefab != null && listaPuntuaciones != null)
+            {
+                var nuevaEntrada = Instantiate(elementoPuntuacionPrefab, listaPuntuaciones.transform);
+                nuevaEntrada.GetComponent<ElementoPuntuacion>().Init(entrada[0],entrada[1], entrada[2]);
+            }
         }
     }
 
