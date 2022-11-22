@@ -16,6 +16,7 @@ public class Interfaz : MonoBehaviour
     [Header("Pantallas")]
     [SerializeField] private GameObject[] layers;
     [SerializeField] private GameObject pantallaNegraGO, loadingScreen;
+
     private Image pantallaNegra;
     private PlayerController player;
     private GameObject nextDoor;
@@ -26,7 +27,7 @@ public class Interfaz : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         indicador = FindObjectOfType<IndicadorDireccion>();
         if (pantallaNegraGO != null) pantallaNegra = pantallaNegraGO.GetComponent<Image>();
-        cargarPuntuaciones();
+        else cargarPuntuaciones();
     }
 
     private void cargarPuntuaciones()
