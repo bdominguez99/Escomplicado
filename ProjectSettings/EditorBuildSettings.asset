@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Minigames/Minigame5/Scenes/SnakeScene.unity
     guid: c6261905628f5df48a0565b956c7ac07
+  - enabled: 1
+    path: Assets/Scenes/CompleteGame.unity
+    guid: e8e8c528e16122f4d9276d68c133759d
   m_configObjects: {}

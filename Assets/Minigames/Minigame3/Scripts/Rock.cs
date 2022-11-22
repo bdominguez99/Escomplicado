@@ -18,8 +18,7 @@ public class Rock : MonoBehaviour
 
     public void UpdateRock(int relationId, Sprite sprite)
     {
-        RelationId = RelationId;
-        Debug.Log("IdElementCasiFinal: " + RelationId);
+        RelationId = relationId;
         GetComponent<SpriteRenderer>().sprite = sprite;
     }
 

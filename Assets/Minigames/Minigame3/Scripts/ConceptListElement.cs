@@ -25,7 +25,11 @@ public class ConceptListElement : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log("Selected: " + IdElement);
+        SelectElement();
+    }
+
+    public void SelectElement()
+    {
         FindObjectOfType<PopUpController>().UpdateSelectedConcept(IdElement);
         MarkAsSelected();
     }
