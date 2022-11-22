@@ -13,9 +13,9 @@ public class Snake : MonoBehaviour {
 
     private bool flag = true;
     private float timer = 0.0f;
-    private bool moving = true;
     private bool start = false;
 
+    public bool moving = false;
     public Transform prefab;
     public Sprite failSprite;
     public Sprite winSprite;
@@ -79,10 +79,12 @@ public class Snake : MonoBehaviour {
             Destroy(objects[i].gameObject);
         } 
         if (win) {
-            yield return new WaitForSeconds(0.5f);
             gm.gameOver(true);
             lifes = 0;
-        } 
+        } else {
+            gm.messageScreen.SetActive(true);
+            ReturnSpawnPosition();
+        }
     }
 
     IEnumerator invinsible() {
@@ -108,11 +110,15 @@ public class Snake : MonoBehaviour {
                 Destroy(objects[i].gameObject);
             }
         }
+        ReturnSpawnPosition();
+        if (lifes == 0) gm.gameOver();
+        else moving = true;
+    }
+
+    void ReturnSpawnPosition() {
         spriteRenderer.sprite = initialSprite; 
         transform.position = spawnPosition;
         lastPosition = spawnPosition;
-        if (lifes == 0) gm.gameOver();
-        else moving = true;
     }
 
     public void DieByTime() {
