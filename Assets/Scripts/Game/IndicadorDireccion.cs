@@ -9,16 +9,18 @@ public class IndicadorDireccion : MonoBehaviour
     private class PositionInFloor{
         public Transform transform;
         public int floor;
+        public bool deactivateAfterPass;
     }
 
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform player, classroomReference;
     [SerializeField] private float rango = 0.5f;
     [SerializeField] private Color floorColor;
     [SerializeField] private PositionInFloor[] positions;
     [SerializeField] private Image[] floorLayers;
+    [SerializeField] private StoryController storyController;
 
-    private SpriteRenderer spriteRenderer;
     private PositionInFloor target;
+    private SpriteRenderer spriteRenderer;
     private Mapa mapa;
     private Vector2 distance;
     private Color startColor;
@@ -30,7 +32,6 @@ public class IndicadorDireccion : MonoBehaviour
         startColor = floorLayers[0].color;
         spriteRenderer = GetComponent<SpriteRenderer>();
         mapa = FindObjectOfType<Mapa>();
-        target = positions[FindObjectOfType<CoordinadorDeJuego>().getActualMinigame()];
     }
 
     void Update()
@@ -41,18 +42,45 @@ public class IndicadorDireccion : MonoBehaviour
         verifyShowingArrow();
     }
 
-    public void setMinijuego(int id)
+    public void setMinigame(int idMinijuego, float score = -1)
     {
-        minijuegoActual = id;
-        if (minijuegoActual < 5)
+        if (score >= 0.6f)
         {
-            target = positions[minijuegoActual];
-            setArrowVisibility(true);
-            verifyFloorlayersVisivility();
+            minijuegoActual = idMinijuego + 1;
+            if (minijuegoActual <= 5)
+            {
+                if (target.deactivateAfterPass)
+                    target.transform.gameObject.SetActive(false);
+                target = positions[minijuegoActual];
+                if (target.deactivateAfterPass)
+                    target.transform.gameObject.SetActive(true);
+                storyController.passMinigame();
+                setArrowVisibility(!positions[idMinijuego].deactivateAfterPass);
+                verifyFloorlayersVisivility();
+            }
+            else
+            {
+                arrowDisabled = true;
+            }
         }
-        else
-        {
-            arrowDisabled = true;
+        else{
+            minijuegoActual = idMinijuego;
+            target = positions[idMinijuego];
+            if(score == -1) for(int i = 0; i < positions.Length; i++)
+            {
+                if(i == idMinijuego)
+                {
+                    if (positions[i].deactivateAfterPass)
+                        positions[i].transform.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (positions[i].deactivateAfterPass)
+                        positions[i].transform.gameObject.SetActive(false);
+                }
+            }
+            setArrowVisibility(player.position.x < classroomReference.position.x);
+            verifyFloorlayersVisivility();
         }
     }
 

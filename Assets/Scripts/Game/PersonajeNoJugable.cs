@@ -5,7 +5,7 @@ using UnityEngine;
 public class PersonajeNoJugable : MonoBehaviour
 {
     [SerializeField] private int numeroPersonaje;
-    [SerializeField] private Dialogo dialogoBase, dialogoReintento, dialogoGanado;
+    [SerializeField] private Dialogo dialogoSinMinijuego, dialogoBase, dialogoReintento, dialogoGanado;
 
     private ManejadorDeDialogos manejadorDeDialogos;
     private ManejadorMinijuegos manejadorMinijuegos;
@@ -23,23 +23,37 @@ public class PersonajeNoJugable : MonoBehaviour
     public void accion ()
     {
         float[] scores = coordinadorDeJuego.getScores();
-        if (scores != null && scores[numeroPersonaje] >= 0f)
+        if (scores != null && isMinigamActive(scores))
         {
-            if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 6f)
+            if (scores != null && scores[numeroPersonaje] >= 0f)
             {
-                manejadorDeDialogos.IniciarDialogo(dialogoGanado);
+                if (coordinadorDeJuego.getScores()[numeroPersonaje] >= 6f)
+                {
+                    manejadorDeDialogos.IniciarDialogo(dialogoGanado);
+                }
+                else
+                {
+                    manejadorDeDialogos.IniciarDialogo(dialogoReintento, true);
+                }
             }
             else
             {
-                manejadorDeDialogos.IniciarDialogo(dialogoReintento, true);
+                manejadorDeDialogos.IniciarDialogo(dialogoBase, true);
             }
         }
         else
         {
-            manejadorDeDialogos.IniciarDialogo(dialogoBase, true);
+            manejadorDeDialogos.IniciarDialogo(dialogoSinMinijuego);
         }
         player.setCanMove(false);
         manejadorMinijuegos.setNextMinigame(numeroPersonaje);
+    }
+
+    private bool isMinigamActive(float[] scores)
+    {
+        if (numeroPersonaje == 0 || numeroPersonaje == 5)
+            return true;
+        return (scores[numeroPersonaje - 1] > 0.6f && (scores[numeroPersonaje] < 0.6f || scores[numeroPersonaje + 1] < 0.6f));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -2666,7 +2666,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b8ff18723f2b846aee316654ecdce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameId: 2
+  minigameId: 0
+  score: 0
+  setScoreSteable: 0
 --- !u!1 &1171610366
 GameObject:
   m_ObjectHideFlags: 0

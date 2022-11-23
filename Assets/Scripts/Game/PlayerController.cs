@@ -14,14 +14,12 @@ public class PlayerController : MonoBehaviour
     [Header("Interacción")]
     public GameObject ultimaColision;
 
-    // Start is called before the first frame update
     public void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     public void Update()
     {
         HandleMovement();

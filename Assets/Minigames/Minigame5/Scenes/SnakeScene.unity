@@ -2259,7 +2259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 1.883}
+  m_AnchoredPosition: {x: 0, y: 1.883}
   m_SizeDelta: {x: 246.656, y: 131.727}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082767519
@@ -2812,6 +2812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde05b5945279cc4ebf635c1392b0142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moving: 0
   prefab: {fileID: 8756351339868876396, guid: a7dc65f107442034c957b5927e8b1290, type: 3}
   failSprite: {fileID: 21300000, guid: 4ddec7ea784b5d1428512ea74994fe1d, type: 3}
   winSprite: {fileID: 21300000, guid: 471716d003847e349aead9c36e5d43d5, type: 3}
@@ -5021,7 +5022,7 @@ GameObject:
   - component: {fileID: 1965555596}
   - component: {fileID: 1965555595}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Minijuego
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5039,7 +5040,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b8ff18723f2b846aee316654ecdce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameId: 5
+  minigameId: 1
+  score: 0
+  setScoreSteable: 0
 --- !u!4 &1965555596
 Transform:
   m_ObjectHideFlags: 0

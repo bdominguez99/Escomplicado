@@ -6,7 +6,8 @@ public class Minijuego : MonoBehaviour
 {
     public static Minijuego minijuego;
     [SerializeField] [Range(0, 5)] private int minigameId;
-    private float score;
+    [SerializeField] private float score;
+    [SerializeField] private bool setScoreSteable;
 
     void Start()
     {
@@ -27,7 +28,8 @@ public class Minijuego : MonoBehaviour
     /// <param name="score">El score es la calificación que sacó el jugador, debe de ser un numero entre 0 y 10</param>
     public void setScore(float score)
     {
-        this.score = score;
+        if(setScoreSteable)
+            this.score = score;
     }
 
     public float getScore()
