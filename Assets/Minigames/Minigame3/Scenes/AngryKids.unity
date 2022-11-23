@@ -3104,6 +3104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameId: 3
+  score: 0
+  setScoreSteable: 0
 --- !u!4 &947564702
 Transform:
   m_ObjectHideFlags: 0
@@ -4046,7 +4048,7 @@ MonoBehaviour:
   m_idlePosition: {fileID: 1486548867}
   m_rockPrefab: {fileID: 1833875981617769505, guid: 59dbd155c974a204389b8d43243aefcc, type: 3}
   m_animator: {fileID: 142551727}
-  m_maxStringLenght: 1.5
+  m_maxStringLenght: 1.2
   m_rockPositionOffset: 0.05
   m_rockForce: 13.53
   m_predictionDotPrefab: {fileID: 3083453604051226847, guid: cc474f117aae34a41ac83e15e04046cc, type: 3}
