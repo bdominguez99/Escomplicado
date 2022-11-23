@@ -1902,7 +1902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameId: 3
-  score: 0
+  score: 10
   setScoreSteable: 0
 --- !u!4 &581226908
 Transform:
@@ -1938,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &630021592
 RectTransform:
   m_ObjectHideFlags: 0

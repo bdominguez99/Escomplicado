@@ -19,7 +19,7 @@ public static class DatabaseConstants
 
     public static string AllQuestionsUrl { get; } = "https://mwdeubytqwdggweqmzpr.supabase.co/rest/v1/rpc/getallquestionstest1";
 
-    public static string AllQuestionsLocalFile { get; } = "questions-json.json";
+    public static string AllQuestionsLocalFile { get; } = Application.persistentDataPath + "/questions-json.json";
 
     public const string RelationQuestionString = "relation_question";
     public const string OrderedQuestionString = "ordered_answer";

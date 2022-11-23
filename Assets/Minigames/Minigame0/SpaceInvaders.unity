@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameId: 5
-  score: 0
+  score: 10
   setScoreSteable: 0
 --- !u!4 &695787966
 Transform:

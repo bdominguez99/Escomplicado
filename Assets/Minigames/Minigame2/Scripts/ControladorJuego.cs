@@ -61,7 +61,7 @@ namespace TripasDeGato
 
         private async void Start()
         {
-            m_dataManager = FindObjectOfType<CargadorDeDB>().DataManager;
+            m_dataManager = new DataManager();
             m_controladorPopUp = new ControladorPopUp(m_popUp, m_padreCeldas);
             m_manejadorReloj = FindObjectOfType<Reloj>();
             m_faseActual = 0;

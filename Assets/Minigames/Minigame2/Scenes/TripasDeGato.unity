@@ -2667,7 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameId: 0
-  score: 0
+  score: 10
   setScoreSteable: 0
 --- !u!1 &1171610366
 GameObject:
