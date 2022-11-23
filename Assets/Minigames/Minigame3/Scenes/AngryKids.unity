@@ -821,7 +821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325767993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.88, y: -1.96, z: 0}
+  m_LocalPosition: {x: -3.925, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1287118774}
@@ -3104,6 +3104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameId: 3
+  score: 0
+  setScoreSteable: 0
 --- !u!4 &947564702
 Transform:
   m_ObjectHideFlags: 0
@@ -4046,7 +4048,7 @@ MonoBehaviour:
   m_idlePosition: {fileID: 1486548867}
   m_rockPrefab: {fileID: 1833875981617769505, guid: 59dbd155c974a204389b8d43243aefcc, type: 3}
   m_animator: {fileID: 142551727}
-  m_maxStringLenght: 1
+  m_maxStringLenght: 1.2
   m_rockPositionOffset: 0.05
   m_rockForce: 13.53
   m_predictionDotPrefab: {fileID: 3083453604051226847, guid: cc474f117aae34a41ac83e15e04046cc, type: 3}
@@ -5763,10 +5765,10 @@ MonoBehaviour:
   m_gameOverScreen: {fileID: 1936150446}
   m_finalScoreText: {fileID: 1725383703}
   m_mistakePenalty: 3
-  m_timeLimit: 60
-  m_questionsPerPhase: 3
+  m_timeLimit: 300
+  m_questionsPerPhase: 7
   m_demonMovementFrequency: 3
-  m_maxQuestions: 2
+  m_maxQuestions: 100
   m_rockSprites:
   - {fileID: -2705597995764985619, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
   - {fileID: 8032301891362702160, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
