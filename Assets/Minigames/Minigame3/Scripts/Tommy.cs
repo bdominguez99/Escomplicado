@@ -8,8 +8,9 @@ public class Tommy : MonoBehaviour
     [SerializeField] private List<Transform> m_stringPositions;
     [SerializeField] private Transform m_center;
     [SerializeField] private Transform m_idlePosition;
-    [SerializeField] private float m_maxStringLenght;
     [SerializeField] private GameObject m_rockPrefab;
+    [SerializeField] private Animator m_animator;
+    [SerializeField] private float m_maxStringLenght;
     [SerializeField] private float m_rockPositionOffset;
     [SerializeField] private float m_rockForce;
     
@@ -142,6 +143,8 @@ public class Tommy : MonoBehaviour
     {
         m_rock = Instantiate(m_rockPrefab);
         m_rock.GetComponent<Rock>().UpdateRock(m_idLastRockSelected, m_rockSprite);
+        m_rock.transform.SetParent(m_idlePosition);
+        m_rock.GetComponent<SpriteRenderer>().sortingOrder = 3;
         m_rockRigidBody = m_rock.GetComponent<Rigidbody2D>();
         m_rockCollider = m_rock.GetComponent<Collider2D>();
 
@@ -156,7 +159,6 @@ public class Tommy : MonoBehaviour
     {
         m_rockSprite = rockSprite;
         m_idLastRockSelected = idRelation;
-        Debug.Log("Asignado: " + m_idLastRockSelected);
 
         Destroy(m_rock);
         m_rock = null;
@@ -164,10 +166,7 @@ public class Tommy : MonoBehaviour
         {
             CreateRock();
         }
-        var rock = m_rock.GetComponent<Rock>();
-        Debug.Log("IdElementAnteFinal: " + rock.RelationId);
-        rock.UpdateRock(idRelation, rockSprite);
-        Debug.Log("IdElementFinal: " + rock.RelationId);
+        m_rock.GetComponent<Rock>().UpdateRock(idRelation, rockSprite);
     }
 
     void ResetString()
@@ -178,13 +177,16 @@ public class Tommy : MonoBehaviour
 
     private void OnMouseDown()
     {
+
         m_isMouseDown = true;
+        m_animator.SetBool("IsThrowing", true);
         FindObjectOfType<GameController>().EnableCameraMovement = false;
     }
 
     private void OnMouseUp()
     {
         m_isMouseDown = false;
+        m_animator.SetBool("IsThrowing", false);
         FindObjectOfType<GameController>().EnableCameraMovement = true;
         Shoot();
     }

@@ -67,17 +67,12 @@ public class Demon : MonoBehaviour
 
         var rockId = collision.gameObject.GetComponent<Rock>().RelationId;
 
-        Debug.Log("IdDemon: " + m_idRelation);
-        Debug.Log("RockId: " + rockId);
-
         if (rockId == m_idRelation)
         {
-            Debug.Log("Respuesta correcta");
             FindObjectOfType<GameController>().UpdateStateCorrectAnswer();
         }
         else
         {
-            Debug.Log("Respuesta incorrecta");
             FindObjectOfType<GameController>().UpdateStateWrongAnswer();
         }
 

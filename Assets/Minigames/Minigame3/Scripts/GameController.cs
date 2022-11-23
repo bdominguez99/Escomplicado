@@ -149,6 +149,9 @@ public class GameController : MonoBehaviour
             m_popUpController.AddDefinitionElement(definitions[i].Second, definitions[i].First, m_demonSprites[i]);
         }
 
+        var firstElement = m_popUpController.GetConceptElement(0);
+        firstElement.SelectElement();
+
         m_popUpControllerGameObject.SetActive(false);
         m_loadingScreen.SetActive(false);
     }

@@ -50,4 +50,9 @@ public class PopUpController : MonoBehaviour
         newConceptElement.GetComponent<DefinitionListElement>().Init(definition, demonSprite);
         m_definitionListElements.Add(newConceptElement);
     }
+
+    public ConceptListElement GetConceptElement(int index)
+    {
+        return m_conceptListElements[index].GetComponent<ConceptListElement>();
+    }
 }
