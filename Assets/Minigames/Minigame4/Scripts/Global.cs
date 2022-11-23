@@ -60,8 +60,8 @@ public class Global : MonoBehaviour {
         result = navbar.Find("Result").GetComponent<Text>();
         score = navbar.Find("Score").GetComponent<Text>();
         time = navbar.Find("Time").GetComponent<Text>();
-        // await setPreguntas();
-        // SetUpMap();
+        await setPreguntas();
+        SetUpMap();
     }
 
     public void gameOver() {
