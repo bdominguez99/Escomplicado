@@ -69,7 +69,7 @@ public class ManejadorGuardado : MonoBehaviour
                         break;
                     }
                 }
-                FindObjectOfType<IndicadorDireccion>().setMinijuego(minijuegoActual);
+                FindObjectOfType<IndicadorDireccion>().setMinigame(minijuegoActual);
             }
             else
             {
@@ -81,7 +81,7 @@ public class ManejadorGuardado : MonoBehaviour
                     scores[i] = -1f;
                 }
                 coordinador.setScores(scores);
-                FindObjectOfType<IndicadorDireccion>().setMinijuego(0);
+                FindObjectOfType<IndicadorDireccion>().setMinigame(0);
             }
         }
     }

@@ -109,9 +109,8 @@ public class CoordinadorDeJuego : MonoBehaviour
             int minijuegoId = minijuego.getMinigameId();
             scores[minijuegoId] = score;
             Destroy(minijuego.gameObject);
-            if (score > 0.6f)
-                FindObjectOfType<IndicadorDireccion>().setMinijuego(minijuegoId + 1);
-            if(minijuegoId == 0)
+            FindObjectOfType<IndicadorDireccion>().setMinigame(minijuegoId, score);
+            if(minijuegoId == 5)
             {
                 for (int i = 0; i < scores.Length; i++) {
                     puntuacionFinal += scores[i];
@@ -120,7 +119,7 @@ public class CoordinadorDeJuego : MonoBehaviour
             }
             if(infoEntreEscenas != null)
                 manejadorGuardado.guardarPartida(infoEntreEscenas.idPartida);
-            if(minijuegoId == 0)
+            if(minijuegoId == 5)
             {
                 FindObjectOfType<Interfaz>().loadScene("CompleteGame");
             }
