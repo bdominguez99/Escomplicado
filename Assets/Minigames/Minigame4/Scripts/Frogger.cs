@@ -65,6 +65,7 @@ public class Frogger : MonoBehaviour {
         var platform = Physics2D.OverlapBox(pos, z, 0f, LayerMask.GetMask("Platform"));
         var obstacle = Physics2D.OverlapBox(pos, z, 0f, LayerMask.GetMask("Obstacle"));
         
+        if(barrier) return 0;
         if(obstacle) return -1;
         if (!platform) {
             transform.SetParent(null);
@@ -73,7 +74,6 @@ public class Frogger : MonoBehaviour {
             transform.SetParent(platform.transform);
             return 1;
         } 
-        if(barrier) return 0;
         return 1;
     }
 
@@ -175,12 +175,6 @@ public class Frogger : MonoBehaviour {
             Destroy(other.gameObject);
             ReturnBegin(true);
         } else if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle")) {
-            ReturnBegin();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Default")) {
             ReturnBegin();
         }
     }
