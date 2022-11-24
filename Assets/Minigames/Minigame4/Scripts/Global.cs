@@ -191,8 +191,8 @@ public class Global : MonoBehaviour {
         count++;
     }
 
-    public void ReduceLife(bool flag) {
-        if (flag) life.SetSprite(--lifes);
+    public void ReduceLife(bool reduce) {
+        if (reduce) life.SetSprite(--lifes);
     }
 
     public void SetResult(bool isCorrect) {
