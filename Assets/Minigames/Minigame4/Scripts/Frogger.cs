@@ -8,8 +8,8 @@ public class Frogger : MonoBehaviour {
     private Collider2D activeOption;
     private Vector3 spawnPosition;
     private Animator anim;
+    private bool flag = true;
 
-    public bool flag = false;
     public string carry = "";
     public string swipeDir; 
     public Sprite winSprite;
