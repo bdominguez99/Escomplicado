@@ -11,6 +11,7 @@ public class Tommy : MonoBehaviour
     [SerializeField] private GameObject m_rockPrefab;
     [SerializeField] private Animator m_animator;
     [SerializeField] private float m_maxStringLenght;
+    [SerializeField] private float m_maxArmLenght;
     [SerializeField] private float m_rockPositionOffset;
     [SerializeField] private float m_rockForce;
     
@@ -62,9 +63,11 @@ public class Tommy : MonoBehaviour
             m_currentPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             m_currentPosition = (Vector2)m_center.position + 
                 Vector2.ClampMagnitude(m_currentPosition - (Vector2)m_center.position, m_maxStringLenght);
+            var handPosition = (Vector2)m_center.position +
+                Vector2.ClampMagnitude(m_currentPosition - (Vector2)m_center.position, m_maxArmLenght);
 
             DrawPredictionDots();
-            SetStrings(m_currentPosition);
+            SetStrings(handPosition);
 
             if (m_rockCollider)
             {

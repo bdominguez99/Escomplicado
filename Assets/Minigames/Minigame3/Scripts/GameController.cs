@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
             var yCoordinate = Random.Range(initDemonArea.y, endDemonArea.y);
             var demonPosition = new Vector2(xCoordinate, yCoordinate);
             demonObject.transform.position = demonPosition;
-            demonObject.Init(definitions[i].Second, definitions[i].First, initDemonArea, endDemonArea);
+            demonObject.Init(definitions[i].First, initDemonArea, endDemonArea);
 
             m_popUpController.AddConceptElement(concepts[i].Second, concepts[i].First, m_rockSprites[concepts[i].First]);
             m_popUpController.AddDefinitionElement(definitions[i].Second, definitions[i].First, m_demonSprites[i]);

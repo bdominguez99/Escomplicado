@@ -7,7 +7,7 @@ public class Demon : MonoBehaviour
 {
     [SerializeField] private float m_speed;
 
-    private string m_answer;
+    private bool m_changePosition;
     private bool m_isMoving;
     private int m_idRelation;
     private int m_movementFrequency;
@@ -16,15 +16,16 @@ public class Demon : MonoBehaviour
     private Vector2 m_endArea;
 
 
-    public void Init(string answer, int idRelation, Vector2 initArea, Vector2 endArea)
+    public void Init(int idRelation, Vector2 initArea, Vector2 endArea)
     {
-        m_answer = answer;
         m_idRelation = idRelation;
         var animationName = "Demon" + idRelation;
         GetComponent<Animator>().Play(animationName);
 
         m_initArea = initArea;
         m_endArea = endArea;
+
+        m_changePosition = true;
 
         m_movementFrequency = FindObjectOfType<GameController>().DemonMovementFrequency;
 
@@ -33,7 +34,7 @@ public class Demon : MonoBehaviour
 
     private IEnumerator MoveRandomly()
     {
-        while (true)
+        while (m_changePosition)
         {
             var xCoordinate = Random.Range(m_initArea.x, m_endArea.x);
             var yCoordinate = Random.Range(m_initArea.y, m_endArea.y);
@@ -62,10 +63,10 @@ public class Demon : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Destroy rock
-        FindObjectOfType<CameraController>().StopFollowingRock();
-        Destroy(collision.gameObject);
+        m_changePosition = false;
 
         var rockId = collision.gameObject.GetComponent<Rock>().RelationId;
+        GetComponent<Animator>().Play("DisappearSmoke");
 
         if (rockId == m_idRelation)
         {
@@ -76,6 +77,14 @@ public class Demon : MonoBehaviour
             FindObjectOfType<GameController>().UpdateStateWrongAnswer();
         }
 
+        Destroy(collision.gameObject);
+        StartCoroutine(WaitTillAnimationOver());
+    }
+
+    public IEnumerator WaitTillAnimationOver()
+    {
+        yield return new WaitForSeconds(1);
+        FindObjectOfType<CameraController>().StopFollowingRock();
         Destroy(gameObject);
     }
 }

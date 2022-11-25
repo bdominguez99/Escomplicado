@@ -89,7 +89,7 @@ public class CameraController : MonoBehaviour
     public void StopFollowingRock()
     {
         m_followRock = false;
-        this.transform.position = m_defaultPosition;
+        cam.transform.position = ClampCamera(m_defaultPosition);
     }
 
     private Vector3 ClampCamera(Vector3 targetPosition)
