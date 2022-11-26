@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
 
     public bool EnableCameraMovement { get; set; } = true;
 
+    public bool IsPopUpActive { get => m_popUpControllerGameObject.activeInHierarchy; }
+
     private List<List<RelationQuestion>> m_questions;
     private List<RelationQuestion> m_currentPhaseQuestions;
     private int m_currentPhase;
@@ -57,7 +59,7 @@ public class GameController : MonoBehaviour
     private async Task GetQuestions()
     {
         m_dataManager = new DataManager();
-        List<RelationQuestion> questions = await m_dataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
+        List<RelationQuestion> questions = await m_dataManager.GetRelationQuestionsAsync("Diseño de Sistemas Digitales");
         
         m_totalQuestions = Mathf.Min(questions.Count, m_maxQuestions);
 

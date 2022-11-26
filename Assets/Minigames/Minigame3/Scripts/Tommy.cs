@@ -180,18 +180,23 @@ public class Tommy : MonoBehaviour
 
     private void OnMouseDown()
     {
-
-        m_isMouseDown = true;
-        m_animator.SetBool("IsThrowing", true);
-        FindObjectOfType<GameController>().EnableCameraMovement = false;
+        if (!FindObjectOfType<GameController>().IsPopUpActive)
+        {
+            m_isMouseDown = true;
+            m_animator.SetBool("IsThrowing", true);
+            FindObjectOfType<GameController>().EnableCameraMovement = false;
+        }
     }
 
     private void OnMouseUp()
     {
-        m_isMouseDown = false;
-        m_animator.SetBool("IsThrowing", false);
-        FindObjectOfType<GameController>().EnableCameraMovement = true;
-        Shoot();
+        if (!FindObjectOfType<GameController>().IsPopUpActive)
+        {
+            m_isMouseDown = false;
+            m_animator.SetBool("IsThrowing", false);
+            FindObjectOfType<GameController>().EnableCameraMovement = true;
+            Shoot();
+        }
     }
 
     void SetStrings(Vector2 position)
