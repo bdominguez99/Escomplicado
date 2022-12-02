@@ -6061,12 +6061,13 @@ MonoBehaviour:
   m_popUpControllerGameObject: {fileID: 793436467}
   m_loadingScreen: {fileID: 1062937435}
   m_gameOverScreen: {fileID: 1936150446}
+  m_botonReintentar: {fileID: 394547474}
   m_finalScoreText: {fileID: 1725383703}
   m_mistakePenalty: 3
   m_timeLimit: 300
   m_questionsPerPhase: 8
   m_demonMovementFrequency: 3
-  m_maxQuestions: 100
+  m_maxQuestions: 2
   m_rockSprites:
   - {fileID: -2705597995764985619, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
   - {fileID: 8032301891362702160, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
