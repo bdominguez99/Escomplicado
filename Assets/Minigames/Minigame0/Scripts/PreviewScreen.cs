@@ -24,7 +24,7 @@ namespace SpaceInvaders
             while (progress < fadeTime)
             {
                 progress += Time.deltaTime;
-                image.color = new Color(1, 1, 1, progress / fadeTime);
+                image.color = Color.Lerp(Color.black, Color.white, progress / fadeTime);
                 yield return null;
             }
             image.color = Color.white;
