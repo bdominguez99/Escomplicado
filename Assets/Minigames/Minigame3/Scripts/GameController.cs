@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject m_popUpControllerGameObject;
     [SerializeField] private GameObject m_loadingScreen;
     [SerializeField] private GameObject m_gameOverScreen;
+    [SerializeField] private GameObject m_botonReintentar;
     [SerializeField] private Text m_finalScoreText;
     [SerializeField] private int m_mistakePenalty;
     [SerializeField] private int m_timeLimit;
@@ -167,6 +168,16 @@ public class GameController : MonoBehaviour
 
     public void FinishGame()
     {
+        var puntuacion = (float)m_correctQuestions / (float)m_totalQuestions;
+        if (puntuacion >= 0.5)
+        {
+            m_botonReintentar.SetActive(false);
+        }
+        else
+        {
+            m_botonReintentar.SetActive(true);
+        }
+
         m_finalScoreText.text = "Puntuacion: " + m_correctQuestions + "/" + m_totalQuestions;
         m_gameOverScreen.SetActive(true);
     }
