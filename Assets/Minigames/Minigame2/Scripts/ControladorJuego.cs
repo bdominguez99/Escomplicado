@@ -36,7 +36,7 @@ namespace TripasDeGato
         [SerializeField] private Reloj m_reloj;
         [SerializeField] private int m_maximoPreguntasPorFase;
         [SerializeField] private int m_maximoPreguntas;
-
+        [SerializeField] private GameObject m_botonReintento;
 
         public static Dictionary<Vector2, Celda> Celdas { get; private set; }
 
@@ -111,6 +111,16 @@ namespace TripasDeGato
 
         public void FinalizarJuego()
         {
+            var puntuacion = (float)m_preguntasResueltas / (float)m_totalPreguntas;
+            if (puntuacion >= 0.5)
+            {
+                m_botonReintento.SetActive(false);
+            }
+            else
+            {
+                m_botonReintento.SetActive(true);
+            }
+
             m_textoPuntuacionFinal.text = "Puntuacion: " + m_preguntasResueltas + "/" + m_totalPreguntas;
             m_pantallaFinDeJuego.SetActive(true);
 
