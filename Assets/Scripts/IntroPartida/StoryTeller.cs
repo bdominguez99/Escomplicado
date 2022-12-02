@@ -69,6 +69,7 @@ public class StoryTeller : MonoBehaviour
             }
             progress = relativeTime;
             topImage.color = new Color(1, 1, 1, 1);
+            storyText.text = "";
             storyImage.sprite = pages[pageIndex].sprite;
             yield return new WaitForSeconds(0.05f);
             while (progress > 0)

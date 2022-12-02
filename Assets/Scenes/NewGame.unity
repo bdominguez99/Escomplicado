@@ -164,18 +164,18 @@ MonoBehaviour:
   loadingScreen: {fileID: 971651631}
   top: {fileID: 1485159600}
   pages:
-  - sprite: {fileID: 21300000, guid: 16e450d104b678c46b07cf5c8e49a7c0, type: 3}
+  - sprite: {fileID: -7117110007024914641, guid: 198c79c95fa19cd43995f342b7b46be2, type: 3}
     paragraph: "Habia una vez... Un joven estudiante de la Escuela Superior de Computo.
       No era el mejor en estudiante, pero al menos hac\xEDa el intento."
-  - sprite: {fileID: 5922961200559609190, guid: 2ef7db8c31ca3d54bbecdfa68602d8ea, type: 3}
+  - sprite: {fileID: 4898652434482888652, guid: 198c79c95fa19cd43995f342b7b46be2, type: 3}
     paragraph: "Lamentablemente, hacer el intento no era suficiente... El pobre estudiante
       de ingenier\xEDa hab\xEDa reprobado todas sus materias del semestre y tendria
       que presentarlas en Examen a Titulo de Suficiencia."
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 1216821835047967251, guid: 198c79c95fa19cd43995f342b7b46be2, type: 3}
     paragraph: Desesperado, el chico decidio hacer un pacto con el diablo para poder
       salvar sus materias, sin embargo, este le dijo que no podia hacerlo pasar automaticamente,
       pero si podia hacer sus examenes mas sencillos.
-  - sprite: {fileID: 21300000, guid: 16e450d104b678c46b07cf5c8e49a7c0, type: 3}
+  - sprite: {fileID: 396307197612213772, guid: 198c79c95fa19cd43995f342b7b46be2, type: 3}
     paragraph: "- \xBFComo podria hacer eso?\r\nSe pregunto el chico. A lo que el
       diablo respondio:\r\n- Convertire tus examenes en simples juegos.\r\nAgrego
       riendo.\r"
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16e450d104b678c46b07cf5c8e49a7c0, type: 3}
+  m_Sprite: {fileID: -7117110007024914641, guid: 198c79c95fa19cd43995f342b7b46be2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

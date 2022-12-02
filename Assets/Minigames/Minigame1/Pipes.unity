@@ -1325,14 +1325,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1882353, g: 0.5294118, b: 0.5058824, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a12c285c3625b149bf4b31147f8167b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2290,7 +2290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &792777342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f1fc4289336081044a60496bbdd814d1, type: 3}
+  m_Sprite: {fileID: 8820807777658297948, guid: 6bd265304ebe9774da945d78d173089d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5942,7 +5942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1717400440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5957,50 +5957,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   images:
   - {fileID: 21300000, guid: 037a0c34cc5b21d448bdaed444666cbc, type: 3}
-  - {fileID: 21300000, guid: f3a933950db3b6c42a6b6583707d4ae6, type: 3}
-  - {fileID: 21300000, guid: 14ee9c961e8a4a44c95a76ac625bc5ae, type: 3}
-  - {fileID: 21300000, guid: aa50d74c1bd191d46935d2a18d74457e, type: 3}
-  - {fileID: 21300000, guid: 68552019383d427448dc7540b87e88db, type: 3}
-  - {fileID: 21300000, guid: 8bb53d5f724285f44be4f750f7b41da3, type: 3}
-  - {fileID: 21300000, guid: 15991dbd1b4c59343b3af07329fbba1e, type: 3}
-  - {fileID: 21300000, guid: 15991dbd1b4c59343b3af07329fbba1e, type: 3}
-  - {fileID: 21300000, guid: 51a2f4fac1acfa14fafeefba565a5427, type: 3}
-  - {fileID: 21300000, guid: 28fcde308d811934d8a8969bc11f87b4, type: 3}
-  - {fileID: 21300000, guid: 9a7d12ab00b0bf840b1dfd3b8d4249f8, type: 3}
-  - {fileID: 21300000, guid: 9738073e8a7e708408f4314576f8ee31, type: 3}
+  - {fileID: 21300000, guid: 68607a9a419b5d1468d4189a93374e5e, type: 3}
+  - {fileID: 21300000, guid: 233a297cd9c7c3e4d93612a012136d20, type: 3}
+  - {fileID: 21300000, guid: 718e65f966d1fac4ea9babd64235aa63, type: 3}
+  - {fileID: 21300000, guid: b7fe634f9e8d37c44ba0146aab01c5fc, type: 3}
+  - {fileID: 21300000, guid: 65fd045833b49a640b4e1265646e145b, type: 3}
+  - {fileID: 21300000, guid: 60375a277b2cbf6439a8b6937fcdcb22, type: 3}
+  - {fileID: 21300000, guid: f20e063c710998e46bee07b1b8c6d2a5, type: 3}
+  - {fileID: 21300000, guid: 907ae0748a502464380aaef29de35544, type: 3}
   - {fileID: 21300000, guid: 6a66ec70bbbb1cb49a825e8312f21187, type: 3}
   - {fileID: 21300000, guid: 8247a1e3d03fda54aba33a1ce57b5914, type: 3}
   - {fileID: 21300000, guid: 63212a3d19abdc748a8257e39bee753f, type: 3}
+  - {fileID: 21300000, guid: b14e00e912b04d74f99494c8c29ab9f8, type: 3}
+  - {fileID: 21300000, guid: 5b7e4dc78613e0b4a81667d83ddf5ed8, type: 3}
   instructions:
-  - Al iniciar este minijuego, lo primero en mostrarse sera la pregunta que debes
-    responder
-  - Despues de eso, se mostrara la siguiente pantalla. Aqui tendras un tiempo para
-    leer las posibles respuestas
-  - Debes notar que la pregunta aun sera visible. Esta se muestra en la parte superior
-    de la pantalla
-  - Despues de un tiempo los enemigos comenzaran a aparecer uno por uno
-  - "Al terminar de aparecer todos los enemigos estos comenzaran a dispararte \xA1Acaba
-    con ellos!"
-  - Para disparar presiona este boton. Se ubica en la parte inferior izquierda de
-    la pantalla
-  - Si le disparas lo suficiente a un enemigo este sera destruido y la barra del
-    color de ese enemigo comenzara a llenarse.
-  - Ten cuidado de solo eliminar a los enemigos correctos porque si completas una
-    barra de una respuesta incorrecta tendras mal la pregunta.
-  - "Recuerda que cuentas con un escudo para protegerte de los disparos enemigos,
-    pero ten cuidado \xA1Su energia se acaba!"
-  - "Si se termina la energia de tu escudo tambien se terminara la energia de tu
-    jetpack \xA1Y caeras a la lava!"
-  - Si eliminas todos los enemigos del mismo color en una fila, esta sera destruida
-    por completo y reemplazada por la fila detras
-  - Luego las filas de enemigos volveran a su formacion inicial. Los enemigos no
-    se acabaran a menos que llenes alguna respuesta
-  - Cuando llenes una respuesta o se acabe la energia de tu jetpack pasaras al siguiente
-    nivel y se repetira el proceso
-  - Cuando completes todas las preguntas se mostrara esta pantalla y si no pasaste
-    la prueba podras volver a intentarlo
-  - En caso de que hayas oasado la prueba ya no se te permitira volver a realizarla,
-    por lo que debes esforzarte para sacar la maxima calificacion
+  - "Al iniciar el minijuego se mostrar\xE1 la pregunta que debes responder."
+  - "Posteriormente se mostrar\xE1 la siguiente pantalla, en donde habr\xE1 una serie
+    de tuber\xEDas."
+  - "Para ganar el minijuego deber\xE1s ordenar las tuber\xEDas de tal forma que
+    la lava se desag\xFCe por el camino correcto."
+  - "Solamente tienes permitido cambiar de lugar las tuber\xEDas entre s\xED."
+  - "Para cambiar de lugar una tuber\xEDa deber\xE1s tocarla, esta posteriormente
+    cambiar\xE1 de color para indicar que est\xE1 lista para cambiar de lugar con
+    otra."
+  - "Cuando una tuber\xEDa est\xE9 lista para cambiar de lugar solamente toca la
+    otra tuber\xEDa con la que deseas que cambie de lugar y estas cambiar\xE1n de
+    lugar autom\xE1ticamente."
+  - "Si te arrepientes y ya no deseas cambiar de lugar alguna tuber\xEDa que ya est\xE9
+    lista para cambiar, solamente t\xF3cala de nuevo y regresar\xE1 a su color normal."
+  - "\xA1Ten cuidado! Si la lava empieza a fluir por alguna tuber\xEDa ya no podr\xE1s
+    moverla de lugar."
+  - "No olvides que debes darte prisa, porque la lava sigue fluyendo y si se llega
+    a desbordar habr\xE1s perdido la pregunta."
+  - "En caso de que logres desviar la lava por el camino correcto se incrementar\xE1
+    tu puntuaci\xF3n y pasar\xE1s a la siguiente pregunta."
+  - "Luego repetir\xE1s el proceso hasta terminar con todas las preguntas y se mostrar\xE1
+    la pantalla de finalizaci\xF3n. Si no lograste pasar el minijuego tendr\xE1s
+    la oportunidad de volverlo a intentar."
+  - "Sin embargo, si lo pasas ya no se te permitir\xE1 volverlo a intentar, por lo
+    que debes buscar obtener la mayor calificaci\xF3n posible."
+  - "En caso de que olvides cu\xE1l era la pregunta que se mostr\xF3, siempre podr\xE1s
+    presionar el bot\xF3n de pausa y se mostrar\xE1 nuevamente la pregunta."
+  - "No te preocupes, mientras est\xE9s en pausa, la lava no seguir\xE1 fluyendo,
+    as\xED que puedes tomarte tu tiempo para leer."
   instructionsImage: {fileID: 675385936}
   instructionsText: {fileID: 902777069}
   instructionsScreen: {fileID: 486417039}
