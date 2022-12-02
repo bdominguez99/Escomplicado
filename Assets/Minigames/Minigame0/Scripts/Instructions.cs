@@ -7,7 +7,7 @@ public class Instructions : MonoBehaviour
 {
     [Header("Instructions")]
     [SerializeField] private Sprite[] images;
-    [TextArea][SerializeField] private string[] instructions;
+    [TextArea(5, 100)][SerializeField] private string[] instructions;
     [SerializeField] private Image instructionsImage;
     [SerializeField] private Text instructionsText;
     [SerializeField] private GameObject instructionsScreen;
