@@ -91,13 +91,11 @@ public class Frogger : MonoBehaviour {
     }
 
     public void ReturnBegin(bool score = false) {
-        transform.SetParent(null);
         bool f = false;
         if (score) {
             var objects = FindObjectsOfType<Goal>();
             if (objects.Length > 1) return;
             else {
-                transform.SetParent(null);
                 var ans = activeOption.GetComponent<Package>().option;
                 activeOption.GetComponent<Package>().EnableAnimation();
                 if (carry == ans) {
@@ -114,10 +112,14 @@ public class Frogger : MonoBehaviour {
                     gameManager.ReduceLife(flag);
                     score = false;
                 } 
+                transform.SetParent(null);
                 activeOption = null;
                 carry = "";
             }
-        } else gameManager.ReduceLife(flag);
+        } else {
+            gameManager.ReduceLife(flag);
+            transform.SetParent(null);
+        }
         StartCoroutine(ChangeAnimation(score, f));
     }
 
