@@ -143,6 +143,28 @@ public class DataManager
         return questions;
     }
 
+    public async Task<List<string>> GetAvailableTopics()
+    {
+        if (m_allQuestions == null)
+        {
+            m_allQuestions = await GetAllQuestionsAsync();
+        }
+
+        List<string> subjects = new List<string>();
+        HashSet<string> materias = new HashSet<string>();
+        foreach (JsonQuestion question in m_allQuestions)
+        {
+            materias.Add(question.subject);
+        }
+
+        foreach (var materia in materias)
+        {
+            subjects.Add(materia);
+        }
+
+        return subjects;
+    }
+
     private async Task<string> GetAllQuestionsRawDataAsync()
     {
         string result = "";

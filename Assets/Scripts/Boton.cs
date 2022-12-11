@@ -34,6 +34,11 @@ public class Boton : MonoBehaviour
         interfaz.mostrarInterfaz(Interfaz.Interfaces.VerPuntuaciones);
     }
 
+    public void modoLibre()
+    {
+        interfaz.mostrarInterfaz(Interfaz.Interfaces.ModoLibre);
+    }
+
     public void salirDelJuego()
     {
         Application.Quit();

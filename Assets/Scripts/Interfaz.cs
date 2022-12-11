@@ -6,7 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Interfaz : MonoBehaviour
 {
-    public enum Interfaces { Inicio, SleccionPartida, NuevaPartida, VerPuntuaciones, Pausa, Mapa, Intractuar, Confirmacion, ConfirmacionEliminarPartida, Default };
+    public enum Interfaces 
+    { 
+        Inicio, 
+        SleccionPartida, 
+        NuevaPartida, 
+        VerPuntuaciones, 
+        Pausa, 
+        Mapa, 
+        Intractuar, 
+        Confirmacion, 
+        ConfirmacionEliminarPartida, 
+        ModoLibre, 
+        Default 
+    };
 
     [Header("Inicio")]
     [SerializeField] private GameObject confirmacionSalida;
@@ -28,6 +41,12 @@ public class Interfaz : MonoBehaviour
         indicador = FindObjectOfType<IndicadorDireccion>();
         if (pantallaNegraGO != null) pantallaNegra = pantallaNegraGO.GetComponent<Image>();
         else cargarPuntuaciones();
+
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            FindObjectOfType<InfoEntreEscenas>().EsModoLibre = false;
+            mostrarInterfaz(Interfaces.ModoLibre);
+        }
     }
 
     private void cargarPuntuaciones()
@@ -67,19 +86,22 @@ public class Interfaz : MonoBehaviour
         switch (interfaz)
         {
             case Interfaces.Inicio:
-                mostrarLayers(new bool[] { true, false, false, false, false });
+                mostrarLayers(new bool[] { true, false, false, false, false, false });
                 break;
             case Interfaces.SleccionPartida:
-                mostrarLayers(new bool[] { false, true, false, false, false });
+                mostrarLayers(new bool[] { false, true, false, false, false, false });
                 break;
             case Interfaces.NuevaPartida:
-                mostrarLayers(new bool[] { false, false, false, true, false });
+                mostrarLayers(new bool[] { false, false, false, true, false, false });
                 break;
             case Interfaces.VerPuntuaciones:
-                mostrarLayers(new bool[] { false, false, true, false, false });
+                mostrarLayers(new bool[] { false, false, true, false, false, false });
                 break;
             case Interfaces.ConfirmacionEliminarPartida:
-                mostrarLayers(new bool[] { false, true, false, false, true });
+                mostrarLayers(new bool[] { false, true, false, false, true, false });
+                break;
+            case Interfaces.ModoLibre:
+                mostrarLayers(new bool[] { false, false, false, false, false, true });
                 break;
             case Interfaces.Pausa:
                 mostrarLayers(new bool[] { true, false, false, false });
