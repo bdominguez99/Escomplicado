@@ -8,6 +8,10 @@ public class InfoEntreEscenas : MonoBehaviour
     public int idPartida;
     public string nombreJugador;
 
+    public bool EsModoLibre { get; set; } = false;
+
+    public string MateriaModoLibre { get; set; } = "";
+
     void Start()
     {
         if(info == null)

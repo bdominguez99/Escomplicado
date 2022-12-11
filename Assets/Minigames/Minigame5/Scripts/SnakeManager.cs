@@ -41,7 +41,16 @@ public class SnakeManager : MonoBehaviour {
     private float seconds = 300;
 
     private async Task setPreguntas() {
-        questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Redes de Computadoras");
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
+            questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions(materia);
+        }
+        else
+        {
+            questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Redes de Computadoras");
+        }
+
         ExtensionMethods.Shuffle(questionsList);
         actualAns = new List<string>(questionsList[count].answers);
         messageScreen.SetActive(true);
@@ -94,6 +103,13 @@ public class SnakeManager : MonoBehaviour {
     public void backToMain() {
         gameOverScreen.SetActive(false);
         loadingScreen.SetActive(true);
+
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+            return;
+        }
+
         FindObjectOfType<Minijuego>().setScore(((float)count / maxScore)*10f);
         SceneManager.LoadSceneAsync("Main");
     }

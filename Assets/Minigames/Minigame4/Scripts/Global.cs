@@ -47,7 +47,15 @@ public class Global : MonoBehaviour {
     private DateTime fingerUpTime;
 
     private async Task setPreguntas() {
-        questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Probabilidad y Estadística");
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
+            questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions(materia);
+        }
+        else
+        {
+            questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetOrderedQuestions("Probabilidad y Estadística");
+        }
         ExtensionMethods.Shuffle(questionsList);
     }
 
@@ -81,6 +89,13 @@ public class Global : MonoBehaviour {
     public void backToMain() {
         gameOverScreen.SetActive(false);
         loadingScreen.SetActive(true);
+
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+            return;
+        }
+
         FindObjectOfType<Minijuego>().setScore(((float)total / maxScore)*10f);
         SceneManager.LoadSceneAsync("Main");
     }
