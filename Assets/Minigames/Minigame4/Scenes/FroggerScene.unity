@@ -2671,18 +2671,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 20
-    m_Alignment: 1
+    m_MaxSize: 15
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: Instrucciones
 --- !u!1 &763127893
 GameObject:
@@ -4076,24 +4076,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be038d3b208a16f47a3bef597141ebd9, type: 3}
   - {fileID: 21300000, guid: ba324dbc7ed4b064593baccdeb1298e1, type: 3}
   instructions:
-  - "Esta es la pantalla principal del juego. Se mostrara al iniciar el juego. Desliza
-    el dedo para indicar la direccion en la que quieras moverte (arriba, abajo, izquierda,
-    derecha)\r"
-  - Al tocar dos veces la pantalla puedes abrir o cerrar el recuadro que contiene
+  - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar el juego.
+    Desliza el dedo para indicar la direcci\xF3n en la que quieras moverte (arriba,
+    abajo, izquierda, derecha)\r"
+  - "Al tocar dos veces la pantalla puedes abrir o cerrar el recuadro que contiene
     la pregunta con sus respectivos incisos, a cada uno le corresponde una respuesta
-    de no mas de 10 caracteres.
-  - Al pasar por un encima de un libro, se repartiran por el mapa los caracteres
-    de la respuesta correspondiente a su indice.  El objetivo del juego es formar
-    la respuesta correcta.
-  - A partir del momento que pasaste por encima de un libro tienes 60 segundos para
-    lograr el objetivo. Si lo hiciste de forma correcta ganaras un punto y volveras
-    al punto de partida.
-  - "Caso contrario, perderas uno de los 4 intentos con los que cuentas para generar
-    al menos 3 puntos. \xA1Lo mismo pasara si chocas contra una mesa, pisas lava
+    de no m\xE1s de 10 car\xE1cteres."
+  - "Al pasar por un encima de un libro, se repartir\xE1n por el mapa los car\xE1cteres
+    de la respuesta correspondiente a su \xEDndice.  El objetivo del juego es formar
+    la respuesta correcta."
+  - "A partir del momento que pasaste por encima de un libro tienes 60 segundos para
+    lograr el objetivo. Si lo hiciste de forma correcta ganar\xE1s un punto y volver\xE1s
+    al punto de partida."
+  - "Caso contrario, perder\xE1s uno de los 4 intentos con los que cuentas para generar
+    al menos 3 puntos. \xA1Lo mismo pasar\xE1 si chocas contra una mesa, pisas lava
     o el contador de tiempo llega a 0!"
-  - 'Extra tip: si sientes que te has equivocado en el orden que has recogido algun
-    caracter, puedes volver a pasar por encima de cualquier libro para reinicar la
-    recoleccion de caracteres.'
+  - "Tip extra: si sientes que te has equivocado en el orden que has recogido alg\xFAn
+    car\xE1cter, puedes volver a pasar por encima de cualquier libro para reinicar
+    la recolecci\xF3n de caracteres."
   instructionsImage: {fileID: 1057936589}
   instructionsText: {fileID: 760686630}
   instructionsScreen: {fileID: 991050077}

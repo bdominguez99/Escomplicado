@@ -2780,18 +2780,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 20
-    m_Alignment: 1
+    m_MaxSize: 7
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: Instrucciones
 --- !u!1 &1248640485
 GameObject:
@@ -4430,17 +4430,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 66b449b84e8cea444ad14e7db07272b1, type: 3}
   - {fileID: 21300000, guid: ff6f8e4e9c9ce5e4fbde8eec9aa7c5d7, type: 3}
   instructions:
-  - "Esta es la pantalla principal del juego. Se mostrara al iniciar el juego. Desliza
-    el dedo para indicar la direccion en la que quieras moverte (arriba, abajo, izquierda,
-    derecha)\r"
-  - El objetivo es recolectar las mochilas en el orden correcto, cuando recojas todas
-    ganaras un punto y la pregunta cambiara. Cada mochila corresponde al texto de
-    mismo color del costado.
+  - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar el juego.
+    Desliza el dedo para indicar la direccion en la que quieras moverte (arriba,
+    abajo, izquierda, derecha)\r"
+  - "El objetivo es recolectar las mochilas en el orden correcto, cuando recojas
+    todas ganar\xE1s un punto y la pregunta cambiar\xE1. Cada mochila corresponde
+    al texto de mismo color del costado."
   - "En caso de no seguir el orden correcto, las mochilas que hayas recogido volveran
-    a mostrarse en el campo. \xA1Por lo que se volvera mas dificil entre mas falles!\r\n"
-  - Si tropiezas con un balon pasando por su trayectoria o si sales de los limites
-    de la cancha perderas uno de los cuatro intentos que dispones para completar
-    el juego.
+    a mostrarse en el campo. \xA1Por lo que se volver\xE1 m\xE1s dif\xEDcil entre
+    m\xE1s falles!\r\n"
+  - "Si tropiezas con un bal\xF3n pasando por su trayectoria o si sales de los l\xEDmites
+    de la cancha perder\xE1s uno de los cuatro intentos que dispones para completar
+    el juego."
   - "\xA1Cuentas con 5 minutos y cuatro intentos para contestar al menos 3 incisos
     de forma correcta!\r"
   instructionsImage: {fileID: 2078664359}

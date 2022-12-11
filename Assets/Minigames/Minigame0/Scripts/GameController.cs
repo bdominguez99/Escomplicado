@@ -65,7 +65,15 @@ namespace SpaceInvaders
 
         private async Task setPreguntas()
         {
-            questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Tecnologias para la Web");
+            if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+            {
+                var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Tecnologias para la Web");
+            }
+            else
+            {
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Tecnologias para la Web");
+            }
             ExtensionMethods.Shuffle(questionsList);
         }
 
@@ -106,6 +114,13 @@ namespace SpaceInvaders
         {
             gameOverScreen.SetActive(false);
             loadingScreen.SetActive(true);
+            
+            if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+            {
+                SceneManager.LoadSceneAsync("MainMenu");
+                return;
+            }
+
             FindObjectOfType<Minijuego>().setScore(((float)actualScore / targetQuestions) * 10f);
             SceneManager.LoadSceneAsync("Main");
         }

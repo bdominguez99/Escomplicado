@@ -2733,35 +2733,35 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8247a1e3d03fda54aba33a1ce57b5914, type: 3}
   - {fileID: 21300000, guid: 63212a3d19abdc748a8257e39bee753f, type: 3}
   instructions:
-  - Al iniciar este minijuego, lo primero en mostrarse sera la pregunta que debes
-    responder
-  - Despues de eso, se mostrara la siguiente pantalla. Aqui tendras un tiempo para
-    leer las posibles respuestas
-  - Debes notar que la pregunta aun sera visible. Esta se muestra en la parte superior
-    de la pantalla
-  - Despues de un tiempo los enemigos comenzaran a aparecer uno por uno
-  - "Al terminar de aparecer todos los enemigos estos comenzaran a dispararte \xA1Acaba
-    con ellos!"
-  - Para disparar presiona este boton. Se ubica en la parte inferior izquierda de
-    la pantalla
-  - Si le disparas lo suficiente a un enemigo este sera destruido y la barra del
-    color de ese enemigo comenzara a llenarse.
-  - Ten cuidado de solo eliminar a los enemigos correctos porque si completas una
-    barra de una respuesta incorrecta tendras mal la pregunta.
+  - "Al iniciar este minijuego, lo primero en mostrarse ser\xE1 la pregunta que debes
+    responder."
+  - "Despu\xE9s de eso, se mostrar\xE1 la siguiente pantalla. Aqu\xED tendr\xE1s
+    un tiempo para leer las posibles respuestas."
+  - "Debes notar que la pregunta a\xFAn ser\xE1 visible. Esta se muestra en la parte
+    superior de la pantalla."
+  - "Despu\xE9s de un tiempo los enemigos comenzar\xE1n a aparecer uno por uno."
+  - "Al terminar de aparecer todos los enemigos estos comenzar\xE1n a dispararte
+    \xA1Acaba con ellos!"
+  - "Para disparar presiona este bot\xF3n. Se ubica en la parte inferior izquierda
+    de la pantalla."
+  - "Si le disparas lo suficiente a un enemigo este ser\xE1 destruido y la barra
+    del color de ese enemigo comenzar\xE1 a llenarse."
+  - "Ten cuidado de solo eliminar a los enemigos correctos porque si completas una
+    barra de una respuesta incorrecta tendr\xE1s mal la pregunta."
   - "Recuerda que cuentas con un escudo para protegerte de los disparos enemigos,
-    pero ten cuidado \xA1Su energia se acaba!"
-  - "Si se termina la energia de tu escudo tambien se terminara la energia de tu
-    jetpack \xA1Y caeras a la lava!"
-  - Si eliminas todos los enemigos del mismo color en una fila, esta sera destruida
-    por completo y reemplazada por la fila detras
-  - Luego las filas de enemigos volveran a su formacion inicial. Los enemigos no
-    se acabaran a menos que llenes alguna respuesta
-  - Cuando llenes una respuesta o se acabe la energia de tu jetpack pasaras al siguiente
-    nivel y se repetira el proceso
-  - Cuando completes todas las preguntas se mostrara esta pantalla y si no pasaste
-    la prueba podras volver a intentarlo
-  - En caso de que hayas oasado la prueba ya no se te permitira volver a realizarla,
-    por lo que debes esforzarte para sacar la maxima calificacion
+    pero ten cuidado \xA1Su energ\xEDa se acaba!"
+  - "Si se termina la energ\xEDa de tu escudo tambi\xE9n se terminar\xE1 la energ\xEDa
+    de tu jetpack \xA1Y caer\xE1s a la lava!"
+  - "Si eliminas todos los enemigos del mismo color en una fila, esta ser\xE1 destruida
+    por completo y reemplazada por la fila detr\xE1s."
+  - "Luego las filas de enemigos volver\xE1n a su formaci\xF3n inicial. Los enemigos
+    no se acabar\xE1n a menos que llenes alguna respuesta."
+  - "Cuando llenes una respuesta o se acabe la energ\xEDa de tu jetpack pasar\xE1s
+    al siguiente nivel y se repetir\xE1 el proceso."
+  - "Cuando completes todas las preguntas se mostrar\xE1 esta pantalla y si no pasaste
+    la prueba podr\xE1s volver a intentarlo."
+  - "En caso de que hayas pasado la prueba ya no se te permitir\xE1 volver a realizarla,
+    por lo que debes esforzarte para sacar la m\xE1xima calificaci\xF3n."
   instructionsImage: {fileID: 752104031}
   instructionsText: {fileID: 1122915496}
   instructionsScreen: {fileID: 397564243}
@@ -3372,18 +3372,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 20
-    m_Alignment: 1
+    m_MaxSize: 7
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: Instrucciones
 --- !u!222 &1122915497
 CanvasRenderer:

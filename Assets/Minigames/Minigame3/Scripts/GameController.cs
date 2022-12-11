@@ -37,7 +37,6 @@ public class GameController : MonoBehaviour
     private int m_phaseQuestionsLeft;
     private int m_totalQuestions;
 
-    private DataManager m_dataManager;
     private PopUpController m_popUpController;
 
     async void Start()
@@ -59,8 +58,16 @@ public class GameController : MonoBehaviour
 
     private async Task GetQuestions()
     {
-        m_dataManager = new DataManager();
-        List<RelationQuestion> questions = await m_dataManager.GetRelationQuestionsAsync("Diseño de Sistemas Digitales");
+        List<RelationQuestion> questions;
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
+            questions = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync(materia);
+        }
+        else
+        {
+            questions = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Diseño de Sistemas Digitales");
+        }
         
         m_totalQuestions = Mathf.Min(questions.Count, m_maxQuestions);
 
@@ -191,9 +198,16 @@ public class GameController : MonoBehaviour
 
     public void FinishMinigame()
     {
-        FindObjectOfType<Minijuego>().setScore(((float)m_correctQuestions / m_totalQuestions) * 10f);
         m_gameOverScreen.SetActive(false);
         m_loadingScreen.SetActive(true);
+        
+        if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+            return;
+        }
+
+        FindObjectOfType<Minijuego>().setScore(((float)m_correctQuestions / m_totalQuestions) * 10f);
         SceneManager.LoadSceneAsync("Main");
     }
 }

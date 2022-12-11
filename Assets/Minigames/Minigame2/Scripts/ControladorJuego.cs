@@ -52,7 +52,6 @@ namespace TripasDeGato
         private ControladorPopUp m_controladorPopUp;
         private ControladorLineas m_controladorLineas;
         private Reloj m_manejadorReloj;
-        private DataManager m_dataManager;
         private List<GameObject> m_textosNodos;
         private List<List<RelationQuestion>> m_preguntasFases;
         private int m_preguntasResueltas;
@@ -61,7 +60,6 @@ namespace TripasDeGato
 
         private async void Start()
         {
-            m_dataManager = new DataManager();
             m_controladorPopUp = new ControladorPopUp(m_popUp, m_padreCeldas);
             m_manejadorReloj = FindObjectOfType<Reloj>();
             m_faseActual = 0;
@@ -74,7 +72,18 @@ namespace TripasDeGato
         {
             m_pantallaCarga.SetActive(true);
             m_manejadorReloj.DetenerReloj();
-            List<RelationQuestion> preguntas = await m_dataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
+
+            List<RelationQuestion> preguntas;
+            if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+            {
+                var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
+                Debug.Log(materia);
+                preguntas = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync(materia);
+            }
+            else
+            {
+                preguntas = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
+            }
 
             m_preguntasFases = new List<List<RelationQuestion>>();
             m_totalPreguntas = Mathf.Min(preguntas.Count, m_maximoPreguntas);
@@ -378,9 +387,16 @@ namespace TripasDeGato
 
         public void TerminarMiniuego()
         {
-            FindObjectOfType<Minijuego>().setScore(((float)m_preguntasResueltas / m_totalPreguntas) * 10f);
             m_pantallaFinDeJuego.SetActive(false);
             m_pantallaCarga.SetActive(true);
+            
+            if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
+            {
+                SceneManager.LoadSceneAsync("MainMenu");
+                return;
+            }
+
+            FindObjectOfType<Minijuego>().setScore(((float)m_preguntasResueltas / m_totalPreguntas) * 10f);
             SceneManager.LoadSceneAsync("Main");
         }
     }

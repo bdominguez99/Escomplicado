@@ -343,18 +343,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 20
-    m_Alignment: 1
+    m_MaxSize: 7
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: Instrucciones
 --- !u!222 &59983263
 CanvasRenderer:
@@ -3605,15 +3605,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 42b9ee69a39710b4bbe2df471c2e87eb, type: 3}
   - {fileID: 21300000, guid: 57f8cf86a3e5bd84eadaa2ec0e33ae3a, type: 3}
   instructions:
-  - Esta es la pantalla principal del juego. Se mostrara al iniciar el juego.
-  - 'El objetivo es relacionar los numeros en pantalla al unirlos con una linea.
-
-'
-  - Cada numero corresponde a un concepto o definicion. Toca sobre ellos para ver
-    a cual corresponden. Debes unir los conceptos con su correspondiente definicion.
-  - Ten cuidado de no tocar lineas ya dibujadas, de no equivocarte y de no soltar
-    el trazo una vez iniciado, pues esto te costara 3 segundos.
-  - "\xA1Apresurate! Cada 60 segundos perderas una valiosa vida. \xA1Y solo tienes
+  - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar el juego."
+  - "El objetivo es relacionar los n\xFAmeros en pantalla al unirlos con una l\xEDnea.\n"
+  - "Cada n\xFAmero corresponde a un concepto o definici\xF3n. Toca sobre ellos para
+    ver a cu\xE1l corresponden. Debes unir los conceptos con su correspondiente definici\xF3n."
+  - "Ten cuidado de no tocar l\xEDneas ya dibujadas, de no equivocarte y de no soltar
+    el trazo una vez iniciado, pues esto te costar\xE1 3 segundos."
+  - "\xA1Apresurate! Cada 60 segundos perder\xE1s una valiosa vida. \xA1Y solo tienes
     3!"
   instructionsImage: {fileID: 17677791}
   instructionsText: {fileID: 59983262}

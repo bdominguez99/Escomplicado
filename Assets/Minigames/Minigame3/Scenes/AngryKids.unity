@@ -322,18 +322,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 20
-    m_Alignment: 1
+    m_MaxSize: 7
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: Instrucciones
 --- !u!222 &41991482
 CanvasRenderer:
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414687855}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e106da24e88f95747a832469187faefb, type: 3}
   m_Name: 
@@ -1295,16 +1295,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2e5a5c8e02bf4f8478b3a7545abcc226, type: 3}
   - {fileID: 21300000, guid: 09b64f9e2ee35104cb600f98158441ab, type: 3}
   instructions:
-  - Esta es la pantalla principal del juego. Se mostrara al iniciar un nuevo juego.
-  - El objetivo es golpear a los demonios para terminarlos. Presiona y jala sobre
-    el jugador para lanzar una piedra. Solo ciertas piedras seran efectivas contra
-    ciertos demonios.
-  - "Presiona sobre los botones + y \u2013 para acercar o alejar la camara."
-  - "Toca sobre el boton de informaci\xF3n para ver a que corresponden las piedras
-    y los demonios. La piedra con el concepto correspondiente a la definicion del
-    demonio podra terminar con el."
-  - "\xA1Debes terminar con el mayor numero de demonios! Pero cuidado, si golpeas
-    a un demonio, este escapara y no podr\xE1s terminarlo."
+  - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar un nuevo
+    juego."
+  - "El objetivo es golpear a los demonios para eliminarlos. Presiona sobre el jugador
+    arrastra para lanzar una piedra. Solo ciertas piedras ser\xE1n efectivas contra
+    ciertos demonios."
+  - "Presiona sobre los botones + y \u2013 para acercar o alejar la c\xE1mara."
+  - "Toca sobre el bot\xF3n de informaci\xF3n para ver a qu\xE9 corresponden las
+    piedras y los demonios. La piedra con el concepto correspondiente a la definici\xF3n
+    del demonio podr\xE1 terminar con el."
+  - "\xA1Debes terminar con el mayor n\xFAmero de demonios! Pero cuidado, si golpeas
+    a un demonio, este escapar\xE1 y no podr\xE1s terminarlo."
   instructionsImage: {fileID: 1243674008}
   instructionsText: {fileID: 41991481}
   instructionsScreen: {fileID: 890387343}
@@ -3540,7 +3541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1063495620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3600,7 +3601,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 280, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1089150564
 MonoBehaviour:
@@ -5598,7 +5599,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: -202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1812550583
 MonoBehaviour:
@@ -6042,7 +6043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2002695540
 MonoBehaviour:
   m_ObjectHideFlags: 0
