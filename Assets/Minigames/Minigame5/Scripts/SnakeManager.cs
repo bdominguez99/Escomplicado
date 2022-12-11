@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TripasDeGato;
 
 public class SnakeManager : MonoBehaviour {
-    public GameObject gameOverScreen, loadingScreen, scoreText, messageScreen, messageText;
+    public GameObject gameOverScreen, loadingScreen, scoreText, messageScreen, messageText, againButton;
     private List<OrderedQuestion> questionsList;
     public List<string> answers;
     private string question;
@@ -19,11 +19,12 @@ public class SnakeManager : MonoBehaviour {
     private Transform canvas;
     private Text msg, time;
     private Snake player;
+    private int maxScore = 5;
+    private int minScore = 3;
 
     public bool end = false;
     public float swipeThreshold = 50f;
     public float timeThreshold = 0.3f;
-    public int maxScore = 5;
 
     public UnityEvent OnSwipeLeft;
     public UnityEvent OnSwipeRight;
@@ -61,10 +62,10 @@ public class SnakeManager : MonoBehaviour {
         if (player.lifes > 0) {
             counter += 1;
             if (messageScreen.activeSelf == true) {
-                if (counter > 300 + timer) {
+                if (counter > 150 + timer) {
                     messageScreen.SetActive(false);
                     player.moving = true;
-                    counter -= 300;
+                    counter -= 150;
                 }
             } else {
                 if (seconds*60 >= counter) {
@@ -80,6 +81,7 @@ public class SnakeManager : MonoBehaviour {
     public void gameOver(bool win = false) {
         if (!win) Destroy(player.gameObject);
         scoreText.GetComponent<Text>().text = "Puntuacion: " + count + "/" + maxScore;
+        if (count >= minScore) againButton.SetActive(false);
         gameOverScreen.SetActive(true);
     }
 

@@ -1468,6 +1468,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 335886683}
   messageScreen: {fileID: 515511654}
   messageText: {fileID: 927730451}
+  restartButton: {fileID: 525124993}
   prefab: {fileID: 7073022267072931993, guid: f11e7ecce088927479520462c8cba45a, type: 3}
   result: {fileID: 0}
   score: {fileID: 0}
@@ -1477,7 +1478,6 @@ MonoBehaviour:
   lifes: 4
   swipeThreshold: 50
   timeThreshold: 0.3
-  maxScore: 5
   total: 0
   OnSwipeLeft:
     m_PersistentCalls:
@@ -1491,6 +1491,7 @@ MonoBehaviour:
   OnSwipeDown:
     m_PersistentCalls:
       m_Calls: []
+  maxScore: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3350,8 +3351,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.464}
-  m_SizeDelta: {x: 246.676, y: 132.488}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927730453
 MonoBehaviour:
@@ -3379,7 +3380,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

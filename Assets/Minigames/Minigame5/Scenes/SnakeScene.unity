@@ -794,6 +794,7 @@ MonoBehaviour:
   scoreText: {fileID: 1009836849}
   messageScreen: {fileID: 89734758}
   messageText: {fileID: 1082767517}
+  againButton: {fileID: 1328764309}
   answers: []
   end: 0
   swipeThreshold: 50
@@ -2273,8 +2274,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.883}
-  m_SizeDelta: {x: 246.656, y: 131.727}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 230, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082767519
 MonoBehaviour:
@@ -2302,7 +2303,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 24
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2833,7 +2834,6 @@ MonoBehaviour:
   swipeDir: 
   carry: 0
   lifes: 0
-  vel: 5
 --- !u!212 &1248640487
 SpriteRenderer:
   m_ObjectHideFlags: 0

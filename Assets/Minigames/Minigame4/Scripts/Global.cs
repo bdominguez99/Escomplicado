@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TripasDeGato;
 
 public class Global : MonoBehaviour {
-    public GameObject gameOverScreen, scoreText, loadingScreen, messageScreen, messageText;
+    public GameObject gameOverScreen, scoreText, loadingScreen, messageScreen, messageText, restartButton;
     private List<OrderedQuestion> questionsList;
     private List<string> answers;
     private string question;
@@ -32,7 +32,6 @@ public class Global : MonoBehaviour {
 
     public float swipeThreshold = 50f;
     public float timeThreshold = 0.3f;
-    public int maxScore = 5;
     public int total = 0;
 
     public UnityEvent OnSwipeLeft;
@@ -40,6 +39,8 @@ public class Global : MonoBehaviour {
     public UnityEvent OnSwipeUp;
     public UnityEvent OnSwipeDown;
 
+    public int maxScore = 5;
+    private int minScore = 3;
     private Vector2 fingerDown;
     private DateTime fingerDownTime;
     private Vector2 fingerUp;
@@ -68,6 +69,7 @@ public class Global : MonoBehaviour {
         start = false;
         gameOverScreen.SetActive(true);
         scoreText.GetComponent<Text>().text = "Puntuacion: " + total + "/" + maxScore;
+        if (count >= minScore) restartButton.SetActive(false);
     }
 
     public void restartMinigame() {
@@ -87,7 +89,7 @@ public class Global : MonoBehaviour {
         if (start) {
             counter += 1;
             if (messageScreen.activeSelf == true) {
-                if (counter > 300) {
+                if (counter > 150) {
                     messageScreen.SetActive(false);
                     counter = 0;
                 }

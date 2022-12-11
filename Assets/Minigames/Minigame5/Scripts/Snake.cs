@@ -22,7 +22,7 @@ public class Snake : MonoBehaviour {
     public string swipeDir; 
     public int carry = 0;
     public int lifes = 0;
-    public float vel;
+    private float vel = 4;
 
     void Start() {
         life = FindObjectOfType<Life>();
@@ -37,14 +37,27 @@ public class Snake : MonoBehaviour {
     void Update() {
         anim.enabled = start;
         if (moving) {
+            var objects = FindObjectsOfType<Ballon>();
             if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
-                ChangeVelocity(new Vector3(0, vel, 0));
+                if (objects.Length > 0) {
+                    if (rb.velocity.y >= 0) 
+                        ChangeVelocity(new Vector3(0, vel, 0));
+                } else ChangeVelocity(new Vector3(0, vel, 0));
             } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
-                ChangeVelocity(new Vector3(0, -vel, 0));
+                if (objects.Length > 0) {
+                    if (rb.velocity.y <= 0) 
+                        ChangeVelocity(new Vector3(0, -vel, 0));
+                } else ChangeVelocity(new Vector3(0, -vel, 0));
             } else if (Input.GetKeyDown(KeyCode.LeftArrow) || swipeDir == "left") {
-                ChangeVelocity(new Vector3(-vel, 0, 0), -1);
+                if (objects.Length > 0) {
+                    if (rb.velocity.x <= 0) 
+                        ChangeVelocity(new Vector3(-vel, 0, 0), -1);
+                } else ChangeVelocity(new Vector3(-vel, 0, 0), -1);
             } else if (Input.GetKeyDown(KeyCode.RightArrow) || swipeDir == "right") {
-                ChangeVelocity(new Vector3(vel, 0, 0), 1);
+                if (objects.Length > 0) {
+                    if (rb.velocity.x >= 0) 
+                        ChangeVelocity(new Vector3(vel, 0, 0), 1);
+                } else ChangeVelocity(new Vector3(vel, 0, 0), 1);
             }
             swipeDir = "";
         }
@@ -142,7 +155,7 @@ public class Snake : MonoBehaviour {
     private void FixedUpdate() {
         if (start) {
             timer += Time.deltaTime;
-            if (timer > 0.2) {
+            if (timer > 0.3) {
                 timer = 0.0f;
                 ChangePositions(lastPosition);
                 lastPosition = transform.position;
