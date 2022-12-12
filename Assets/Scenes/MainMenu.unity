@@ -7505,7 +7505,7 @@ MonoBehaviour:
   - "Forma la respuesta adecuada mientras sorteas lava y obst\xE1culos."
   - Derriba a tantos demonios usando las piedras adecuadas para cada demonio.
   - Haz que la lava fluya por el camino adecuado y elige la respuesta correcta.
-  m_tipoMinijuego: 000000000100000002000000010000000200000000000000
+  m_tipoMinijuego: 000000000100000002000000030000000200000000000000
   m_miniaturas:
   - {fileID: 21300000, guid: aa50d74c1bd191d46935d2a18d74457e, type: 3}
   - {fileID: 21300000, guid: 32d6efe516767314bb8ddef3b85a0d46, type: 3}

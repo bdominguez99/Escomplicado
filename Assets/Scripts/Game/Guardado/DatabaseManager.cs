@@ -24,6 +24,7 @@ public static class DatabaseConstants
     public const string RelationQuestionString = "relation_question";
     public const string OrderedQuestionString = "ordered_answer";
     public const string MultipleOptionString = "multiple_option";
+    public const string MultipleIncisosString = "multiple_answer";
 }
 
 public class DataManager
@@ -102,7 +103,8 @@ public class DataManager
         List<OrderedQuestion> questions = new List<OrderedQuestion>();
         foreach (JsonQuestion question in m_allQuestions)
         {
-            if (question.type == DatabaseConstants.OrderedQuestionString &&
+            if ((question.type == DatabaseConstants.OrderedQuestionString
+                || question.type == DatabaseConstants.MultipleIncisosString) &&
                 question.subject == subject &&
                 (unit == null || question.unit == unit))
             {

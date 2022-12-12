@@ -58,8 +58,9 @@ public class ControladorModoLibre : MonoBehaviour
                 return TipoMinijuego.Ordenamiento;
             case "relation_question":
                 return TipoMinijuego.Relacion;
-            default:
-                return TipoMinijuego.OpcionMultiple;
+            case "multiple_answer":
+                return TipoMinijuego.MultipleIncisos;
+            default: return TipoMinijuego.OpcionMultiple;
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum TipoMinijuego { OpcionMultiple, Ordenamiento, Relacion};
+public enum TipoMinijuego { OpcionMultiple, Ordenamiento, Relacion, MultipleIncisos };
 
 public class MiniaturaMinijuego : MonoBehaviour
 {

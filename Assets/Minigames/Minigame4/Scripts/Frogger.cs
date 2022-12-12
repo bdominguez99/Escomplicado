@@ -27,19 +27,17 @@ public class Frogger : MonoBehaviour {
     }
 
     void Update() {
-        if (gameManager.messageScreen.activeSelf == false) {
-            if (!flag) return;
-            if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
-                StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
-            } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
-                StartCoroutine(Jump(0, new Vector3(0, -1, 0)));
-            } else if (Input.GetKeyDown(KeyCode.LeftArrow) || swipeDir == "left") {
-                StartCoroutine(Jump(-1, new Vector3(-1, 0, 0)));
-            } else if (Input.GetKeyDown(KeyCode.RightArrow) || swipeDir == "right") {
-                StartCoroutine(Jump(1, new Vector3(1, 0, 0)));
-            }
-            swipeDir = "";
+        if (!flag) return;
+        if (Input.GetKeyDown(KeyCode.UpArrow) || swipeDir == "up") {
+            StartCoroutine(Jump(0, new Vector3(0, 1, 0)));
+        } else if (Input.GetKeyDown(KeyCode.DownArrow) || swipeDir == "down") {
+            StartCoroutine(Jump(0, new Vector3(0, -1, 0)));
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow) || swipeDir == "left") {
+            StartCoroutine(Jump(-1, new Vector3(-1, 0, 0)));
+        } else if (Input.GetKeyDown(KeyCode.RightArrow) || swipeDir == "right") {
+            StartCoroutine(Jump(1, new Vector3(1, 0, 0)));
         }
+        swipeDir = "";
     }
 
     void StopAnimation(bool val = true) {
@@ -106,8 +104,7 @@ public class Frogger : MonoBehaviour {
                         if (pac.gameObject.activeSelf == true) 
                             f = pac.gameObject.activeSelf;
                     }
-                }
-                else {
+                } else {
                     gameManager.SetResult(false);
                     gameManager.ReduceLife(flag);
                     score = false;
@@ -164,6 +161,7 @@ public class Frogger : MonoBehaviour {
 
     private void OnTriggerEnter2D (Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Package")) {
+            gameManager.start = true;
             carry = "";
             if (activeOption != null) {
                 activeOption.GetComponent<Package>().EnableAnimation();

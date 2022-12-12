@@ -683,11 +683,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5048fb75c2127ea49b1921a01370155d, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -787,7 +787,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312356107}
-  - component: {fileID: 312356108}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -814,18 +813,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &312356108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312356106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc04949326143a458e0a1735df74575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &325037249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 428689757333476996, guid: 8d2e24c07a1dd794392a3ee85f6f5dcd, type: 3}
@@ -982,7 +969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 33.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402657479
@@ -1006,10 +993,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
@@ -1466,8 +1453,6 @@ MonoBehaviour:
   gameOverScreen: {fileID: 630021591}
   scoreText: {fileID: 2053515951}
   loadingScreen: {fileID: 335886683}
-  messageScreen: {fileID: 515511654}
-  messageText: {fileID: 927730451}
   restartButton: {fileID: 525124993}
   prefab: {fileID: 7073022267072931993, guid: f11e7ecce088927479520462c8cba45a, type: 3}
   result: {fileID: 0}
@@ -2268,10 +2253,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
@@ -2597,7 +2582,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00
+  m_Text: --
 --- !u!222 &755318465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3375,7 +3360,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
@@ -3832,11 +3817,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
+    m_BestFit: 1
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -6321,10 +6306,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
@@ -6333,7 +6318,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Puntuacion: 10/10'
+  m_Text: "Puntuaci\xF3n: 10/10"
 --- !u!222 &2053515954
 CanvasRenderer:
   m_ObjectHideFlags: 0

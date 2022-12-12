@@ -89,7 +89,7 @@ public class SnakeManager : MonoBehaviour {
 
     public void gameOver(bool win = false) {
         if (!win) Destroy(player.gameObject);
-        scoreText.GetComponent<Text>().text = "Puntuacion: " + count + "/" + maxScore;
+        scoreText.GetComponent<Text>().text = "Puntuación: " + count + "/" + maxScore;
         if (count >= minScore) againButton.SetActive(false);
         gameOverScreen.SetActive(true);
     }
