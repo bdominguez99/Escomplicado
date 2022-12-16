@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoordinadorDeJuego : MonoBehaviour
 {
+    [SerializeField] private AudioClip main;
+
     private ManejadorGuardado manejadorGuardado;
     private InfoEntreEscenas infoEntreEscenas;
     private string nombreJugador;
@@ -100,9 +102,18 @@ public class CoordinadorDeJuego : MonoBehaviour
         return puntuacionFinal;
     }
 
+    public void stopMusic()
+    {
+        FindObjectOfType<InfoEntreEscenas>().gameObject.GetComponent<AudioSource>().Stop();
+    }
+
     private void verifyMinigameScores()
     {
+        AudioSource mainSource = infoEntreEscenas.gameObject.GetComponent<AudioSource>();
         Minijuego minijuego = FindObjectOfType<Minijuego>();
+        if(mainSource.isPlaying) mainSource.Stop();
+        mainSource.clip = main;
+        mainSource.Play();
         if(minijuego != null)
         {
             float score = minijuego.getScore();

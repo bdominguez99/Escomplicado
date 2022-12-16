@@ -1248,6 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414687856}
   - component: {fileID: 414687857}
+  - component: {fileID: 414687858}
   m_Layer: 5
   m_Name: Instructions
   m_TagString: Untagged
@@ -1317,6 +1318,20 @@ MonoBehaviour:
   objectsToEnableAfterInstructions:
   - {fileID: 1063495619}
   - {fileID: 2002695539}
+--- !u!114 &414687858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414687855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dabc075a4feb6b438b71053b2adc892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  song: {fileID: 8300000, guid: dfeff71768a23054fab672ea7659973e, type: 3}
+  main: {fileID: 8300000, guid: b2d9cef1e833319449bc0e2c44c4288a, type: 3}
 --- !u!1 &438497985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1530,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2002695540}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: FinishMinigame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 414687858}
+        m_TargetAssemblyTypeName: MinigameAudio, Assembly-CSharp
+        m_MethodName: stopSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

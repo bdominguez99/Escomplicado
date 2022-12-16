@@ -75,5 +75,6 @@ public class Instructions : MonoBehaviour
             item.SetActive(true);
         }
         readyScreen.SetActive(false);
+        GetComponent<MinigameAudio>().playSong();
     }
 }

@@ -18,6 +18,7 @@ public class StoryTeller : MonoBehaviour
     [SerializeField] private Image topImage, storyImage;
     [SerializeField] private GameObject loadingScreen, top;
     [SerializeField] private StoryPage[] pages;
+    [SerializeField] private AudioClip main;
 
     private int pageIndex = 0;
     private bool canSkipPage, canSkipText, isFading;
@@ -43,12 +44,20 @@ public class StoryTeller : MonoBehaviour
         }
     }
 
+    private void changeSong()
+    {
+        AudioSource audioSource = FindObjectOfType<AudioSource>();
+        audioSource.Stop();
+        audioSource.clip = main;
+    }
+
     public void skip()
     {
         StopAllCoroutines();
         canSkipPage = false;
         isFading = true;
         loadingScreen.SetActive(true);
+        changeSong();
         SceneManager.LoadSceneAsync("Main");
     }
 
@@ -131,6 +140,7 @@ public class StoryTeller : MonoBehaviour
         topImage.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(0.2f);
         loadingScreen.SetActive(true);
+        changeSong();
         SceneManager.LoadSceneAsync("Main");
     }
 }
