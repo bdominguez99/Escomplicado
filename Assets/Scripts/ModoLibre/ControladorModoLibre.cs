@@ -95,14 +95,13 @@ public class ControladorModoLibre : MonoBehaviour
 
         foreach (var minijuego in m_minijuegos)
         {
-            
             if (tipo.Contains(minijuego.GetComponent<MiniaturaMinijuego>().TipoMinijuego))
             {
-                minijuego.SetActive(false);
+                minijuego.SetActive(true);
             }
             else
             {
-                minijuego.SetActive(true);
+                minijuego.SetActive(false);
             }
         }
     }

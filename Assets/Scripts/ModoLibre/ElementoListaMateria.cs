@@ -19,6 +19,11 @@ public class ElementoListaMateria : MonoBehaviour
 
     public void SetMateria()
     {
+        Debug.Log("Materia: " + m_nombreMateria);
+        foreach (var el in m_tipoMinijuego)
+        {
+            Debug.Log(el);
+        }
         FindObjectOfType<ControladorModoLibre>().MostrarMinijuegos(m_nombreMateria, m_tipoMinijuego);
     }
 }
