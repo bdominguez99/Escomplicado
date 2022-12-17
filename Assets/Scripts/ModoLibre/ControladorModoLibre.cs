@@ -20,7 +20,7 @@ public class ControladorModoLibre : MonoBehaviour
 
     private DataManager m_dataManager;
     private List<GameObject> m_minijuegos;
-    private Dictionary<string, TipoMinijuego> m_materias;
+    private Dictionary<string, HashSet<TipoMinijuego>> m_materias;
     private int m_minijuegoSeleccionado;
     private string m_materiaSeleccionada;
 
@@ -29,7 +29,7 @@ public class ControladorModoLibre : MonoBehaviour
     async void Start()
     {
         m_minijuegos = new List<GameObject>();
-        m_materias = new Dictionary<string, TipoMinijuego>();
+        m_materias = new Dictionary<string, HashSet<TipoMinijuego>>();
         m_minijuegoSeleccionado = -1;
 
         await ObtenerMaterias();
@@ -44,7 +44,11 @@ public class ControladorModoLibre : MonoBehaviour
 
         foreach (var pregunta in preguntas)
         {
-            m_materias[pregunta.subject] = ToTipoMinijuego(pregunta.type);
+            if (!m_materias.ContainsKey(pregunta.subject))
+            {
+                m_materias.Add(pregunta.subject, new HashSet<TipoMinijuego>());
+            }
+            m_materias[pregunta.subject].Add(ToTipoMinijuego(pregunta.type));
         }
     }
 
@@ -81,16 +85,18 @@ public class ControladorModoLibre : MonoBehaviour
             miniatura.GetComponent<MiniaturaMinijuego>()
                 .Init(m_miniaturas[i], m_nombreMinijuegos[i], m_tipoMinijuego[i], i);
             m_minijuegos.Add(miniatura);
+            miniatura.SetActive(false);
         }
     }
 
-    public void MostrarMinijuegos(string nombreMateria, TipoMinijuego tipo)
+    public void MostrarMinijuegos(string nombreMateria, HashSet<TipoMinijuego> tipo)
     {
         m_materiaSeleccionada = nombreMateria;
 
         foreach (var minijuego in m_minijuegos)
         {
-            if (minijuego.GetComponent<MiniaturaMinijuego>().TipoMinijuego != tipo)
+            
+            if (tipo.Contains(minijuego.GetComponent<MiniaturaMinijuego>().TipoMinijuego))
             {
                 minijuego.SetActive(false);
             }
