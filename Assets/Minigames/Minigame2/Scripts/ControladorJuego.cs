@@ -121,16 +121,19 @@ namespace TripasDeGato
         public void FinalizarJuego()
         {
             var puntuacion = (float)m_preguntasResueltas / (float)m_totalPreguntas;
+            string mensaje;
             if (puntuacion >= 0.5)
             {
                 m_botonReintento.SetActive(false);
+                mensaje = "\n\n¡Felicidades, pasaste la prueba!";
             }
             else
             {
                 m_botonReintento.SetActive(true);
+                mensaje = "\n\n¡Lástima, has reprobado!";
             }
 
-            m_textoPuntuacionFinal.text = "Puntuacion: " + m_preguntasResueltas + "/" + m_totalPreguntas;
+            m_textoPuntuacionFinal.text = "Puntuación: " + m_preguntasResueltas + "/" + m_totalPreguntas + mensaje;
             m_pantallaFinDeJuego.SetActive(true);
 
             m_reloj.DetenerReloj();

@@ -176,16 +176,19 @@ public class GameController : MonoBehaviour
     public void FinishGame()
     {
         var puntuacion = (float)m_correctQuestions / (float)m_totalQuestions;
+        string mensaje;
         if (puntuacion >= 0.5)
         {
             m_botonReintentar.SetActive(false);
+            mensaje = "\n\n¡Felicidades, pasaste la prueba!";
         }
         else
         {
             m_botonReintentar.SetActive(true);
+            mensaje = "\n\n¡Lástima, has reprobado!";
         }
 
-        m_finalScoreText.text = "Puntuacion: " + m_correctQuestions + "/" + m_totalQuestions;
+        m_finalScoreText.text = "Puntuación: " + m_correctQuestions + "/" + m_totalQuestions + mensaje;
         m_gameOverScreen.SetActive(true);
     }
 
