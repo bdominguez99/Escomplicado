@@ -61,7 +61,7 @@ public class Clock : MonoBehaviour
                     m_elapsedTime++;
                 }
             }
-            m_counterText.text = m_elapsedTime.ToString();
+            m_counterText.text = m_elapsedTime.ToString() + "/" + TimeLimit;
         }
     }
 

@@ -85,6 +85,8 @@ namespace TripasDeGato
                 preguntas = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
             }
 
+            ExtensionMethods.Shuffle(preguntas);
+
             m_preguntasFases = new List<List<RelationQuestion>>();
             m_totalPreguntas = Mathf.Min(preguntas.Count, m_maximoPreguntas);
             var totalPreguntasAux = m_totalPreguntas;

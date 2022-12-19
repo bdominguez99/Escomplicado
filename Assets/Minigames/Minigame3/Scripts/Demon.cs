@@ -62,23 +62,20 @@ public class Demon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Destroy rock
-        m_changePosition = false;
-
         var rockId = collision.gameObject.GetComponent<Rock>().RelationId;
-        GetComponent<Animator>().Play("DisappearSmoke");
 
         if (rockId == m_idRelation)
         {
+            m_changePosition = false;
+            GetComponent<Animator>().Play("DisappearSmoke");
             FindObjectOfType<GameController>().UpdateStateCorrectAnswer();
+            Destroy(collision.gameObject);
+            StartCoroutine(WaitTillAnimationOver());
         }
         else
         {
             FindObjectOfType<GameController>().UpdateStateWrongAnswer();
         }
-
-        Destroy(collision.gameObject);
-        StartCoroutine(WaitTillAnimationOver());
     }
 
     public IEnumerator WaitTillAnimationOver()
