@@ -210,11 +210,11 @@ namespace pipes
                 resetLevel();
                 questionsScreen.SetActive(false);
             }
-            else if (actualQuestion == targetQuestions)
+            else
             {
                 gameOverScreen.SetActive(true);
                 gameOverScoreText.text = "Puntuacion: " + actualScore + "/" + targetQuestions
-                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "Pasaste la prueba!" : "Has reprobado!");
+                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "¡Felicidades, pasaste la prueba!" : "¡Lastima, has reprobado!");
                 if ((float)actualScore / targetQuestions >= 0.6)
                 {
                     retryButton.SetActive(false);

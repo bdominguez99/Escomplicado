@@ -109,11 +109,7 @@ public class CoordinadorDeJuego : MonoBehaviour
 
     private void verifyMinigameScores()
     {
-        AudioSource mainSource = infoEntreEscenas.gameObject.GetComponent<AudioSource>();
         Minijuego minijuego = FindObjectOfType<Minijuego>();
-        if(mainSource.isPlaying) mainSource.Stop();
-        mainSource.clip = main;
-        mainSource.Play();
         if(minijuego != null)
         {
             float score = minijuego.getScore();

@@ -68,11 +68,11 @@ namespace SpaceInvaders
             if (FindObjectOfType<InfoEntreEscenas>().EsModoLibre)
             {
                 var materia = FindObjectOfType<InfoEntreEscenas>().MateriaModoLibre;
-                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Tecnologias para la Web");
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions(materia);
             }
             else
             {
-                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Tecnologias para la Web");
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Teoría computacional");
             }
             ExtensionMethods.Shuffle(questionsList);
         }
@@ -215,12 +215,12 @@ namespace SpaceInvaders
                 yield return new WaitForSeconds(showAnswersTime);
                 StartCoroutine(enemyController.enableEnemies());
             }
-            else if (actualQuestion == targetQuestions)
+            else
             {
                 gameOverScreen.SetActive(true);
                 destroyBullets();
-                gameOverScoreText.text = "Puntuacion: " + actualScore + "/" + targetQuestions
-                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "Pasaste la prueba!" : "Has reprobado!");
+                gameOverScoreText.text = "Puntuación: " + actualScore + "/" + targetQuestions
+                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "¡Felicidades, pasaste la prueba!" : "¡Lastima, has reprobado!");
                 if ((float)actualScore / targetQuestions >= 0.6){
                     retryButton.SetActive(false);
                 }

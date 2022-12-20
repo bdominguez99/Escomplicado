@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class AudioMenu : MonoBehaviour
 {
-    [SerializeField] AudioClip accept, back;
+    [SerializeField] AudioClip accept, back, main;
     [SerializeField] AudioSource audioSource;
+
+    private void Start()
+    {
+        AudioSource mainSource = FindObjectOfType<InfoEntreEscenas>().GetComponent<AudioSource>();
+        mainSource.clip = main;
+        mainSource.Play();
+    }
 
     public void playAccept()
     {
