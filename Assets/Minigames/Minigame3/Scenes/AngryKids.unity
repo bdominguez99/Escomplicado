@@ -2808,8 +2808,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 33.57903}
+  m_SizeDelta: {x: 160, y: 16.842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870184946
 MonoBehaviour:
@@ -5334,8 +5334,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 6.6812, y: 1.602}
+  m_SizeDelta: {x: 193.36, y: 37.008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725383703
 MonoBehaviour:
@@ -5358,19 +5358,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 8
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 8
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Puntuacion: 10/10'
+    m_LineSpacing: 1.2
+  m_Text: "Puntuaci\xF3n: 10/10\n\n\xA1Felicidades, pasaste la prueba!"
 --- !u!222 &1725383704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6091,11 +6091,11 @@ MonoBehaviour:
   m_gameOverScreen: {fileID: 1936150446}
   m_botonReintentar: {fileID: 394547474}
   m_finalScoreText: {fileID: 1725383703}
-  m_mistakePenalty: 3
-  m_timeLimit: 300
-  m_questionsPerPhase: 8
+  m_mistakePenalty: 10
+  m_timeLimit: 200
+  m_questionsPerPhase: 5
   m_demonMovementFrequency: 3
-  m_maxQuestions: 2
+  m_maxQuestions: 15
   m_rockSprites:
   - {fileID: -2705597995764985619, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
   - {fileID: 8032301891362702160, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
@@ -6431,11 +6431,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

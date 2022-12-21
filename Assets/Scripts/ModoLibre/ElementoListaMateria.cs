@@ -8,9 +8,9 @@ public class ElementoListaMateria : MonoBehaviour
     [SerializeField] private Text m_nombreMateriaText;
 
     private string m_nombreMateria;
-    private TipoMinijuego m_tipoMinijuego;
+    private HashSet<TipoMinijuego> m_tipoMinijuego;
 
-    public void Init(string materia, TipoMinijuego tipoMinijuego)
+    public void Init(string materia, HashSet<TipoMinijuego> tipoMinijuego)
     {
         m_nombreMateriaText.text = materia;
         m_nombreMateria = materia;

@@ -653,8 +653,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 2.249, y: 5.0099964}
+  m_SizeDelta: {x: 195.499, y: 40.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255959445
 MonoBehaviour:
@@ -677,19 +677,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
+    m_FontSize: 5
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 8
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Puntuacion: 10/10'
+  m_Text: "Puntuaci\xF3n: 10/10\n\n\xA1Felicidades, pasaste la prueba!"
 --- !u!222 &255959446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1812,11 +1812,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
+    m_Font: {fileID: 12800000, guid: e5bc6fa63ed168d41915b2dc1b2a37a6, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
+    m_BestFit: 1
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2944,8 +2944,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cronometro: {fileID: 925170798}
   m_textoPenalizacion: {fileID: 1790305786}
-  m_penalizacion: 3
-  m_tiempoLimite: 60
+  m_penalizacion: 10
+  m_tiempoLimite: 200
   m_iteracionesAnimacionPenalizacion: 10
   m_esperaAnimacion: 0.1
 --- !u!1 &1215632184
@@ -3192,8 +3192,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 35.5}
+  m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352174532
 MonoBehaviour:
@@ -4950,7 +4950,7 @@ MonoBehaviour:
   m_finAreaJuego: {x: 15, y: 8}
   m_reloj: {fileID: 1213796386}
   m_maximoPreguntasPorFase: 7
-  m_maximoPreguntas: 1
+  m_maximoPreguntas: 20
   m_botonReintento: {fileID: 1215632184}
 --- !u!1 &2139260523
 GameObject:

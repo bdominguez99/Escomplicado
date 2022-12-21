@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour
         {
             questions = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Diseño de Sistemas Digitales");
         }
+
+        ExtensionMethods.Shuffle(questions);
         
         m_totalQuestions = Mathf.Min(questions.Count, m_maxQuestions);
 
@@ -115,11 +117,7 @@ public class GameController : MonoBehaviour
 
     public void UpdateStateWrongAnswer()
     {
-        m_phaseQuestionsLeft--;
-        if (m_phaseQuestionsLeft == 0)
-        {
-            NextPhase();
-        }
+        FindObjectOfType<Clock>().IncreaseTime();
     }
 
     private void ConfigureGame()
@@ -145,6 +143,7 @@ public class GameController : MonoBehaviour
         ExtensionMethods.Shuffle<Pair<int, string>>(definitions);
         ExtensionMethods.Shuffle<Sprite>(m_rockSprites);
 
+
         for (int i = 0; i < m_currentPhaseQuestions.Count; i++)
         {
             var demon = Instantiate(m_demonPrefab);
@@ -156,7 +155,7 @@ public class GameController : MonoBehaviour
             demonObject.Init(definitions[i].First, initDemonArea, endDemonArea);
 
             m_popUpController.AddConceptElement(concepts[i].Second, concepts[i].First, m_rockSprites[concepts[i].First]);
-            m_popUpController.AddDefinitionElement(definitions[i].Second, definitions[i].First, m_demonSprites[i]);
+            m_popUpController.AddDefinitionElement(definitions[i].Second, definitions[i].First, m_demonSprites[definitions[i].First]);
         }
 
         var firstElement = m_popUpController.GetConceptElement(0);
@@ -169,23 +168,25 @@ public class GameController : MonoBehaviour
     public void UpdateRockType(int idElement)
     {
         var tommy = FindObjectOfType<Tommy>();
-        Debug.Log("IdElement: " + idElement);
         tommy.UpdateRockType(idElement, m_rockSprites[idElement]);
     }
 
     public void FinishGame()
     {
         var puntuacion = (float)m_correctQuestions / (float)m_totalQuestions;
+        string mensaje;
         if (puntuacion >= 0.5)
         {
             m_botonReintentar.SetActive(false);
+            mensaje = "\n\n¡Felicidades, pasaste la prueba!";
         }
         else
         {
             m_botonReintentar.SetActive(true);
+            mensaje = "\n\n¡Lástima, has reprobado!";
         }
 
-        m_finalScoreText.text = "Puntuacion: " + m_correctQuestions + "/" + m_totalQuestions;
+        m_finalScoreText.text = "Puntuación: " + m_correctQuestions + "/" + m_totalQuestions + mensaje;
         m_gameOverScreen.SetActive(true);
     }
 
