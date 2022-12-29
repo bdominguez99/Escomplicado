@@ -30,7 +30,11 @@ public class ConceptListElement : MonoBehaviour
 
     public void SelectElement()
     {
-        FindObjectOfType<PopUpController>().UpdateSelectedConcept(IdElement);
+        var popUpController = FindObjectOfType<PopUpController>();
+        if (popUpController != null)
+        {
+            popUpController.UpdateSelectedConcept(IdElement);
+        }
         MarkAsSelected();
     }
 

@@ -53,6 +53,21 @@ public class PopUpController : MonoBehaviour
 
     public ConceptListElement GetConceptElement(int index)
     {
-        return m_conceptListElements[index].GetComponent<ConceptListElement>();
+        if (m_conceptListElements != null && m_conceptListElements.Count > index && m_conceptListElements[index] != null)
+            return m_conceptListElements[index].GetComponent<ConceptListElement>();
+        return null;
+    }
+
+    public void Clear()
+    {
+        foreach (var concept in m_conceptListElements)
+        {
+            Destroy(concept);
+        }
+
+        foreach (var definition in m_definitionListElements)
+        {
+            Destroy(definition);
+        }
     }
 }
