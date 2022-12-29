@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
 
     private List<List<RelationQuestion>> m_questions;
     private List<RelationQuestion> m_currentPhaseQuestions;
+    private List<GameObject> m_demons;
     private int m_currentPhase;
     private int m_totalPhases;
     private int m_correctQuestions;
@@ -45,6 +46,7 @@ public class GameController : MonoBehaviour
         m_currentPhase = 0;
         m_loadingScreen.SetActive(true);
         InitClock();
+        m_demons = new List<GameObject>();
         await GetQuestions();
         ConfigureGame();
     }
@@ -102,7 +104,6 @@ public class GameController : MonoBehaviour
         {
             ConfigureGame();
         }
-
     }
 
     public void UpdateStateCorrectAnswer()
@@ -127,6 +128,14 @@ public class GameController : MonoBehaviour
         m_phaseQuestionsLeft = m_currentPhaseQuestions.Count;
         m_popUpController = m_popUpControllerGameObject.GetComponent<PopUpController>();
 
+        m_popUpController.Clear();
+
+        foreach (var demon in m_demons)
+        {
+            Destroy(demon);
+        }
+        m_demons.Clear();
+
         var initDemonArea = m_initDemonAreaObject.transform.position;
         var endDemonArea = m_endDemonAreaObject.transform.position;
 
@@ -147,19 +156,22 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < m_currentPhaseQuestions.Count; i++)
         {
             var demon = Instantiate(m_demonPrefab);
+            m_demons.Add(demon);
             var demonObject = demon.GetComponent<Demon>();
             var xCoordinate = Random.Range(initDemonArea.x, endDemonArea.x);
             var yCoordinate = Random.Range(initDemonArea.y, endDemonArea.y);
             var demonPosition = new Vector2(xCoordinate, yCoordinate);
             demonObject.transform.position = demonPosition;
             demonObject.Init(definitions[i].First, initDemonArea, endDemonArea);
-
             m_popUpController.AddConceptElement(concepts[i].Second, concepts[i].First, m_rockSprites[concepts[i].First]);
             m_popUpController.AddDefinitionElement(definitions[i].Second, definitions[i].First, m_demonSprites[definitions[i].First]);
         }
 
         var firstElement = m_popUpController.GetConceptElement(0);
-        firstElement.SelectElement();
+        if (firstElement != null)
+        {
+            firstElement.SelectElement();
+        }
 
         m_popUpControllerGameObject.SetActive(false);
         m_loadingScreen.SetActive(false);
