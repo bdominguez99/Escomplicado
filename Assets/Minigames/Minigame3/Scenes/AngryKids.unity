@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dabc075a4feb6b438b71053b2adc892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: dfeff71768a23054fab672ea7659973e, type: 3}
+  song: {fileID: 8300000, guid: 6a3bd4922a8330943a3f10fad27cc2b9, type: 3}
   main: {fileID: 8300000, guid: b2d9cef1e833319449bc0e2c44c4288a, type: 3}
 --- !u!1 &438497985
 GameObject:
@@ -3313,7 +3313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameId: 2
   score: 10
-  setScoreSteable: 0
+  setScoreSteable: 1
 --- !u!4 &947564702
 Transform:
   m_ObjectHideFlags: 0
@@ -6095,7 +6095,7 @@ MonoBehaviour:
   m_timeLimit: 200
   m_questionsPerPhase: 5
   m_demonMovementFrequency: 3
-  m_maxQuestions: 15
+  m_maxQuestions: 10
   m_rockSprites:
   - {fileID: -2705597995764985619, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}
   - {fileID: 8032301891362702160, guid: b5f42bfa1e89fec4cb9e0b8a0238396b, type: 3}

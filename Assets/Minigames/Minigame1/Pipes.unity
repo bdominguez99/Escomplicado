@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameId: 4
   score: 10
-  setScoreSteable: 0
+  setScoreSteable: 1
 --- !u!4 &830867830
 Transform:
   m_ObjectHideFlags: 0
@@ -7059,7 +7059,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 831005139}
   pauseScreen: {fileID: 790873011}
   switchingTime: 0.3
-  targetQuestions: 1
+  targetQuestions: 5
   showScoreTime: 2.5
   scoreText: {fileID: 1929261701}
   playingScoreText: {fileID: 890809091}

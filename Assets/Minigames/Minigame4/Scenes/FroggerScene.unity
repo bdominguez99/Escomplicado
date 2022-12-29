@@ -1977,7 +1977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameId: 3
   score: 10
-  setScoreSteable: 0
+  setScoreSteable: 1
 --- !u!4 &581226908
 Transform:
   m_ObjectHideFlags: 0
