@@ -195,8 +195,8 @@ namespace pipes
             {
                 actualQuestion++;
                 levelScreen.SetActive(true);
-                scoreText.text = "Pregunta: " + actualQuestion + "\nPuntuacion: " + actualScore;
-                playingScoreText.text = "Pregunta: " + actualQuestion + "   Puntuacion: " + actualScore;
+                scoreText.text = "Pregunta: " + actualQuestion + "\nPuntuación: " + actualScore;
+                playingScoreText.text = "Pregunta: " + actualQuestion + "   Puntuación: " + actualScore;
                 if (actualQuestion <= questionsList.Count)
                 {
                     setQuestion();
@@ -213,8 +213,8 @@ namespace pipes
             else
             {
                 gameOverScreen.SetActive(true);
-                gameOverScoreText.text = "Puntuacion: " + actualScore + "/" + targetQuestions
-                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "�Felicidades, pasaste la prueba!" : "�Lastima, has reprobado!");
+                gameOverScoreText.text = "Puntuación: " + actualScore + "/" + targetQuestions
+                    + "\n\n" + ((float)actualScore / targetQuestions >= 0.6 ? "¡Felicidades, pasaste la prueba!" : "¡Lástima, has reprobado!");
                 if ((float)actualScore / targetQuestions >= 0.6)
                 {
                     retryButton.SetActive(false);

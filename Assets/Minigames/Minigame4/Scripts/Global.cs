@@ -75,9 +75,13 @@ public class Global : MonoBehaviour {
 
     public void gameOver() {
         start = false;
+        var text = "";
         gameOverScreen.SetActive(true);
-        scoreText.GetComponent<Text>().text = "Puntuación: " + total + "/" + maxScore;
-        if (count >= minScore) restartButton.SetActive(false);
+        if (count >= minScore) {
+            restartButton.SetActive(false);
+            text = "¡Felicidades, pasaste la prueba!";
+        } else text = "¡Lástima, has reprobado!";
+        scoreText.GetComponent<Text>().text = "Puntuación: " + total + "/" + maxScore + "\n\n" + text;
     }
 
     public void restartMinigame() {
@@ -180,8 +184,8 @@ public class Global : MonoBehaviour {
     }
 
     public void setNewQuestion() {
-        answers = questionsList[count].answers;
-        question = questionsList[count].question;
+        answers = questionsList[(count<questionsList.Count)?count:0].answers;
+        question = questionsList[(count<questionsList.Count)?count:0].question;
         quest.GetComponent<Text>().text = question;
         start = false;
         counter = 0;
