@@ -2945,7 +2945,7 @@ MonoBehaviour:
   m_cronometro: {fileID: 925170798}
   m_textoPenalizacion: {fileID: 1790305786}
   m_penalizacion: 10
-  m_tiempoLimite: 200
+  m_tiempoLimite: 100
   m_iteracionesAnimacionPenalizacion: 10
   m_esperaAnimacion: 0.1
 --- !u!1 &1215632184
@@ -4949,8 +4949,8 @@ MonoBehaviour:
   m_inicioAreaJuego: {x: 1, y: 1}
   m_finAreaJuego: {x: 15, y: 8}
   m_reloj: {fileID: 1213796386}
-  m_maximoPreguntasPorFase: 7
-  m_maximoPreguntas: 14
+  m_maximoPreguntasPorFase: 5
+  m_maximoPreguntas: 10
   m_botonReintento: {fileID: 1215632184}
 --- !u!1 &2139260523
 GameObject:

@@ -6092,7 +6092,7 @@ MonoBehaviour:
   m_botonReintentar: {fileID: 394547474}
   m_finalScoreText: {fileID: 1725383703}
   m_mistakePenalty: 10
-  m_timeLimit: 200
+  m_timeLimit: 300
   m_questionsPerPhase: 5
   m_demonMovementFrequency: 3
   m_maxQuestions: 10

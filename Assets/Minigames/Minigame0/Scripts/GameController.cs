@@ -72,7 +72,7 @@ namespace SpaceInvaders
             }
             else
             {
-                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Teor�a computacional");
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Teoría Computacional");
             }
             ExtensionMethods.Shuffle(questionsList);
         }
