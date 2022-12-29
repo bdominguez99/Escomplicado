@@ -7,7 +7,7 @@ namespace SpaceInvaders
     public class Player : MonoBehaviour
     {
         [SerializeField] private int initialLifePoints = 3;
-        [SerializeField] private float maxRange = 4f, timeBeforeShoot = 0.1f, dieImpulseForce = 1f;
+        [SerializeField] private float moveSpeed = 1f, maxRange = 4f, timeBeforeShoot = 0.1f, dieImpulseForce = 1f;
         [SerializeField] private GameObject lifeBar, bullet, bulletParent;
         [SerializeField] private Animator shieldAnimator;
 
@@ -15,7 +15,7 @@ namespace SpaceInvaders
         private Rigidbody2D rbd;
         private Vector2 initialPos;
         private float targetx;
-        private bool canShoot, isShooting, canTakeDamage = true, isDying;
+        private bool canShoot, isShooting, canTakeDamage = true, isDying, movingRight, movingLeft;
         private int actualLifePoints;
 
         private void Start()
@@ -28,12 +28,25 @@ namespace SpaceInvaders
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
+            //Movement
+            //Standart movement
+            /*if (Input.GetMouseButton(0))
             {
                 targetx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
                 if (targetx > -maxRange && targetx < maxRange)
                     transform.position = new Vector2(initialPos.x + targetx, transform.position.y);
+            }*/
+            //Improoved movement
+            if (movingRight && transform.position.x < maxRange)
+            {
+                transform.Translate(Time.deltaTime * moveSpeed, 0, 0);
             }
+            else if (movingLeft && transform.position.x > -maxRange)
+            {
+                transform.Translate(-Time.deltaTime * moveSpeed, 0, 0);
+            }
+
+            //Shooting
             if ((isShooting || Input.GetKey(KeyCode.Space)) && !canShoot && !isDying)
             {
                 canShoot = true;
@@ -44,6 +57,16 @@ namespace SpaceInvaders
         public void setShooting(bool isShooting)
         {
             this.isShooting = isShooting;
+        }
+
+        public void setMovingRight(bool isMoving)
+        {
+            movingRight = isMoving && (!movingLeft);
+        }
+
+        public void setMovingLeft(bool isMoving)
+        {
+            movingLeft = isMoving && (!movingRight);
         }
 
         public int getMaxLifePoints()

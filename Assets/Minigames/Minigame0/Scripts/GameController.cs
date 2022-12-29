@@ -72,7 +72,7 @@ namespace SpaceInvaders
             }
             else
             {
-                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Teoría computacional");
+                questionsList = await FindObjectOfType<CargadorDeDB>().DataManager.GetMultipleOptionQuestions("Teorï¿½a computacional");
             }
             ExtensionMethods.Shuffle(questionsList);
         }
@@ -196,8 +196,8 @@ namespace SpaceInvaders
                 actualQuestion++;
                 levelScreen.SetActive(true);
                 enemyController.disableEnemies();
-                scoreText.text = "Pregunta: " + actualQuestion + "\nPuntuacion: " + actualScore;
-                playingScoreText.text = "Pregunta: " + actualQuestion + "   Puntuacion: " + actualScore;
+                scoreText.text = "Pregunta: " + actualQuestion + "\nPuntuaciÃ³n: " + actualScore;
+                playingScoreText.text = "Pregunta: " + actualQuestion + "   PuntuaciÃ³n: " + actualScore;
                 destroyBullets();
                 if (actualQuestion <= questionsList.Count)
                 {
@@ -219,8 +219,8 @@ namespace SpaceInvaders
             {
                 gameOverScreen.SetActive(true);
                 destroyBullets();
-                gameOverScoreText.text = "Puntuación: " + actualScore + "/" + targetQuestions
-                    + "\n" + ((float)actualScore / targetQuestions >= 0.6 ? "¡Felicidades, pasaste la prueba!" : "¡Lastima, has reprobado!");
+                gameOverScoreText.text = "PuntuaciÃ³n: " + actualScore + "/" + targetQuestions
+                    + "\n\n" + ((float)actualScore / targetQuestions >= 0.6 ? "Â¡Felicidades, pasaste la prueba!" : "Â¡LÃ¡stima, has reprobado!");
                 if ((float)actualScore / targetQuestions >= 0.6){
                     retryButton.SetActive(false);
                 }

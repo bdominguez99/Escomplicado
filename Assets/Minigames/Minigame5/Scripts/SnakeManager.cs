@@ -52,7 +52,7 @@ public class SnakeManager : MonoBehaviour {
         }
 
         ExtensionMethods.Shuffle(questionsList);
-        actualAns = new List<string>(questionsList[count].answers);
+        actualAns = new List<string>(questionsList[0].answers);
         messageScreen.SetActive(true);
         actualAns.Shuffle();
     }
@@ -88,9 +88,13 @@ public class SnakeManager : MonoBehaviour {
     }
 
     public void gameOver(bool win = false) {
+        var text = "";
         if (!win) Destroy(player.gameObject);
-        scoreText.GetComponent<Text>().text = "Puntuación: " + count + "/" + maxScore;
-        if (count >= minScore) againButton.SetActive(false);
+        if (count >= minScore) {
+            againButton.SetActive(false);
+            text = "¡Felicidades, pasaste la prueba!";
+        } else text = "¡Lástima, has reprobado!";
+        scoreText.GetComponent<Text>().text = "Puntuación: " + count + "/" + maxScore + "\n\n" + text;
         gameOverScreen.SetActive(true);
     }
 
@@ -184,7 +188,7 @@ public class SnakeManager : MonoBehaviour {
         if (count == maxScore) {
             StartCoroutine(player.WinAnimation(true));
         } else {
-            actualAns = new List<string>(questionsList[count].answers);
+            actualAns = new List<string>(questionsList[(count<questionsList.Count)?count:0].answers);
             StartCoroutine(player.WinAnimation());
             actualAns.Shuffle();
             SetTerrain();
@@ -192,8 +196,8 @@ public class SnakeManager : MonoBehaviour {
     }
 
     public void setNewQuestion() {
-        answers = questionsList[count].answers;
-        question = questionsList[count].question;
+        answers = questionsList[(count<questionsList.Count)?count:0].answers;
+        question = questionsList[(count<questionsList.Count)?count:0].question;
         messageText.GetComponent<Text>().text = question;
         canvas.Find("Question").GetComponent<Text>().text = question;
     }
