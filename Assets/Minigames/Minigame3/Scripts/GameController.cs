@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private int m_maxQuestions;
     [SerializeField] private List<Sprite> m_rockSprites;
     [SerializeField] private List<Sprite> m_demonSprites;
+    [SerializeField] private Text m_rightAnswersIndicator;
+    [SerializeField] private Text m_phaseIndicator;
 
     public int DemonMovementFrequency { get => m_demonMovementFrequency; }
 
@@ -48,7 +50,7 @@ public class GameController : MonoBehaviour
         InitClock();
         m_demons = new List<GameObject>();
         await GetQuestions();
-        ConfigureGame();
+        StartCoroutine(ConfigureGame());
     }
 
     private void InitClock()
@@ -98,11 +100,13 @@ public class GameController : MonoBehaviour
         m_currentPhase++;
         if (m_currentPhase >= m_totalPhases)
         {
+            m_phaseIndicator.text = "Cargando...";
             FinishGame();
         }
         else
         {
-            ConfigureGame();
+            m_phaseIndicator.text = "Fase: " + (m_currentPhase + 1) + " / " + m_totalPhases;
+            StartCoroutine(ConfigureGame());
         }
     }
 
@@ -110,6 +114,7 @@ public class GameController : MonoBehaviour
     {
         m_phaseQuestionsLeft--;
         m_correctQuestions++;
+        m_rightAnswersIndicator.text = m_correctQuestions + " / " + m_totalQuestions;
         if (m_phaseQuestionsLeft == 0)
         {
             NextPhase();
@@ -121,7 +126,7 @@ public class GameController : MonoBehaviour
         FindObjectOfType<Clock>().IncreaseTime();
     }
 
-    private void ConfigureGame()
+    private IEnumerator ConfigureGame()
     {
         m_loadingScreen.SetActive(true);
         m_currentPhaseQuestions = m_questions[m_currentPhase];
@@ -174,6 +179,7 @@ public class GameController : MonoBehaviour
         }
 
         m_popUpControllerGameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(1);
         m_loadingScreen.SetActive(false);
     }
 
