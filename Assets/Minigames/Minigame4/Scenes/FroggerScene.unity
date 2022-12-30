@@ -4068,7 +4068,7 @@ MonoBehaviour:
     abajo, izquierda, derecha)\r"
   - "Al tocar dos veces la pantalla puedes abrir o cerrar el recuadro que contiene
     la pregunta con sus respectivos incisos, a cada uno le corresponde una respuesta
-    de no m\xE1s de 10 car\xE1cteres."
+    de no m\xE1s de 10 caracteres."
   - "Al pasar por un encima de un libro, se repartir\xE1n por el mapa los car\xE1cteres
     de la respuesta correspondiente a su \xEDndice.  El objetivo del juego es formar
     la respuesta correcta."
