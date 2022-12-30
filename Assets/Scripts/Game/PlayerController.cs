@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
             direction.Normalize();
             Vector2 velocityVector = direction * velocity;
             rigidBody.velocity = velocityVector;
+            animator.SetBool("isMoving", true);
         } else{
             if (!stoppedMoving)
             {
