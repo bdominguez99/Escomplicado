@@ -38,7 +38,7 @@ public class Global : MonoBehaviour {
     public UnityEvent OnSwipeRight;
     public UnityEvent OnSwipeUp;
     public UnityEvent OnSwipeDown;
-    public AudioSource source, pluck;
+    public AudioSource source, pluck, sound;
 
     public int maxScore = 5;
     private int minScore = 3;
@@ -69,6 +69,7 @@ public class Global : MonoBehaviour {
         canvas.GetComponent<Canvas>().enabled = false;
         quest = canvas.transform.Find("Image").transform.Find("Text");
         navbar = GameObject.Find("Navbar").transform;
+        sound = navbar.gameObject.GetComponent<AudioSource>();
         result = navbar.Find("Result").GetComponent<Text>();
         score = navbar.Find("Score").GetComponent<Text>();
         time = navbar.Find("Time").GetComponent<Text>();
@@ -183,6 +184,7 @@ public class Global : MonoBehaviour {
             Event.current.clickCount > 1) {
             canvas.GetComponent<Canvas>().enabled = setCanvas;
             setCanvas = !setCanvas;
+            sound.Play();
         }
     }
 
