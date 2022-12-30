@@ -2256,7 +2256,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 6b2de93e03de1064f9f112451b741d23, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
@@ -4066,9 +4066,8 @@ MonoBehaviour:
   - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar el juego.
     Desliza el dedo para indicar la direcci\xF3n en la que quieras moverte (arriba,
     abajo, izquierda, derecha)\r"
-  - "Al tocar dos veces la pantalla puedes abrir o cerrar el recuadro que contiene
-    la pregunta con sus respectivos incisos, a cada uno le corresponde una respuesta
-    de no m\xE1s de 10 car\xE1cteres."
+  - Al tocar dos veces la pantalla puedes abrir o cerrar el recuadro que contiene
+    la pregunta con sus respectivos incisos. La respuesta no excede de los 5 caracteres.
   - "Al pasar por un encima de un libro, se repartir\xE1n por el mapa los car\xE1cteres
     de la respuesta correspondiente a su \xEDndice.  El objetivo del juego es formar
     la respuesta correcta."

@@ -77,7 +77,7 @@ public class Global : MonoBehaviour {
         start = false;
         var text = "";
         gameOverScreen.SetActive(true);
-        if (count >= minScore) {
+        if (total >= minScore) {
             restartButton.SetActive(false);
             text = "¡Felicidades, pasaste la prueba!";
         } else text = "¡Lástima, has reprobado!";

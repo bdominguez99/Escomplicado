@@ -4443,7 +4443,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff6f8e4e9c9ce5e4fbde8eec9aa7c5d7, type: 3}
   instructions:
   - "Esta es la pantalla principal del juego. Se mostrar\xE1 al iniciar el juego.
-    Desliza el dedo para indicar la direccion en la que quieras moverte (arriba,
+    Desliza el dedo para indicar la direcci\xF3n en la que quieras moverte (arriba,
     abajo, izquierda, derecha)\r"
   - "El objetivo es recolectar las mochilas en el orden correcto, cuando recojas
     todas ganar\xE1s un punto y la pregunta cambiar\xE1. Cada mochila corresponde
