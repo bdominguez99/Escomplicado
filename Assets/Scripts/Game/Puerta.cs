@@ -21,6 +21,7 @@ public class Puerta : MonoBehaviour
         interfaz.setNextDoor(puertaDestino);
         StartCoroutine(interfaz.transition(false, !isDoorOutside));
         if(isDoorOutside) FindObjectOfType<IndicadorDireccion>().setArrowVisibility(false);
+        FindObjectOfType<AudioMenu>().playDoor();
     }
 
     public int getTargetFloor()

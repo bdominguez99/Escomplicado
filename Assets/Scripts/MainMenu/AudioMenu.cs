@@ -6,6 +6,9 @@ public class AudioMenu : MonoBehaviour
 {
     [SerializeField] AudioClip accept, back, main;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip walk;
+    [SerializeField] AudioClip door;
+    [SerializeField] AudioClip climbStairs;
 
     private void Start()
     {
@@ -26,5 +29,33 @@ public class AudioMenu : MonoBehaviour
         if (audioSource.isPlaying) audioSource.Stop();
         audioSource.clip = back;
         audioSource.Play();
+    }
+
+    public void playDoor()
+    {
+        if (audioSource.isPlaying) audioSource.Stop();
+        audioSource.clip = door;
+        audioSource.Play();
+    }
+
+    public void playClimbStairs()
+    {
+        if (audioSource.isPlaying) audioSource.Stop();
+        audioSource.clip = climbStairs;
+        audioSource.Play();
+    }
+
+    public void playWalk()
+    {
+        if (audioSource.isPlaying) audioSource.Stop();
+        audioSource.loop = true;
+        audioSource.clip = walk;
+        audioSource.Play();
+    }
+
+    public void stopPlaying(bool isStopWalkSignal = false)
+    {
+        audioSource.loop = false;
+        if (audioSource.isPlaying) audioSource.Stop();
     }
 }

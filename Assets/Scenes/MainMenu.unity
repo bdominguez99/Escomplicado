@@ -5790,6 +5790,9 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 72f983b199bc5154ca8cdc17bbe83e58, type: 3}
   main: {fileID: 8300000, guid: b2d9cef1e833319449bc0e2c44c4288a, type: 3}
   audioSource: {fileID: 1681799225}
+  walk: {fileID: 8300000, guid: 303cefae0858868448db77589ea29571, type: 3}
+  door: {fileID: 8300000, guid: fd39cf0b7516a9c44a20acefbe16ffae, type: 3}
+  climbStairs: {fileID: 8300000, guid: 835c9cdee63979d4b8561f46079deaae, type: 3}
 --- !u!1 &843748468
 GameObject:
   m_ObjectHideFlags: 0

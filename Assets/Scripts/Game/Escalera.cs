@@ -9,6 +9,7 @@ public class Escalera : MonoBehaviour
 
     public void accion()
     {
+        FindObjectOfType<AudioMenu>().playClimbStairs();
         if (sonSubir) FindObjectOfType<Mapa>().subir();
         else FindObjectOfType<Mapa>().bajar();
     }

@@ -17,13 +17,13 @@ public class Mapa : MonoBehaviour
     public void subir()
     {
         pisoSiguiente = pisoActual + 1;
-        StartCoroutine(FindObjectOfType<Interfaz>().transition(true));
+        StartCoroutine(FindObjectOfType<Interfaz>().transition(true, extraWait: 2));
     }
 
     public void bajar()
     {
         pisoSiguiente = pisoActual - 1;
-        StartCoroutine(FindObjectOfType<Interfaz>().transition(true));
+        StartCoroutine(FindObjectOfType<Interfaz>().transition(true, extraWait: 2));
     }
 
     public int getActiveFloor()

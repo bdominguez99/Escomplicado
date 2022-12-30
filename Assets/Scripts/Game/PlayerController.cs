@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocity = 5f;
     [SerializeField] private bool canMove = true;
 
+    private bool stoppedMoving;
+
     [Header("Interacción")]
     public GameObject ultimaColision;
 
@@ -28,13 +30,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement(){
         if(canMove && Input.GetMouseButton(0)){
+            if (stoppedMoving)
+            {
+                stoppedMoving = false;
+                FindObjectOfType<AudioMenu>().playWalk();
+            }
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
             direction.Normalize();
             Vector2 velocityVector = direction * velocity;
             rigidBody.velocity = velocityVector;
-            animator.SetBool("isMoving", true);
         } else{
+            if (!stoppedMoving)
+            {
+                FindObjectOfType<AudioMenu>().stopPlaying();
+                stoppedMoving = true;
+                Debug.Log("Stopped moving");
+            }
             rigidBody.velocity = Vector2.zero;
             animator.SetBool("isMoving", false);
         } 

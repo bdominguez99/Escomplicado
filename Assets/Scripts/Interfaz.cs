@@ -145,7 +145,7 @@ public class Interfaz : MonoBehaviour
         loadingScreen.SetActive(true);
     }
 
-    public IEnumerator transition(bool cambiarPiso, bool showArrow = false)
+    public IEnumerator transition(bool cambiarPiso, bool showArrow = false, int extraWait = 0)
     {
         if (pantallaNegraGO != null)
         {
@@ -169,7 +169,7 @@ public class Interfaz : MonoBehaviour
             else player.transform.position = nextDoor.transform.position;
 
             yield return new WaitForSecondsRealtime(0.1f);
-            progress = 1;
+            progress = 1 + extraWait;
             while (progress > 0)
             {
                 progress -= Time.deltaTime;
