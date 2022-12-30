@@ -9,9 +9,15 @@ public class MiniaturaMinijuego : MonoBehaviour
 {
     [SerializeField] private Image m_referenciaImagen;
     [SerializeField] private Text m_textoNombre;
-    
+
     public TipoMinijuego TipoMinijuego { get; private set; }
     private int m_numeroMinijuego;
+    private AudioMenu m_audioMenu;
+
+    private void Start()
+    {
+        m_audioMenu = FindObjectOfType<AudioMenu>();
+    }
 
     public void Init(Sprite miniatura, string nombre, TipoMinijuego tipo, int numeroMinijuego)
     {
@@ -24,5 +30,10 @@ public class MiniaturaMinijuego : MonoBehaviour
     public void SeleccionarMinijuego()
     {
         FindObjectOfType<ControladorModoLibre>().SeleccionarMinijuego(m_numeroMinijuego);
+    }
+
+    public void PlayButtonSound()
+    {
+        m_audioMenu.playAccept();
     }
 }

@@ -7822,7 +7822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648c1c483c9a88b46b9c7a2f081c4116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_elementoMateriaPrefab: {fileID: 5030397119429243207, guid: 58a820f8f8323df49ba1e6159e1d4416, type: 3}
+  m_elementoMateriaPrefab: {fileID: 1160927947073706611, guid: 58a820f8f8323df49ba1e6159e1d4416, type: 3}
   m_minigamePrefab: {fileID: 5949849352096840383, guid: 9bafe5e38f8758147932f9e3301d0251, type: 3}
   m_referenciaListaMaterias: {fileID: 1720713252}
   m_referenciaListaMinijuegos: {fileID: 452236061}

@@ -21,4 +21,9 @@ public class ElementoListaMateria : MonoBehaviour
     {
         FindObjectOfType<ControladorModoLibre>().MostrarMinijuegos(m_nombreMateria, m_tipoMinijuego);
     }
+
+    public void PlayButtonSound()
+    {
+        FindObjectOfType<AudioMenu>().playAccept();
+    }
 }
