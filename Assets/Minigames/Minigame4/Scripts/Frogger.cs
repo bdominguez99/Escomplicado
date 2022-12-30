@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Frogger : MonoBehaviour {
+    private AudioSource source;
     private Global gameManager;
     private SpriteRenderer spriteRenderer;
     private Collider2D activeOption;
@@ -24,6 +25,7 @@ public class Frogger : MonoBehaviour {
         anim = GetComponent<Animator>();
         gameManager = FindObjectOfType<Global>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -79,12 +81,11 @@ public class Frogger : MonoBehaviour {
         Vector3 nextPosition = transform.position + direction;
         int option = CheckPosition(nextPosition); 
         if (option < 0) {
-            if (option == -2) {
-                transform.position = nextPosition;
-            }
+            if (option == -2) transform.position = nextPosition;
             ReturnBegin();
         } else if (option == 1) {
             transform.position = nextPosition;
+            source.Play();
         }
     }
 
@@ -161,6 +162,7 @@ public class Frogger : MonoBehaviour {
 
     private void OnTriggerEnter2D (Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Package")) {
+            gameManager.pluck.Play();
             gameManager.start = true;
             carry = "";
             if (activeOption != null) {
@@ -171,6 +173,7 @@ public class Frogger : MonoBehaviour {
             var option = other.GetComponent<Package>().option;
             gameManager.CreateLetters(option);
         } else if (other.gameObject.layer == LayerMask.NameToLayer("Goal")) {
+            gameManager.pluck.Play();
             carry += other.GetComponent<Goal>().value;
             Destroy(other.gameObject);
             ReturnBegin(true);

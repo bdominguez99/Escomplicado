@@ -10,6 +10,7 @@ public class Snake : MonoBehaviour {
     private Rigidbody2D rb;
     private Animator anim;
     private Life life;
+    private AudioSource source;
 
     private bool flag = true;
     private float timer = 0.0f;
@@ -32,6 +33,7 @@ public class Snake : MonoBehaviour {
         anim = GetComponent<Animator>();
         spawnPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        source = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -68,6 +70,7 @@ public class Snake : MonoBehaviour {
             transform.localScale = new Vector2(dir, transform.localScale.y);
         }
         rb.velocity = direction;
+        source.Play();
         start = true;
     }
 
@@ -141,6 +144,7 @@ public class Snake : MonoBehaviour {
     }
 
     void ReturnBegin() {
+        gm.source.Play();
         lifes -= 1;
         ReloadBags();
         life.ReduceLife(4 - lifes);
@@ -166,6 +170,7 @@ public class Snake : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (start) {
             if (other.gameObject.layer == LayerMask.NameToLayer("Food")) {
+                gm.pluck.Play();
                 StartCoroutine(invinsible());
                 Instantiate(this.prefab);
                 var bag = other.gameObject.GetComponent<Bag>();

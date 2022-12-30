@@ -30,6 +30,7 @@ public class SnakeManager : MonoBehaviour {
     public UnityEvent OnSwipeRight;
     public UnityEvent OnSwipeUp;
     public UnityEvent OnSwipeDown;
+    public AudioSource source, pluck;
 
     private Vector2 fingerDown;
     private DateTime fingerDownTime;
@@ -58,7 +59,9 @@ public class SnakeManager : MonoBehaviour {
     }
 
     async void Start() {
+        source = GetComponent<AudioSource>();
         canvas = GameObject.Find("Canvas").transform;
+        pluck = canvas.gameObject.GetComponent<AudioSource>();
         player = GameObject.Find("Player").GetComponent<Snake>();
         msg = canvas.Find("Message").GetComponent<Text>();
         time = canvas.Find("Time").GetComponent<Text>();
