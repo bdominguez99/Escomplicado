@@ -82,7 +82,7 @@ namespace TripasDeGato
             }
             else
             {
-                preguntas = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Arquitectura de Computadoras");
+                preguntas = await FindObjectOfType<CargadorDeDB>().DataManager.GetRelationQuestionsAsync("Análisis y Diseño Orientado a Objetos");
             }
 
             ExtensionMethods.Shuffle(preguntas);

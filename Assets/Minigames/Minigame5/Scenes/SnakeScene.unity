@@ -5157,7 +5157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameId: 1
   score: 10
-  setScoreSteable: 0
+  setScoreSteable: 1
 --- !u!4 &1965555596
 Transform:
   m_ObjectHideFlags: 0

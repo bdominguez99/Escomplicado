@@ -1511,7 +1511,7 @@ MonoBehaviour:
   bulletParent: {fileID: 799960910}
   loadingScreen: {fileID: 57095405}
   targetAnsPoints: 10
-  targetQuestions: 1
+  targetQuestions: 7
   showScoreTime: 2.5
   scoreText: {fileID: 689399245}
   playingScoreText: {fileID: 358965034}
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameId: 5
   score: 10
-  setScoreSteable: 0
+  setScoreSteable: 1
 --- !u!4 &695787966
 Transform:
   m_ObjectHideFlags: 0

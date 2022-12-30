@@ -69,5 +69,8 @@ public class PopUpController : MonoBehaviour
         {
             Destroy(definition);
         }
+
+        m_conceptListElements.Clear();
+        m_definitionListElements.Clear();
     }
 }
