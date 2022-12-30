@@ -90,6 +90,7 @@ namespace TripasDeGato
             if (EsNodo && !m_referenciaPopUp.activeSelf)
             {
                 m_controladorLineas.IniciarNuevaLinea(Posicion);
+                FindObjectOfType<AudioPlayer>().PlayDrawingSound();
             }
         }
 

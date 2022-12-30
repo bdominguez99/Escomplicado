@@ -11,11 +11,13 @@ namespace TripasDeGato
         private HashSet<Vector2> m_celdasPintadas;
         private Linea m_lineaActual;
         private ControladorPopUp m_controladorPopUp;
+        private AudioPlayer m_audioPlayer;
 
-        public ControladorLineas(ControladorPopUp referenciaControladorPopUp)
+        public ControladorLineas(ControladorPopUp referenciaControladorPopUp, AudioPlayer audioPlayer)
         {
             m_celdasPintadas = new HashSet<Vector2>();
             m_controladorPopUp = referenciaControladorPopUp;
+            m_audioPlayer = audioPlayer;
         }
 
         public void IniciarNuevaLinea(Vector2 posicionInicialCelda)
@@ -51,6 +53,7 @@ namespace TripasDeGato
                   celdaInicial.Id != idCeldaFinal &&
                   celdaInicial.IdNodoPar == idCeldaFinal)
                 { // Terminó de forma correcta
+                    m_audioPlayer.PlayCorrectAnswerSound();
                     foreach (var posicionCelda in m_lineaActual.Celdas)
                     {
                         m_celdasPintadas.Add(posicionCelda);
@@ -64,11 +67,12 @@ namespace TripasDeGato
                     m_lineaActual.Celdas.Count == 1 &&
                     !esOnMouseEnter)
                 { // Activa el pop-up
-
+                    m_audioPlayer.PlayOpenPopUpSound();
                     m_controladorPopUp.ActivarPopUp();
                 }
                 else
                 { // Se equivocó
+                    m_audioPlayer.PlayWrongAnswerSound();
                     foreach (var posicionCelda in m_lineaActual.Celdas)
                     {
                         var celda = ControladorJuego.Celdas[posicionCelda];

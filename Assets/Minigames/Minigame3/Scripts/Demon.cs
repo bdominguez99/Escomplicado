@@ -66,6 +66,7 @@ public class Demon : MonoBehaviour
 
         if (rockId == m_idRelation)
         {
+            FindObjectOfType<AudioPlayer>().PlayDemonDeathSound();
             m_changePosition = false;
             GetComponent<Animator>().Play("DisappearSmoke");
             FindObjectOfType<GameController>().UpdateStateCorrectAnswer();
@@ -75,6 +76,7 @@ public class Demon : MonoBehaviour
         else
         {
             FindObjectOfType<GameController>().UpdateStateWrongAnswer();
+            FindObjectOfType<AudioPlayer>().PlayWrongAnswerSound();
         }
     }
 

@@ -30,6 +30,7 @@ public class ConceptListElement : MonoBehaviour
 
     public void SelectElement()
     {
+        FindObjectOfType<AudioPlayer>().PlayButtonSound();
         var popUpController = FindObjectOfType<PopUpController>();
         if (popUpController != null)
         {

@@ -37,6 +37,7 @@ namespace TripasDeGato
         [SerializeField] private int m_maximoPreguntasPorFase;
         [SerializeField] private int m_maximoPreguntas;
         [SerializeField] private GameObject m_botonReintento;
+        [SerializeField] private AudioPlayer m_audioPlayer;
 
         public static Dictionary<Vector2, Celda> Celdas { get; private set; }
 
@@ -198,7 +199,7 @@ namespace TripasDeGato
             Celdas = new Dictionary<Vector2, Celda>();
             Nodos = new Dictionary<int, Nodo>();
             CeldasOcupadas = new HashSet<Vector2>();
-            m_controladorLineas = new ControladorLineas(m_controladorPopUp);
+            m_controladorLineas = new ControladorLineas(m_controladorPopUp, m_audioPlayer);
             m_textosNodos = new List<GameObject>();
 
             for (float x = m_inicioAreaJuego.x; x < m_finAreaJuego.x; x += m_tamanioCelda)
