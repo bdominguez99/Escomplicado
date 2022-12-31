@@ -38,6 +38,7 @@ public class Global : MonoBehaviour {
     public UnityEvent OnSwipeRight;
     public UnityEvent OnSwipeUp;
     public UnityEvent OnSwipeDown;
+    public AudioSource source, pluck, sound;
 
     public int maxScore = 5;
     private int minScore = 3;
@@ -60,12 +61,15 @@ public class Global : MonoBehaviour {
     }
 
     async void Start() {
+        source = GetComponent<AudioSource>();
         life = transform.Find("Life").GetComponent<Heart>();
         player = GameObject.Find("Player").GetComponent<Frogger>();
         canvas = GameObject.Find("Canvas");
+        pluck = canvas.GetComponent<AudioSource>();
         canvas.GetComponent<Canvas>().enabled = false;
         quest = canvas.transform.Find("Image").transform.Find("Text");
         navbar = GameObject.Find("Navbar").transform;
+        sound = navbar.gameObject.GetComponent<AudioSource>();
         result = navbar.Find("Result").GetComponent<Text>();
         score = navbar.Find("Score").GetComponent<Text>();
         time = navbar.Find("Time").GetComponent<Text>();
@@ -180,6 +184,7 @@ public class Global : MonoBehaviour {
             Event.current.clickCount > 1) {
             canvas.GetComponent<Canvas>().enabled = setCanvas;
             setCanvas = !setCanvas;
+            sound.Play();
         }
     }
 
@@ -207,7 +212,10 @@ public class Global : MonoBehaviour {
     }
 
     public void ReduceLife(bool reduce) {
-        if (reduce) life.SetSprite(--lifes);
+        if (reduce) {
+            life.SetSprite(--lifes);
+            source.Play();
+        }
     }
 
     public void SetResult(bool isCorrect) {
