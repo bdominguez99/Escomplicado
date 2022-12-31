@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour
         var firstElement = m_popUpController.GetConceptElement(0);
         if (firstElement != null)
         {
-            firstElement.SelectElement();
+            firstElement.SelectElement(false);
         }
 
         m_popUpControllerGameObject.SetActive(false);

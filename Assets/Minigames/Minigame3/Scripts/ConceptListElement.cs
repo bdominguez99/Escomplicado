@@ -28,9 +28,12 @@ public class ConceptListElement : MonoBehaviour
         SelectElement();
     }
 
-    public void SelectElement()
+    public void SelectElement(bool activateSound = true)
     {
-        FindObjectOfType<AudioPlayer>().PlayButtonSound();
+        if (activateSound)
+        {
+            FindObjectOfType<AudioPlayer>().PlayButtonSound();
+        }
         var popUpController = FindObjectOfType<PopUpController>();
         if (popUpController != null)
         {
