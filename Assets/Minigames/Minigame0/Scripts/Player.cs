@@ -10,9 +10,11 @@ namespace SpaceInvaders
         [SerializeField] private float moveSpeed = 1f, maxRange = 4f, timeBeforeShoot = 0.1f, dieImpulseForce = 1f;
         [SerializeField] private GameObject lifeBar, bullet, bulletParent;
         [SerializeField] private Animator shieldAnimator;
+        [SerializeField] private AudioClip dieClip, shootClip;
 
         private LifeBar lifeBarScript;
         private Rigidbody2D rbd;
+        private AudioSource audio;
         private Vector2 initialPos;
         private float targetx;
         private bool canShoot, isShooting, canTakeDamage = true, isDying, movingRight, movingLeft;
@@ -21,6 +23,7 @@ namespace SpaceInvaders
         private void Start()
         {
             rbd = GetComponent<Rigidbody2D>();
+            audio = GetComponent<AudioSource>();
             lifeBarScript = lifeBar.GetComponent<LifeBar>();
             initialPos = transform.position;
             actualLifePoints = initialLifePoints;
@@ -29,19 +32,11 @@ namespace SpaceInvaders
         void Update()
         {
             //Movement
-            //Standart movement
-            /*if (Input.GetMouseButton(0))
-            {
-                targetx = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-                if (targetx > -maxRange && targetx < maxRange)
-                    transform.position = new Vector2(initialPos.x + targetx, transform.position.y);
-            }*/
-            //Improoved movement
-            if (movingRight && transform.position.x < maxRange)
+            if ((Input.GetKey(KeyCode.RightArrow) || movingRight) && transform.position.x < maxRange)
             {
                 transform.Translate(Time.deltaTime * moveSpeed, 0, 0);
             }
-            else if (movingLeft && transform.position.x > -maxRange)
+            else if ((Input.GetKey(KeyCode.LeftArrow) || movingLeft) && transform.position.x > -maxRange)
             {
                 transform.Translate(-Time.deltaTime * moveSpeed, 0, 0);
             }
@@ -78,6 +73,9 @@ namespace SpaceInvaders
         {
             actualLifePoints -= dmg;
             shieldAnimator.SetTrigger("Hurt");
+            audio.Stop();
+            audio.clip = dieClip;
+            audio.Play();
             if (actualLifePoints <= 0)
             {
                 FindObjectOfType<GameController>().destroyBullets();
@@ -95,6 +93,7 @@ namespace SpaceInvaders
 
         public void resetState()
         {
+            audio.clip = shootClip;
             rbd.gravityScale = 0;
             transform.position = new Vector2(initialPos.x, initialPos.y);
             actualLifePoints = initialLifePoints;
@@ -112,11 +111,17 @@ namespace SpaceInvaders
             rbd.velocity = Vector2.zero;
             lifeBarScript.updateLifeSize(initialLifePoints);
             FindObjectOfType<GameController>().goToNextLevel();
+            audio.Stop();
+            audio.clip = dieClip;
+            audio.Play();
         }
 
         private IEnumerator shoot()
         {
             Instantiate(bullet, transform.position, Quaternion.identity, bulletParent.transform);
+            audio.Stop();
+            audio.clip = shootClip;
+            audio.Play();
             yield return new WaitForSeconds(timeBeforeShoot);
             canShoot = false;
         }

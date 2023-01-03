@@ -12,6 +12,7 @@ namespace SpaceInvaders
         [SerializeField] private Color[] colors;
         [SerializeField] private Color initColor;
         [SerializeField] private SpriteRenderer renderBase;
+        [SerializeField] private AudioClip dieClip, shootClip;
         [SerializeField] private int maxLife;
         [SerializeField] private float shootCooldownTime = 0.5f;
         [SerializeField][Range(0, 1)] private float oscilationSpeed = 1f, oscilationSize = 0.5f;
@@ -20,6 +21,7 @@ namespace SpaceInvaders
         private Player player;
         private GameObject bullet, bulletParent;
         private Collider2D selfCollider;
+        private AudioSource audio;
         private int actualRow, life;
         private float absPositionX, oscilator;
         private bool canShoot, canTakeDamage = true, isActive = true;
@@ -30,6 +32,7 @@ namespace SpaceInvaders
             absPositionX = transform.position.x;
             player = FindObjectOfType<Player>();
             selfCollider = GetComponent<BoxCollider2D>();
+            audio = GetComponent<AudioSource>();
             life = maxLife;
             canShoot = true;
         }
@@ -74,12 +77,6 @@ namespace SpaceInvaders
             }
         }
 
-        public void shoot()
-        {
-            Debug.Log("Enemy shooted");
-            Instantiate(bullet, transform.position, Quaternion.identity, bulletParent.transform);
-        }
-
         public void moveToTarget(Vector2 target, float movingTime)
         {
             StartCoroutine(move(target, movingTime));
@@ -103,6 +100,7 @@ namespace SpaceInvaders
         {
             life = maxLife;
             oscilator = 0;
+            audio.clip = shootClip;
         }
 
         public void setIsActive(bool isActive)
@@ -114,6 +112,9 @@ namespace SpaceInvaders
         {
             setActive(false, false);
             FindObjectOfType<GameController>().addPointsToAns(color, actualRow);
+            audio.Stop();
+            audio.clip = dieClip;
+            audio.Play();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -145,6 +146,7 @@ namespace SpaceInvaders
 
         private IEnumerator shootCooldown()
         {
+            audio.Play();
             yield return new WaitForSeconds(shootCooldownTime);
             canShoot = true;
         }

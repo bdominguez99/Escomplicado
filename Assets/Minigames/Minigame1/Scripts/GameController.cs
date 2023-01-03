@@ -44,6 +44,7 @@ namespace pipes
         private PipeStart pipeStart;
         private MultiOptionQuestion question;
         private List<MultipleOptionQuestion> questionsList;
+        private AudioSource audio;
 
         private async void Start()
         {
@@ -51,6 +52,7 @@ namespace pipes
             await setPreguntas();
             pipeController = FindObjectOfType<PipeController>();
             pipeStart = FindObjectOfType<PipeStart>();
+            audio = GetComponent<AudioSource>();
             setQuestion();
             StartCoroutine(showFirstQuestion());
         }
@@ -168,6 +170,8 @@ namespace pipes
                 end.position = Vector2.Lerp(endPos, startPos, progress);
                 yield return null;
             }
+            Debug.Log("Pipes switched");
+            audio.Play();
             start.position = endPos;
             end.position = startPos;
             switchStart.GetComponent<Pipe>().resetAfterSwitch();

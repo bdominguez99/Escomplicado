@@ -14,12 +14,14 @@ namespace pipes
         private Vector2 outputDir, inputDir;
         private Color disabledColor, enabledColor, switchColor;
         private Image pipe;
+        private AudioSource audio;
         private float fillTime, disableTime, waitBeforeOverflow, range, overlapCircleSize;
         private bool fillClockwise, isPositionLocked, isPreparedToSwitch;
 
         private void Start()
         {
             pipe = GetComponent<Image>();
+            audio = GetComponent<AudioSource>();
         }
 
         public bool canConnect(Vector2 outPutDirection)
@@ -84,7 +86,8 @@ namespace pipes
         public void tryPrepareToSwitch()
         {
             if (!isPositionLocked && !GameController.isSiwtching) {
-                if (GameController.switchStart != null)
+                audio.Play();
+                if (GameController.switchStart != null && GameController.switchStart != gameObject)
                 {
                     GameController.switchEnd = gameObject;
                     FindObjectOfType<GameController>().trySwitchPipes();
