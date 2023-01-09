@@ -32,6 +32,7 @@ public class IndicadorDireccion : MonoBehaviour
         startColor = floorLayers[0].color;
         spriteRenderer = GetComponent<SpriteRenderer>();
         mapa = FindObjectOfType<Mapa>();
+        setMinigame(0);
     }
 
     void Update()
@@ -63,7 +64,8 @@ public class IndicadorDireccion : MonoBehaviour
                 arrowDisabled = true;
             }
         }
-        else{
+        else
+        {
             minijuegoActual = idMinijuego;
             target = positions[idMinijuego];
             if(score == -1) for(int i = 0; i < positions.Length; i++)
