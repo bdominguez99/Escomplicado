@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;
     [SerializeField] private float velocity = 5f;
     [SerializeField] private bool canMove = true;
+    [SerializeField] private GameObject joystick;
+    [SerializeField] private GameObject joystickDirection;
+
+    private bool pressed = false;
+    private Vector2 initialPress;
 
     private bool stoppedMoving;
 
@@ -35,9 +40,19 @@ public class PlayerController : MonoBehaviour
                 stoppedMoving = false;
                 FindObjectOfType<AudioMenu>().playWalk();
             }
-            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
+            Vector2 targetPosition = Input.mousePosition;
+            Vector2 targetPositionWorldPoint = Camera.main.ScreenToWorldPoint(targetPosition);
+
+            if (!pressed)
+            {
+                joystick.SetActive(true);
+                joystick.transform.position = targetPositionWorldPoint;
+                initialPress = targetPosition;
+                pressed = true;
+            }
+            direction = new Vector2(targetPosition.x - initialPress.x, targetPosition.y - initialPress.y);
             direction.Normalize();
+            joystickDirection.transform.position = ((Vector2)joystick.transform.position) + direction;
             Vector2 velocityVector = direction * velocity;
             rigidBody.velocity = velocityVector;
             animator.SetBool("isMoving", true);
@@ -48,6 +63,8 @@ public class PlayerController : MonoBehaviour
                 stoppedMoving = true;
                 Debug.Log("Stopped moving");
             }
+            pressed = false;
+            joystick.SetActive(false);
             rigidBody.velocity = Vector2.zero;
             animator.SetBool("isMoving", false);
         } 
